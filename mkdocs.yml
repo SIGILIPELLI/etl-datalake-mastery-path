@@ -1,0 +1,107 @@
+site_name: ETL & Data Lake Mastery Path
+site_description: A structured, module-wise training program on ETL/ELT pipeline design and Data Lake architecture — from your first extract-transform-load script to governed, multi-zone lakehouse platforms, with runnable Python code in every module.
+site_url: https://sigilipelli.github.io/etl-datalake-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/etl-datalake-mastery-path
+repo_name: etl-datalake-mastery-path
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+# --- auto-pruned stub levels (see AdSense low-value-content fix) ---
+exclude_docs: |
+  level-2/[0-9]*
+  level-3/[0-9]*
+  level-4/[0-9]*
+# --- end auto-pruned stub levels ---
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What Is ETL vs. ELT?": level-1/01-etl-vs-elt.md
+      - "02 · Data Sources & Ingestion Patterns": level-1/02-data-sources-ingestion-patterns.md
+      - "03 · Extraction Basics (Files, APIs, Databases)": level-1/03-extraction-basics.md
+      - "04 · Transformation Basics (Clean, Cast, Dedupe)": level-1/04-transformation-basics.md
+      - "05 · Loading Into a Target": level-1/05-loading-into-a-target.md
+      - "06 · What Is a Data Lake? (vs. Data Warehouse)": level-1/06-what-is-a-data-lake.md
+      - "07 · Bronze/Silver/Gold Layering": level-1/07-bronze-silver-gold-layering.md
+      - "08 · File Formats: CSV, JSON, Parquet, Avro": level-1/08-file-formats.md
+      - "09 · Why You Need a Scheduler": level-1/09-orchestration-basics.md
+      - "10 · Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake": level-1/10-capstone-etl-lake-pipeline.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Incremental Loads & Change Data Capture": level-2/01-incremental-loads-cdc.md
+      - "02 · Data Quality Checks & Validation": level-2/02-data-quality-validation.md
+      - "03 · Partitioning Strategy for a Data Lake": level-2/03-partitioning-strategy.md
+      - "04 · Schema Evolution & Handling": level-2/04-schema-evolution.md
+      - "05 · Orchestration Tools Overview (Airflow DAGs)": level-2/05-orchestration-tools-airflow.md
+      - "06 · Idempotent Pipeline Design": level-2/06-idempotent-pipeline-design.md
+      - "07 · Backfills & Reprocessing": level-2/07-backfills-reprocessing.md
+      - "08 · Monitoring & Alerting for Pipelines": level-2/08-monitoring-alerting.md
+      - "09 · Data Contracts Between Producers & Consumers": level-2/09-data-contracts.md
+      - "10 · Project — Incremental, Validated Lake Pipeline": level-2/10-project-incremental-validated-pipeline.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Data Lakehouse Concepts (Delta Lake/Iceberg/Hudi)": level-3/01-lakehouse-concepts.md
+      - "02 · Streaming ETL Basics": level-3/02-streaming-etl-basics.md
+      - "03 · Data Cataloging & Metadata Management": level-3/03-data-cataloging-metadata.md
+      - "04 · Cost & Performance Optimization for Lake Storage": level-3/04-cost-performance-optimization.md
+      - "05 · Handling Late-Arriving & Out-of-Order Data": level-3/05-late-arriving-data.md
+      - "06 · Small Files & Compaction Strategies": level-3/06-small-files-compaction.md
+      - "07 · Time Travel & Data Versioning": level-3/07-time-travel-versioning.md
+      - "08 · ACID Transactions on the Lake": level-3/08-acid-transactions-lake.md
+      - "09 · Query Engines Over the Lake (Presto/Trino/Athena)": level-3/09-query-engines.md
+      - "10 · Project — Streaming-Ready Lakehouse Table": level-3/10-project-streaming-lakehouse-table.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Building a Governed Multi-Zone Data Lake": level-4/01-governed-multi-zone-lake.md
+      - "02 · Data Lineage & Observability": level-4/02-data-lineage-observability.md
+      - "03 · Security & Access Control Patterns for Data Lakes": level-4/03-security-access-control.md
+      - "04 · Lake vs. Warehouse vs. Lakehouse: Choosing for a Use Case": level-4/04-lake-warehouse-lakehouse-choice.md
+      - "05 · Data Mesh & Domain-Oriented Lake Ownership": level-4/05-data-mesh-domain-ownership.md
+      - "06 · Compliance & Retention in Data Lakes": level-4/06-compliance-retention.md
+      - "07 · Multi-Cloud & Hybrid Data Lake Strategy": level-4/07-multi-cloud-hybrid-strategy.md
+      - "08 · Cost Governance at Platform Scale": level-4/08-cost-governance-platform-scale.md
+      - "09 · Building a Data Platform Team": level-4/09-building-a-platform-team.md
+      - "10 · Capstone — Governed Enterprise Data Lake Architecture": level-4/10-capstone-enterprise-lake-architecture.md
