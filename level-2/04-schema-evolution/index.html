@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/03-extraction-basics/">
+        <link rel="canonical" href="https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/04-schema-evolution/">
       
       
-        <link rel="prev" href="../02-data-sources-ingestion-patterns/">
+        <link rel="prev" href="../03-partitioning-strategy/">
       
       
-        <link rel="next" href="../04-transformation-basics/">
+        <link rel="next" href="../05-orchestration-tools-airflow/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>03 · Extraction Basics (Files, APIs, Databases) - ETL & Data Lake Mastery Path</title>
+        <title>04 · Schema Evolution & Handling - ETL & Data Lake Mastery Path</title>
       
     
     
@@ -64,11 +64,11 @@
   
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ETL & Data Lake Mastery Path">
-  <meta property="og:title" content="03 · Extraction Basics (Files, APIs, Databases)">
+  <meta property="og:title" content="04 · Schema Evolution & Handling">
   <meta property="og:description" content="A structured, module-wise training program on ETL/ELT pipeline design and Data Lake architecture from entry level to master level — free, with runnable Python code in every module.">
-  <meta property="og:url" content="https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/03-extraction-basics/">
+  <meta property="og:url" content="https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/04-schema-evolution/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="03 · Extraction Basics (Files, APIs, Databases)">
+  <meta name="twitter:title" content="04 · Schema Evolution & Handling">
   <meta name="twitter:description" content="A structured, module-wise training program on ETL/ELT pipeline design and Data Lake architecture from entry level to master level — free, with runnable Python code in every module.">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
      crossorigin="anonymous"></script>
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#03-extraction-basics-files-apis-databases" class="md-skip">
+        <a href="#04-schema-evolution-handling" class="md-skip">
           Skip to content
         </a>
       
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              03 · Extraction Basics (Files, APIs, Databases)
+              04 · Schema Evolution & Handling
             
           </span>
         </div>
@@ -275,13 +275,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../level-1/" class="md-tabs__link">
           
   
   
@@ -299,11 +297,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../level-2/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -464,6 +464,380 @@
       
   
   
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/01-etl-vs-elt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · What Is ETL vs. ELT?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/02-data-sources-ingestion-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Data Sources & Ingestion Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/03-extraction-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Extraction Basics (Files, APIs, Databases)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/04-transformation-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Transformation Basics (Clean, Cast, Dedupe)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/05-loading-into-a-target/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Loading Into a Target
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/06-what-is-a-data-lake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · What Is a Data Lake? (vs. Data Warehouse)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/07-bronze-silver-gold-layering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Bronze/Silver/Gold Layering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/08-file-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · File Formats: CSV, JSON, Parquet, Avro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/09-orchestration-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Why You Need a Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-1/10-capstone-etl-lake-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -511,7 +885,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -522,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Level 1 · Entry
+    Level 2 · Intermediate
   
 
     
@@ -533,18 +907,18 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Level 1 · Entry
+    Level 2 · Intermediate
   
 
           </label>
@@ -559,14 +933,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../01-etl-vs-elt/" class="md-nav__link">
+      <a href="../01-incremental-loads-cdc/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    01 · What Is ETL vs. ELT?
+    01 · Incremental Loads & Change Data Capture
   
 
     
@@ -587,14 +961,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-data-sources-ingestion-patterns/" class="md-nav__link">
+      <a href="../02-data-quality-validation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    02 · Data Sources & Ingestion Patterns
+    02 · Data Quality Checks & Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-partitioning-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Partitioning Strategy for a Data Lake
   
 
     
@@ -624,524 +1026,7 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    03 · Extraction Basics (Files, APIs, Databases)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    03 · Extraction Basics (Files, APIs, Databases)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-a-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from a file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-an-api-with-pagination" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from an API (with pagination)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-a-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from a database
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-extraction-should-not-judge-rule" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The "extraction should not judge" rule
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#traps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Traps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercise
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-transformation-basics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    04 · Transformation Basics (Clean, Cast, Dedupe)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-loading-into-a-target/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    05 · Loading Into a Target
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-what-is-a-data-lake/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    06 · What Is a Data Lake? (vs. Data Warehouse)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-bronze-silver-gold-layering/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    07 · Bronze/Silver/Gold Layering
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-file-formats/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    08 · File Formats: CSV, JSON, Parquet, Avro
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-orchestration-basics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    09 · Why You Need a Scheduler
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-capstone-etl-lake-pipeline/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    10 · Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../level-2/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Level 2 · Intermediate
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Level 2 · Intermediate
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../level-2/01-incremental-loads-cdc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    01 · Incremental Loads & Change Data Capture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../level-2/02-data-quality-validation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    02 · Data Quality Checks & Validation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../level-2/03-partitioning-strategy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    03 · Partitioning Strategy for a Data Lake
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../level-2/04-schema-evolution/" class="md-nav__link">
         
   
   
@@ -1157,6 +1042,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1169,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/05-orchestration-tools-airflow/" class="md-nav__link">
+      <a href="../05-orchestration-tools-airflow/" class="md-nav__link">
         
   
   
@@ -1197,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/06-idempotent-pipeline-design/" class="md-nav__link">
+      <a href="../06-idempotent-pipeline-design/" class="md-nav__link">
         
   
   
@@ -1225,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/07-backfills-reprocessing/" class="md-nav__link">
+      <a href="../07-backfills-reprocessing/" class="md-nav__link">
         
   
   
@@ -1253,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/08-monitoring-alerting/" class="md-nav__link">
+      <a href="../08-monitoring-alerting/" class="md-nav__link">
         
   
   
@@ -1281,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/09-data-contracts/" class="md-nav__link">
+      <a href="../09-data-contracts/" class="md-nav__link">
         
   
   
@@ -1309,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level-2/10-project-incremental-validated-pipeline/" class="md-nav__link">
+      <a href="../10-project-incremental-validated-pipeline/" class="md-nav__link">
         
   
   
@@ -2105,91 +1991,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-a-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from a file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-an-api-with-pagination" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from an API (with pagination)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extracting-from-a-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extracting from a database
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-extraction-should-not-judge-rule" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The "extraction should not judge" rule
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#traps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Traps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercise
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2208,189 +2009,9 @@
   
 
 
-<h1 id="03-extraction-basics-files-apis-databases">03 · Extraction Basics (Files, APIs, Databases)<a class="headerlink" href="#03-extraction-basics-files-apis-databases" title="Permanent link">&para;</a></h1>
-<p>Extraction is the "E" in ETL/ELT: getting raw data out of wherever it lives
-and into a shape your pipeline can work with. This lesson walks through the
-three most common sources — a local file, an HTTP API, and a database — and
-the one design rule that applies to all three: <strong>extraction should not judge
-the data, only fetch it.</strong></p>
-<div class="admonition note">
-<p class="admonition-title">What actually ran</p>
-<p>File and database extraction ran locally against the standard library
-(<code>csv</code>, <code>json</code>, <code>sqlite3</code>). The API example uses Python's
-<code>urllib.request</code> but is shown against a local stand-in function instead
-of a live network call, since this lesson's code must run offline —
-the pagination logic itself is real and directly portable to <code>requests</code>
-or <code>urllib</code>.</p>
-</div>
-<h2 id="extracting-from-a-file">Extracting from a file<a class="headerlink" href="#extracting-from-a-file" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">csv_text</span> <span class="o">=</span> <span class="s2">"""product_id,name,price,in_stock</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">1,Widget,9.99,true</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">2,Gadget,19.99,false</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">3,Gizmo,14.50,true</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">"""</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_csv</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">rows</span> <span class="o">=</span> <span class="n">extract_csv</span><span class="p">(</span><span class="n">csv_text</span><span class="p">)</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows from CSV"</span><span class="p">)</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Extracted 3 rows from CSV
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>{'product_id': '1', 'name': 'Widget', 'price': '9.99', 'in_stock': 'true'}
-</code></pre></div>
-<p>Every field is still a string — <code>price</code> is <code>"9.99"</code>, not <code>9.99</code>, and
-<code>in_stock</code> is <code>"true"</code>, not <code>True</code>. That's correct behavior for an extract
-step: type casting is a transform decision (Level 1, lesson 4), not an
-extraction one.</p>
-<h2 id="extracting-from-an-api-with-pagination">Extracting from an API (with pagination)<a class="headerlink" href="#extracting-from-an-api-with-pagination" title="Permanent link">&para;</a></h2>
-<p>Real APIs rarely return everything in one response — they paginate. The
-pattern is always the same: request a page, check whether there's a next
-page, repeat until there isn't.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Stand-in for a real API — same shape as calling `requests.get(url, params=...)`</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># and reading `.json()`, just without a live network call in this lesson.</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">_fake_pages</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">"items"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Alice"</span><span class="p">},</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Bob"</span><span class="p">}],</span> <span class="s2">"next_page"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">"items"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Carla"</span><span class="p">}],</span> <span class="s2">"next_page"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_page</span><span class="p">(</span><span class="n">page_number</span><span class="p">):</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">return</span> <span class="n">_fake_pages</span><span class="p">[</span><span class="n">page_number</span><span class="p">]</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_api</span><span class="p">():</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">all_items</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">while</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">fetch_page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="n">all_items</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">"items"</span><span class="p">])</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">"next_page"</span><span class="p">]</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="k">return</span> <span class="n">all_items</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">items</span> <span class="o">=</span> <span class="n">extract_api</span><span class="p">()</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="si">}</span><span class="s2"> items across pages"</span><span class="p">)</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Extracted 3 items across pages
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  {'id': 1, 'name': 'Alice'}
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  {'id': 2, 'name': 'Bob'}
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  {'id': 3, 'name': 'Carla'}
-</code></pre></div>
-<p>With a real API, <code>fetch_page</code> would be:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_page</span><span class="p">(</span><span class="n">page_number</span><span class="p">):</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"https://api.example.com/users?page=</span><span class="si">{</span><span class="n">page_number</span><span class="si">}</span><span class="s2">"</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
-</code></pre></div>
-<p>The pagination loop itself doesn't change — that's the point of separating
-"how do I know when to stop" (a loop over <code>next_page</code>) from "how do I fetch
-one page" (the part that actually varies per API).</p>
-<h2 id="extracting-from-a-database">Extracting from a database<a class="headerlink" href="#extracting-from-a-database" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Set up a small "production" database to extract from</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE customers (id INTEGER, name TEXT, region TEXT)"</span><span class="p">)</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s2">"INSERT INTO customers VALUES (?, ?, ?)"</span><span class="p">,</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Ava Chen"</span><span class="p">,</span> <span class="s2">"APAC"</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Ravi Kumar"</span><span class="p">,</span> <span class="s2">"APAC"</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"Lena Fischer"</span><span class="p">,</span> <span class="s2">"EU"</span><span class="p">)],</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">)</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_db</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="k">return</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">row</span><span class="p">))</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="n">rows</span> <span class="o">=</span> <span class="n">extract_db</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"SELECT * FROM customers WHERE region = 'APAC'"</span><span class="p">)</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows from database"</span><span class="p">)</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Extracted 2 rows from database
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  {'id': 1, 'name': 'Ava Chen', 'region': 'APAC'}
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  {'id': 2, 'name': 'Ravi Kumar', 'region': 'APAC'}
-</code></pre></div>
-<p>Two things worth noting: the query itself (<code>WHERE region = 'APAC'</code>) already
-scopes the extraction — pushing filters down to the source is almost always
-cheaper than pulling everything and filtering in Python. And extraction from
-a live production database should always use a read replica or a dedicated
-reporting connection when one exists, never the primary transactional
-connection — an expensive analytical query competing with live traffic is a
-common way pipelines cause outages.</p>
-<h2 id="the-extraction-should-not-judge-rule">The "extraction should not judge" rule<a class="headerlink" href="#the-extraction-should-not-judge-rule" title="Permanent link">&para;</a></h2>
-<p>Across all three sources, the shared discipline is: <strong>extraction returns
-what the source gave you, unmodified</strong>, even if it looks wrong. Don't drop a
-row with a missing field, don't correct a typo, don't cast a type here.
-Every one of those is a business decision — normalizing them belongs in
-Transform, where it's visible, testable, and change-controlled in one place,
-not scattered wherever a source happens to be read.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Wrong: judging data during extraction</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_csv_bad</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reader</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"in_stock"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"true"</span><span class="p">]</span>  <span class="c1"># silent filtering!</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Right: extraction stays dumb, filtering is an explicit transform decision</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_csv_good</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
-</code></pre></div>
-<p>The "bad" version silently drops out-of-stock products with no record that
-it happened — six months later, someone asks "why don't we have historical
-out-of-stock data?" and the answer is buried in an extraction function
-nobody thought to check.</p>
-<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Filtering or casting inside extraction.</strong> Keeps the pipeline harder to
-  debug and impossible to reprocess differently later.</li>
-<li><strong>Extracting from a production primary database directly.</strong> Use a
-  replica, snapshot, or dedicated extract user/connection.</li>
-<li><strong>Assuming an API's first page is representative.</strong> Rate limits, partial
-  failures, and inconsistent page sizes are common — always loop until the
-  source's actual "no more data" signal, never a fixed guess at page count.</li>
-<li><strong>Not recording extraction metadata.</strong> Not shown above for brevity, but
-  real pipelines should record <em>when</em> an extract ran and <em>how many rows</em> it
-  pulled — that count is the cheapest sanity check available downstream.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Source</th>
-<th>Extraction unit</th>
-<th>Stop condition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>File</td>
-<td>Whole file / row iterator</td>
-<td>End of file</td>
-</tr>
-<tr>
-<td>API</td>
-<td>One page per request</td>
-<td>Empty page / no next-page token</td>
-</tr>
-<tr>
-<td>Database</td>
-<td>Query result set</td>
-<td>Query returns 0 rows (or reaches the watermark, Level 2)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
-<p>Combine all three sources into one <code>extract_all()</code> function that returns a
-dict <code>{"products": [...], "users": [...], "customers": [...]}</code> using the
-three extraction functions above. Add a print statement that reports the row
-count for each source, and confirm none of the three functions perform any
-filtering, casting, or cleanup — if you find one that does, refactor it so
-extraction stays "dumb."</p>
+<h1 id="04-schema-evolution-handling">04 · Schema Evolution &amp; Handling<a class="headerlink" href="#04-schema-evolution-handling" title="Permanent link">&para;</a></h1>
+<p>This module is part of Level 2 · Intermediate.</p>
+<p>More lessons are on the way — check back soon.</p>
 
 
 
