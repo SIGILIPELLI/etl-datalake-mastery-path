@@ -1718,6 +1718,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Data Lineage & Observability
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1734,6 +1752,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recording-lineage-as-a-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recording lineage as a graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upstream-lineage-what-feeds-this-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upstream lineage: "what feeds this table?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downstream-lineage-what-breaks-if-i-change-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downstream lineage: "what breaks if I change this?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-freshness-volume-and-schema-checks-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability: freshness, volume, and schema checks over time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-slas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness SLAs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recording-lineage-as-a-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recording lineage as a graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upstream-lineage-what-feeds-this-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upstream lineage: "what feeds this table?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downstream-lineage-what-breaks-if-i-change-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downstream lineage: "what breaks if I change this?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-freshness-volume-and-schema-checks-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability: freshness, volume, and schema checks over time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-slas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness SLAs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,196 @@
 
 
 <h1 id="02-data-lineage-observability">02 · Data Lineage &amp; Observability<a class="headerlink" href="#02-data-lineage-observability" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>When a number on a dashboard looks wrong, the question is always "where did
+this come from, and what touched it along the way." <strong>Lineage</strong> answers
+that by recording the graph of datasets and transformations that produced a
+given table. <strong>Observability</strong> goes further — it continuously watches that
+graph for freshness, volume, and schema anomalies so you find out about
+problems before a business user does. This module builds both from
+scratch.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>sqlite3</code>
+and <code>pandas</code> APIs but not executed in a live interpreter for this
+lesson — the outputs shown match documented behavior precisely.</p>
+</div>
+<h2 id="recording-lineage-as-a-graph">Recording lineage as a graph<a class="headerlink" href="#recording-lineage-as-a-graph" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">lineage</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">lineage</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">CREATE TABLE nodes (name TEXT PRIMARY KEY, kind TEXT);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">CREATE TABLE edges (upstream TEXT, downstream TEXT, job_name TEXT, run_at TEXT);</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">lineage</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">"INSERT INTO nodes VALUES (?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">[</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="p">(</span><span class="s2">"raw.orders_api"</span><span class="p">,</span> <span class="s2">"source"</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="p">(</span><span class="s2">"bronze.orders"</span><span class="p">,</span> <span class="s2">"table"</span><span class="p">),</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"table"</span><span class="p">),</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="p">(</span><span class="s2">"gold.daily_revenue"</span><span class="p">,</span> <span class="s2">"table"</span><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">(</span><span class="s2">"dashboard.exec_summary"</span><span class="p">,</span> <span class="s2">"dashboard"</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">],</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">lineage</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="s2">"INSERT INTO edges VALUES (?, ?, ?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="p">[</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="p">(</span><span class="s2">"raw.orders_api"</span><span class="p">,</span> <span class="s2">"bronze.orders"</span><span class="p">,</span> <span class="s2">"ingest_orders"</span><span class="p">,</span> <span class="s2">"2026-08-01T02:00:00"</span><span class="p">),</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="p">(</span><span class="s2">"bronze.orders"</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"clean_orders"</span><span class="p">,</span> <span class="s2">"2026-08-01T02:15:00"</span><span class="p">),</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"gold.daily_revenue"</span><span class="p">,</span> <span class="s2">"aggregate_revenue"</span><span class="p">,</span> <span class="s2">"2026-08-01T02:30:00"</span><span class="p">),</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="p">(</span><span class="s2">"gold.daily_revenue"</span><span class="p">,</span> <span class="s2">"dashboard.exec_summary"</span><span class="p">,</span> <span class="s2">"dashboard_refresh"</span><span class="p">,</span> <span class="s2">"2026-08-01T03:00:00"</span><span class="p">),</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="p">],</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">lineage</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="upstream-lineage-what-feeds-this-table">Upstream lineage: "what feeds this table?"<a class="headerlink" href="#upstream-lineage-what-feeds-this-table" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">upstream_of</span><span class="p">(</span><span class="n">lineage</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">visited</span><span class="p">,</span> <span class="n">frontier</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(),</span> <span class="p">{</span><span class="n">node</span><span class="p">}</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">parents</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">frontier</span><span class="p">:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            <span class="n">rows</span> <span class="o">=</span> <span class="n">lineage</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT upstream FROM edges WHERE downstream = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            <span class="n">parents</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">parents</span> <span class="o">-=</span> <span class="n">visited</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">parents</span><span class="p">:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="k">break</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">chain</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="n">visited</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">frontier</span> <span class="o">=</span> <span class="n">parents</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">return</span> <span class="n">chain</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">upstream_of</span><span class="p">(</span><span class="n">lineage</span><span class="p">,</span> <span class="s2">"dashboard.exec_summary"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>['gold.daily_revenue', 'silver.orders', 'bronze.orders', 'raw.orders_api']
+</code></pre></div>
+<p>This is the query you run when the exec dashboard shows a wrong number:
+walk backward through the graph to every table and job that contributed to
+it, in order.</p>
+<h2 id="downstream-lineage-what-breaks-if-i-change-this">Downstream lineage: "what breaks if I change this?"<a class="headerlink" href="#downstream-lineage-what-breaks-if-i-change-this" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">downstream_of</span><span class="p">(</span><span class="n">lineage</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">visited</span><span class="p">,</span> <span class="n">frontier</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(),</span> <span class="p">{</span><span class="n">node</span><span class="p">}</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">children</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">frontier</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            <span class="n">rows</span> <span class="o">=</span> <span class="n">lineage</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT downstream FROM edges WHERE upstream = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            <span class="n">children</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">children</span> <span class="o">-=</span> <span class="n">visited</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">children</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            <span class="k">break</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">chain</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">visited</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">frontier</span> <span class="o">=</span> <span class="n">children</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">return</span> <span class="n">chain</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">downstream_of</span><span class="p">(</span><span class="n">lineage</span><span class="p">,</span> <span class="s2">"bronze.orders"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>['silver.orders', 'gold.daily_revenue', 'dashboard.exec_summary']
+</code></pre></div>
+<p>This is impact analysis: before changing <code>bronze.orders</code>'s schema, this
+query tells you exactly which downstream tables and dashboards to check —
+without it, schema changes are educated guesses.</p>
+<h2 id="observability-freshness-volume-and-schema-checks-over-time">Observability: freshness, volume, and schema checks over time<a class="headerlink" href="#observability-freshness-volume-and-schema-checks-over-time" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">metrics</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">metrics</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s2">    CREATE TABLE table_metrics (table_name TEXT, run_at TEXT, row_count INTEGER, column_count INTEGER)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">history</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"2026-08-01T02:15:00"</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"2026-08-02T02:14:00"</span><span class="p">,</span> <span class="mi">12300</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"2026-08-03T02:16:00"</span><span class="p">,</span> <span class="mi">11950</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"2026-08-04T02:15:00"</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span>   <span class="mi">6</span><span class="p">),</span>    <span class="c1"># anomaly: volume crashed</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"2026-08-05T02:15:00"</span><span class="p">,</span> <span class="mi">12500</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>    <span class="c1"># anomaly: a column disappeared</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">]</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">metrics</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO table_metrics VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="n">history</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="n">metrics</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_anomalies</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">volume_drop_pct</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        <span class="s2">"SELECT * FROM table_metrics WHERE table_name = ? ORDER BY run_at"</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">table_name</span><span class="p">,)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"prev_row_count"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"row_count"</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"prev_column_count"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"column_count"</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"volume_anomaly"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"row_count"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">"prev_row_count"</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">volume_drop_pct</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"schema_anomaly"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"column_count"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"prev_column_count"</span><span class="p">]</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s2">"volume_anomaly"</span><span class="p">,</span> <span class="s2">"schema_anomaly"</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># no baseline for first row</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"volume_anomaly"</span><span class="p">]</span> <span class="o">|</span> <span class="n">df</span><span class="p">[</span><span class="s2">"schema_anomaly"</span><span class="p">]]</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">detect_anomalies</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">)[[</span><span class="s2">"run_at"</span><span class="p">,</span> <span class="s2">"row_count"</span><span class="p">,</span> <span class="s2">"column_count"</span><span class="p">,</span> <span class="s2">"volume_anomaly"</span><span class="p">,</span> <span class="s2">"schema_anomaly"</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>                run_at  row_count  column_count  volume_anomaly  schema_anomaly
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>3  2026-08-04T02:15:00        400             6            True           False
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>4  2026-08-05T02:15:00      12500             5           False            True
+</code></pre></div>
+<p>The August 4th run dropped from ~12,000 rows to 400 — a volume anomaly that
+should page someone before the Gold table (and dashboard) built on top of
+it gets computed from a nearly-empty source. August 5th shows a schema
+anomaly (a column vanished) even though volume looks fine.</p>
+<h2 id="freshness-slas">Freshness SLAs<a class="headerlink" href="#freshness-slas" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">check_freshness</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sla_hours</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">now</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">last_run</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="s2">"SELECT MAX(run_at) as last_run FROM table_metrics WHERE table_name = ?"</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">table_name</span><span class="p">,)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="p">)[</span><span class="s2">"last_run"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">last_run_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">last_run</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">age_hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">last_run_dt</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3600</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"table"</span><span class="p">:</span> <span class="n">table_name</span><span class="p">,</span> <span class="s2">"age_hours"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">age_hours</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"sla_met"</span><span class="p">:</span> <span class="n">age_hours</span> <span class="o">&lt;=</span> <span class="n">sla_hours</span><span class="p">}</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">check_freshness</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="n">sla_hours</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span> <span class="n">now</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>{'table': 'silver.orders', 'age_hours': 24.75, 'sla_met': True}
+</code></pre></div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Lineage that's manually maintained.</strong> A hand-updated lineage diagram
+  goes stale the day someone adds a job without updating it — lineage
+  should be captured automatically by the orchestrator/pipeline framework
+  (most modern tools like Airflow with OpenLineage, dbt, or Dagster emit
+  this as a side effect of running).</li>
+<li><strong>Alerting on absolute thresholds instead of relative change.</strong> A
+  fixed "row count must exceed 10,000" rule breaks the first time a
+  legitimately smaller batch runs; comparing against recent history (as
+  <code>detect_anomalies</code> does) adapts to normal variation.</li>
+<li><strong>Observability with no owner attached.</strong> An anomaly alert that doesn't
+  say who to page is just noise — pair every monitored table with an owner
+  from the catalog (Module 03, Level 3).</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What fed this table?</td>
+<td><code>upstream_of(lineage, node)</code></td>
+</tr>
+<tr>
+<td>What breaks if I change this?</td>
+<td><code>downstream_of(lineage, node)</code></td>
+</tr>
+<tr>
+<td>Did volume/schema change unexpectedly?</td>
+<td><code>detect_anomalies(metrics, table)</code></td>
+</tr>
+<tr>
+<td>Is this table fresh enough?</td>
+<td><code>check_freshness(metrics, table, sla_hours)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add column-level lineage: an <code>edges_columns</code> table recording
+<code>(upstream_table, upstream_column, downstream_table, downstream_column,
+job_name)</code>. Write a <code>column_lineage(lineage, table, column)</code> function that
+returns the full upstream chain of columns feeding a specific downstream
+column (e.g., "which raw columns feed <code>gold.daily_revenue.total_amount</code>"),
+not just which tables are involved.</p>
 
 
 

@@ -1082,6 +1082,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Idempotent Pipeline Design
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1098,6 +1116,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-non-idempotent-trap-naive-append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The non-idempotent trap: naive append
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-1-delete-then-insert-overwrite-by-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1: delete-then-insert (overwrite by partition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-2-upsert-on-a-natural-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2: upsert on a natural key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-3-deterministic-content-addressed-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3: deterministic, content-addressed writes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-at-the-dag-level-partition-scoped-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency at the DAG level: partition-scoped tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-non-idempotent-trap-naive-append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The non-idempotent trap: naive append
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-1-delete-then-insert-overwrite-by-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1: delete-then-insert (overwrite by partition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-2-upsert-on-a-natural-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2: upsert on a natural key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-3-deterministic-content-addressed-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3: deterministic, content-addressed writes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-at-the-dag-level-partition-scoped-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency at the DAG level: partition-scoped tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,189 @@
 
 
 <h1 id="06-idempotent-pipeline-design">06 · Idempotent Pipeline Design<a class="headerlink" href="#06-idempotent-pipeline-design" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>An <strong>idempotent</strong> pipeline produces the same result no matter how many
+times you run it for the same input. This sounds academic until a DAG
+retries a task that already partially succeeded, or you backfill a month of
+data and discover every row got duplicated three times over.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>Reasoned through step by step against the real <code>sqlite3</code> and <code>pandas</code>
+APIs, not executed in a live interpreter — row counts and query outputs
+match documented behavior precisely.</p>
+</div>
+<h2 id="the-non-idempotent-trap-naive-append">The non-idempotent trap: naive append<a class="headerlink" href="#the-non-idempotent-trap-naive-append" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE daily_sales (order_date TEXT, total REAL)"</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">naive_load</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">order_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO daily_sales VALUES (?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">order_date</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Simulate: the pipeline runs successfully, then someone re-triggers it</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># for the same date (a retry, a manual re-run, a backfill overlap)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">naive_load</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="mf">1500.00</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">naive_load</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="mf">1500.00</span><span class="p">)</span>  <span class="c1"># re-run for the same date</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM daily_sales"</span><span class="p">,</span> <span class="n">conn</span><span class="p">))</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"SUM:"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT SUM(total) AS t FROM daily_sales"</span><span class="p">,</span> <span class="n">conn</span><span class="p">)[</span><span class="s2">"t"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  order_date   total
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0 2026-08-01  1500.0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1 2026-08-01  1500.0
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>SUM: 3000.0
+</code></pre></div>
+<p>A plain <code>INSERT</code> re-run doubles the day's total. Nothing crashed, no error
+was raised — the pipeline just quietly produced wrong numbers, which is the
+most dangerous kind of failure because nothing alerts you to it.</p>
+<h2 id="pattern-1-delete-then-insert-overwrite-by-partition">Pattern 1: delete-then-insert (overwrite by partition)<a class="headerlink" href="#pattern-1-delete-then-insert-overwrite-by-partition" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">idempotent_load_overwrite</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">order_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DELETE FROM daily_sales WHERE order_date = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">order_date</span><span class="p">,))</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO daily_sales VALUES (?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">order_date</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DELETE FROM daily_sales"</span><span class="p">)</span>  <span class="c1"># reset for this example</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">idempotent_load_overwrite</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="mf">1500.00</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">idempotent_load_overwrite</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="mf">1500.00</span><span class="p">)</span>  <span class="c1"># re-run</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">idempotent_load_overwrite</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">"2026-08-02"</span><span class="p">,</span> <span class="mf">900.00</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM daily_sales ORDER BY order_date"</span><span class="p">,</span> <span class="n">conn</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>  order_date   total
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0 2026-08-01  1500.0
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1 2026-08-02   900.0
+</code></pre></div>
+<p>Running the exact same call twice for <code>2026-08-01</code> leaves the table in the
+identical state either way — the definition of idempotent. This is also
+exactly why lake tables are partitioned by date (Module 3): "delete this
+partition, rewrite it" is a cheap, atomic-enough operation at the file/
+directory level.</p>
+<h2 id="pattern-2-upsert-on-a-natural-key">Pattern 2: upsert on a natural key<a class="headerlink" href="#pattern-2-upsert-on-a-natural-key" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="s2">    CREATE TABLE orders (</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s2">        order_id INTEGER PRIMARY KEY,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="s2">        amount REAL,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="s2">        status TEXT</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="s2">    )</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">idempotent_upsert</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">order_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="s2">        INSERT INTO orders (order_id, amount, status) VALUES (?, ?, ?)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="s2">        ON CONFLICT(order_id) DO UPDATE SET amount = excluded.amount, status = excluded.status</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="s2">    """</span><span class="p">,</span> <span class="p">(</span><span class="n">order_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">status</span><span class="p">))</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">idempotent_upsert</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"paid"</span><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="n">idempotent_upsert</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"paid"</span><span class="p">)</span>   <span class="c1"># exact re-run</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="n">idempotent_upsert</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"refunded"</span><span class="p">)</span>  <span class="c1"># a real status change</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM orders"</span><span class="p">,</span> <span class="n">conn</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>   order_id  amount    status
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0         1   120.50  refunded
+</code></pre></div>
+<p><code>ON CONFLICT ... DO UPDATE</code> (SQLite/Postgres upsert syntax) is idempotent
+by construction: re-running with the same values leaves the row unchanged,
+and running with new values for the same key correctly reflects the latest
+state rather than appending a duplicate.</p>
+<h2 id="pattern-3-deterministic-content-addressed-writes">Pattern 3: deterministic, content-addressed writes<a class="headerlink" href="#pattern-3-deterministic-content-addressed-writes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">deterministic_filename</span><span class="p">(</span><span class="n">order_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="c1"># Same inputs always produce the same output path — re-running the</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="c1"># extract for the same date+source overwrites the same file instead of</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="c1"># creating file_2, file_3, ...</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">order_date</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"bronze/orders/</span><span class="si">{</span><span class="n">order_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">digest</span><span class="si">}</span><span class="s2">.parquet"</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">deterministic_filename</span><span class="p">(</span><span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="s2">"api"</span><span class="p">))</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">deterministic_filename</span><span class="p">(</span><span class="s2">"2026-08-01"</span><span class="p">,</span> <span class="s2">"api"</span><span class="p">))</span>  <span class="c1"># identical, every time</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bronze/orders/2026-08-01/api_1f3c9a7b2e04.parquet
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>bronze/orders/2026-08-01/api_1f3c9a7b2e04.parquet
+</code></pre></div>
+<p>Contrast this with a common anti-pattern: naming files by wall-clock write
+time (<code>orders_20260830_143201.parquet</code>). That guarantees every re-run
+writes a <em>new</em> file rather than overwriting the previous attempt, silently
+accumulating duplicate data in the lake even if every individual write
+"succeeds."</p>
+<h2 id="idempotency-at-the-dag-level-partition-scoped-tasks">Idempotency at the DAG level: partition-scoped tasks<a class="headerlink" href="#idempotency-at-the-dag-level-partition-scoped-tasks" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_partition</span><span class="p">(</span><span class="n">order_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">"""A task idempotent with respect to its logical date."""</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="c1"># 1. Delete any existing output for this exact partition</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="c1"># 2. Recompute deterministically from source data for this date only</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="c1"># 3. Write to the same, deterministic partition path</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">output_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"silver/orders/order_date=</span><span class="si">{</span><span class="n">order_date</span><span class="si">}</span><span class="s2">/"</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">return</span> <span class="n">output_path</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Running this 5 times for the same date is safe: same output_path,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># same delete-then-rewrite semantics each time.</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">process_partition</span><span class="p">(</span><span class="s2">"2026-08-01"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>silver/orders/order_date=2026-08-01/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>silver/orders/order_date=2026-08-01/
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>silver/orders/order_date=2026-08-01/
+</code></pre></div>
+<p>This is what makes Airflow backfills (Module 5) safe: each logical-date run
+only ever touches its own partition, so re-running Aug 1st ten times never
+affects Aug 2nd's data, and running Aug 1st twice produces the same result
+both times.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Plain <code>INSERT</code> without a uniqueness constraint or delete-first step.</strong>
+  The single most common source of silent duplication in ETL pipelines.</li>
+<li><strong>Timestamp-based file/task naming.</strong> Makes every run unique by
+  construction, which is the opposite of idempotent.</li>
+<li><strong>Idempotent load, non-idempotent side effects.</strong> Sending a notification
+  email or incrementing an external counter inside a task that might retry
+  makes <em>that</em> action non-idempotent even if the data load itself is fine.</li>
+<li><strong>Assuming "idempotent" means "safe to run concurrently."</strong> Idempotency
+  is about repeated <em>sequential</em> runs producing the same result — running
+  two instances of the same partition-overwrite task at the same time can
+  still race and corrupt output. Use locking or a scheduler's built-in
+  concurrency controls for that.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delete-then-insert (by partition)</td>
+<td>Batch loads scoped to a date/partition</td>
+</tr>
+<tr>
+<td>Upsert on natural key</td>
+<td>Row-level incremental loads (Module 1)</td>
+</tr>
+<tr>
+<td>Deterministic file naming</td>
+<td>Any file-based bronze/silver write</td>
+</tr>
+<tr>
+<td>Partition-scoped task logic</td>
+<td>Any pipeline that will ever need backfilling</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take the <code>naive_load</code> function from the top of this lesson and rewrite it
+as <code>idempotent_load_merge</code> using pandas instead of SQL: it should accept
+the full <code>daily_sales</code> history as a DataFrame plus one new <code>(order_date,
+total)</code> pair, and return an updated DataFrame where re-running with the
+same date+total leaves the DataFrame unchanged. Test it by calling it three
+times in a row with identical arguments.</p>
 
 
 

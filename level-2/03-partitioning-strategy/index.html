@@ -998,6 +998,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Partitioning Strategy for a Data Lake
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1014,6 +1032,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-partitioned-parquet-with-pyarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing partitioned Parquet with pyarrow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-pruning-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition pruning: why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-partition-key-cardinality-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a partition key: cardinality matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-level-partitioning-and-the-too-many-partitions-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-level partitioning and the "too many partitions" trap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-with-a-partition-filter-vs-a-full-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading with a partition filter vs. a full scan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-partitioned-parquet-with-pyarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing partitioned Parquet with pyarrow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-pruning-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition pruning: why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-partition-key-cardinality-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a partition key: cardinality matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-level-partitioning-and-the-too-many-partitions-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-level partitioning and the "too many partitions" trap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-with-a-partition-filter-vs-a-full-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading with a partition filter vs. a full scan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,167 @@
 
 
 <h1 id="03-partitioning-strategy-for-a-data-lake">03 · Partitioning Strategy for a Data Lake<a class="headerlink" href="#03-partitioning-strategy-for-a-data-lake" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>A data lake without a partitioning strategy is a folder of files that every
+query has to scan in full. Partitioning splits data into directories by a
+column's value so queries can skip irrelevant files entirely — the single
+highest-leverage lake performance decision you'll make.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>Reasoned through step by step against the real <code>pandas</code> and <code>pyarrow</code>
+APIs, not executed in a live interpreter — directory layouts and row
+counts match documented <code>pyarrow.dataset</code> partitioning behavior.</p>
+</div>
+<h2 id="writing-partitioned-parquet-with-pyarrow">Writing partitioned Parquet with pyarrow<a class="headerlink" href="#writing-partitioned-parquet-with-pyarrow" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.parquet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pq</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"US"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-01"</span><span class="p">},</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">89.00</span><span class="p">,</span>  <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"US"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-01"</span><span class="p">},</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">45.25</span><span class="p">,</span>  <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"IN"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-01"</span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">60.00</span><span class="p">,</span>  <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"US"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-02"</span><span class="p">},</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">30.00</span><span class="p">,</span>  <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"IN"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-02"</span><span class="p">},</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">])</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">orders</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_to_dataset</span><span class="p">(</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">table</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">root_path</span><span class="o">=</span><span class="s2">"lake/silver/orders"</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">partition_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">],</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lake/silver/orders/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  country=US/order_date=2026-08-01/&lt;file&gt;.parquet   (2 rows)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  country=US/order_date=2026-08-02/&lt;file&gt;.parquet   (1 row)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  country=IN/order_date=2026-08-01/&lt;file&gt;.parquet   (1 row)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  country=IN/order_date=2026-08-02/&lt;file&gt;.parquet   (1 row)
+</code></pre></div>
+<p><code>partition_cols</code> writes each unique combination of <code>country</code> and
+<code>order_date</code> into its own directory (Hive-style <code>key=value</code> naming), and
+drops those columns from the physical file body — they're reconstructed
+from the folder path at read time.</p>
+<h2 id="partition-pruning-why-this-matters">Partition pruning: why this matters<a class="headerlink" href="#partition-pruning-why-this-matters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.dataset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ds</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="s2">"lake/silver/orders"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"parquet"</span><span class="p">,</span> <span class="n">partitioning</span><span class="o">=</span><span class="s2">"hive"</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># A query filtered on the partition column only reads matching directories</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">us_only</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"country"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"US"</span><span class="p">))</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">us_only</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   order_id  amount order_date
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0         1  120.50 2026-08-01
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1         2   89.00 2026-08-01
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>2         4   60.00 2026-08-02
+</code></pre></div>
+<p>The engine reads only <code>country=US/*</code> directories — it never opens the
+<code>country=IN</code> files at all. This is <strong>partition pruning</strong>, and it's the
+entire performance argument for partitioning: on a table with a year of
+daily-partitioned data, a query for "last 7 days" scans 7 directories
+instead of 365.</p>
+<h2 id="choosing-a-partition-key-cardinality-matters">Choosing a partition key: cardinality matters<a class="headerlink" href="#choosing-a-partition-key-cardinality-matters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># A column with too many unique values makes "too many small files"</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">customer_ids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"cust_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">cardinality_check</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">customer_ids</span><span class="p">)</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unique customers: </span><span class="si">{</span><span class="n">cardinality_check</span><span class="si">}</span><span class="s2">  (partitioning on this = 500 tiny directories)"</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">order_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2026-01-01"</span><span class="p">,</span> <span class="s2">"2026-12-31"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unique dates in a year: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">order_dates</span><span class="p">)</span><span class="si">}</span><span class="s2">  (a reasonable partition count)"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Unique customers: 500  (partitioning on this = 500 tiny directories)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Unique dates in a year: 365  (a reasonable partition count)
+</code></pre></div>
+<p>A good partition key has <strong>low-to-moderate cardinality</strong> (tens to low
+thousands of distinct values, not millions) and is <strong>commonly filtered on</strong>
+in real queries. <code>customer_id</code> fails both tests for most workloads: too many
+values, and most queries don't filter by a single customer. <code>order_date</code> or
+<code>country</code> typically pass both.</p>
+<h2 id="multi-level-partitioning-and-the-too-many-partitions-trap">Multi-level partitioning and the "too many partitions" trap<a class="headerlink" href="#multi-level-partitioning-and-the-too-many-partitions-trap" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Partitioning by country AND order_date AND status creates a combinatorial</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># explosion if each level has real cardinality</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">countries</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span> <span class="n">statuses</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">5</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">total_partition_dirs</span> <span class="o">=</span> <span class="n">countries</span> <span class="o">*</span> <span class="n">dates</span> <span class="o">*</span> <span class="n">statuses</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hypothetical partition directories: </span><span class="si">{</span><span class="n">total_partition_dirs</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Hypothetical partition directories: 36500
+</code></pre></div>
+<p>36,500 directories for one year of one table means most of them hold only a
+handful of rows each — the classic <strong>small files problem</strong> (covered in
+depth in Level 3). The fix is almost always to drop the lowest-value
+partition level (here, <code>status</code> — better handled as a regular filterable
+column inside each file) and keep partitioning to one or two high-value
+keys, most often a date field.</p>
+<h2 id="reading-with-a-partition-filter-vs-a-full-scan">Reading with a partition filter vs. a full scan<a class="headerlink" href="#reading-with-a-partition-filter-vs-a-full-scan" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Full scan (no filter) reads every partition</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">full</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Full scan rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">full</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Pruned scan only touches the matching partition directory</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">pruned</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="nb">filter</span><span class="o">=</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"country"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"IN"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"2026-08-01"</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">pruned</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Full scan rows: 5
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>   order_id  amount order_date
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>0         3   45.25 2026-08-01
+</code></pre></div>
+<p>On this toy dataset the difference is invisible, but at scale (millions of
+rows across thousands of partitions) the pruned query's I/O is proportional
+to the matching partitions only — this is why "what will people filter on?"
+should be the first question you ask before choosing a partition scheme,
+not an afterthought.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Partitioning on high-cardinality columns</strong> (<code>customer_id</code>, <code>order_id</code>,
+  free-text fields) — produces too many tiny files and directories.</li>
+<li><strong>Partitioning on a column nobody filters by.</strong> If queries never filter on
+  <code>country</code>, partitioning by it buys you nothing and adds directory-listing
+  overhead.</li>
+<li><strong>Over-partitioning with three or more levels.</strong> Each extra level
+  multiplies the directory count; two levels (commonly a date plus one
+  business key) is usually the practical ceiling.</li>
+<li><strong>Choosing partitions and never revisiting them.</strong> Query patterns change;
+  a partition scheme that made sense at launch may need repartitioning a
+  year later (an expensive rewrite — plan for it rather than being
+  surprised by it).</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Write partitioned Parquet</td>
+<td><code>pq.write_to_dataset(table, root_path=..., partition_cols=[...])</code></td>
+</tr>
+<tr>
+<td>Read with pruning</td>
+<td><code>ds.dataset(path, partitioning="hive").to_table(filter=...)</code></td>
+</tr>
+<tr>
+<td>Check column cardinality</td>
+<td><code>series.nunique()</code></td>
+</tr>
+<tr>
+<td>Rule of thumb</td>
+<td>Partition on what's low-cardinality <em>and</em> commonly filtered</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Given a table with columns <code>region</code> (5 values), <code>order_date</code> (365 values/
+year), and <code>payment_method</code> (4 values), design a partitioning scheme that
+keeps directory count under 2,000 for one year of data while still
+supporting fast queries for "orders in a region over a date range." Show
+your arithmetic for why your chosen combination stays under the limit.</p>
 
 
 

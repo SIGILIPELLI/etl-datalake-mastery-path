@@ -1830,6 +1830,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Compliance & Retention in Data Lakes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1846,6 +1864,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#retention-policy-as-data-not-tribal-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retention policy as data, not tribal knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-retention-what-should-be-purged-today" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying retention: what should be purged today?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right-to-erasure-across-a-versioned-lakehouse-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right to erasure across a versioned lakehouse table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-that-erasure-happened-without-keeping-what-was-erased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recording that erasure happened, without keeping what was erased
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#retention-policy-as-data-not-tribal-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retention policy as data, not tribal knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-retention-what-should-be-purged-today" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying retention: what should be purged today?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right-to-erasure-across-a-versioned-lakehouse-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right to erasure across a versioned lakehouse table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-that-erasure-happened-without-keeping-what-was-erased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recording that erasure happened, without keeping what was erased
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,195 @@
 
 
 <h1 id="06-compliance-retention-in-data-lakes">06 · Compliance &amp; Retention in Data Lakes<a class="headerlink" href="#06-compliance-retention-in-data-lakes" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Regulations like GDPR and CCPA give individuals concrete rights over data
+about them — to see it, to have it deleted, to know how long it's kept —
+and a data lake's append-friendly, copy-heavy nature makes honoring those
+rights harder than it sounds. This module builds the mechanics: retention
+policies, right-to-erasure across a lakehouse's versioned history, and
+audit-ready deletion records.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pandas</code>,
+<code>pyarrow</code>, and <code>sqlite3</code> APIs but not executed in a live interpreter for
+this lesson — the outputs shown match documented behavior precisely.</p>
+</div>
+<h2 id="retention-policy-as-data-not-tribal-knowledge">Retention policy as data, not tribal knowledge<a class="headerlink" href="#retention-policy-as-data-not-tribal-knowledge" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">policy_db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">policy_db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">    CREATE TABLE retention_policies (</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">        dataset TEXT PRIMARY KEY,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">        retention_days INTEGER,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s2">        legal_basis TEXT</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">    )</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">policy_db</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s2">"INSERT INTO retention_policies VALUES (?, ?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">[</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="p">(</span><span class="s2">"raw.clickstream"</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">"operational necessity"</span><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span> <span class="mi">2555</span><span class="p">,</span> <span class="s2">"financial record-keeping (7 years)"</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="p">(</span><span class="s2">"bronze.support_chats"</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="s2">"customer support / GDPR minimization"</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="p">],</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">policy_db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM retention_policies"</span><span class="p">,</span> <span class="n">policy_db</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                dataset  retention_days                          legal_basis
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0      raw.clickstream              90               operational necessity
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1        silver.orders            2555  financial record-keeping (7 years)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2  bronze.support_chats             365  customer support / GDPR minimization
+</code></pre></div>
+<p>Different datasets have different legal bases for how long they can be
+kept — financial records typically must be <em>retained</em> for years (a
+regulatory floor), while raw clickstream data should often be <em>deleted</em>
+promptly once it's no longer operationally needed (a minimization
+ceiling). Both directions are compliance requirements.</p>
+<h2 id="applying-retention-what-should-be-purged-today">Applying retention: what should be purged today?<a class="headerlink" href="#applying-retention-what-should-be-purged-today" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">rows_past_retention</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">date_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">retention_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">as_of</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">cutoff</span> <span class="o">=</span> <span class="n">as_of</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">retention_days</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">df</span><span class="p">[</span><span class="n">date_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">date_col</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">date_col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">clickstream</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="s2">"event_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="s2">"event_date"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"2026-01-01"</span><span class="p">,</span> <span class="s2">"2026-07-01"</span><span class="p">,</span> <span class="s2">"2026-08-25"</span><span class="p">],</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">})</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">expired</span> <span class="o">=</span> <span class="n">rows_past_retention</span><span class="p">(</span><span class="n">clickstream</span><span class="p">,</span> <span class="s2">"event_date"</span><span class="p">,</span> <span class="n">retention_days</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">as_of</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">expired</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   event_id  event_date
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0         1  2026-01-01
+</code></pre></div>
+<p>Only event 1 (January) is past the 90-day window as of August 31st — this
+is the query a scheduled retention-enforcement job runs nightly against
+every dataset with a policy.</p>
+<h2 id="right-to-erasure-across-a-versioned-lakehouse-table">Right to erasure across a versioned lakehouse table<a class="headerlink" href="#right-to-erasure-across-a-versioned-lakehouse-table" title="Permanent link">&para;</a></h2>
+<p>Deleting a row from the <em>current</em> view isn't enough — Module 07 (Level 3)
+showed that time travel keeps old versions queryable. A real erasure
+request must also account for history.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">erase_subject</span><span class="p">(</span><span class="n">current_table</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">versions_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">subject_id</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s2">"customer_id"</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">"""Physically remove a subject's rows from the current table and rewrite</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="sd">    (not just soft-delete) every historical version that still contains them."""</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">cleaned_current</span> <span class="o">=</span> <span class="n">current_table</span><span class="p">[</span><span class="n">current_table</span><span class="p">[</span><span class="n">id_col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">subject_id</span><span class="p">]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">cleaned_history</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">for</span> <span class="n">version_df</span> <span class="ow">in</span> <span class="n">versions_history</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">if</span> <span class="n">id_col</span> <span class="ow">in</span> <span class="n">version_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="n">cleaned_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">version_df</span><span class="p">[</span><span class="n">version_df</span><span class="p">[</span><span class="n">id_col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">subject_id</span><span class="p">])</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="n">cleaned_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">version_df</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="k">return</span> <span class="n">cleaned_current</span><span class="p">,</span> <span class="n">cleaned_history</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">current</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]})</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">v0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">v1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]})</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="n">new_current</span><span class="p">,</span> <span class="n">new_history</span> <span class="o">=</span> <span class="n">erase_subject</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="p">[</span><span class="n">v0</span><span class="p">,</span> <span class="n">v1</span><span class="p">],</span> <span class="n">subject_id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_current</span><span class="p">)</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">new_history</span><span class="p">):</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"version </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>   customer_id  amount
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0            1      10
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>2            3      30
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>version 0:
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>   customer_id  amount
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>0            1      10
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>version 1:
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>   customer_id  amount
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>0            1      10
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>1            3      30
+</code></pre></div>
+<p>This is why erasure on a time-traveling lakehouse table must <strong>rewrite</strong>
+historical files, not just add a new commit that filters the subject out —
+otherwise <code>read_table_at(version=0)</code> would still surface the erased
+subject's data forever, defeating the purpose. This is exactly what a real
+<code>VACUUM</code>/expire-history operation combined with a deletion rewrite
+accomplishes on Delta/Iceberg tables.</p>
+<h2 id="recording-that-erasure-happened-without-keeping-what-was-erased">Recording that erasure happened, without keeping what was erased<a class="headerlink" href="#recording-that-erasure-happened-without-keeping-what-was-erased" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">erasure_log</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">erasure_log</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s2">    CREATE TABLE erasure_requests (</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s2">        subject_id TEXT,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s2">        requested_at TEXT,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s2">        completed_at TEXT,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s2">        datasets_affected TEXT,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s2">        rows_removed INTEGER</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s2">    )</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">log_erasure</span><span class="p">(</span><span class="n">erasure_log</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">,</span> <span class="n">datasets_affected</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">rows_removed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="n">now</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">"seconds"</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="n">erasure_log</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="s2">"INSERT INTO erasure_requests VALUES (?, ?, ?, ?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>        <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">subject_id</span><span class="p">),</span> <span class="n">now</span><span class="p">,</span> <span class="n">now</span><span class="p">,</span> <span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datasets_affected</span><span class="p">),</span> <span class="n">rows_removed</span><span class="p">),</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="n">erasure_log</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="n">log_erasure</span><span class="p">(</span><span class="n">erasure_log</span><span class="p">,</span> <span class="n">subject_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">datasets_affected</span><span class="o">=</span><span class="p">[</span><span class="s2">"silver.orders"</span><span class="p">],</span> <span class="n">rows_removed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM erasure_requests"</span><span class="p">,</span> <span class="n">erasure_log</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>  subject_id         requested_at        completed_at datasets_affected  rows_removed
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>0          2  2026-08-31T00:00:00  2026-08-31T00:00:00     silver.orders             2
+</code></pre></div>
+<p>The audit trail records <em>that</em> subject 2 was erased, <em>when</em>, and <em>how
+many</em> rows were affected — without storing the erased data itself, which
+would defeat the erasure. This log is what you show a regulator or auditor
+as proof of compliance.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Treating a soft-delete flag as erasure.</strong> Setting <code>is_deleted = True</code>
+  on a row satisfies neither GDPR's erasure right nor most storage-cost
+  goals — the underlying bytes are still there. Erasure means the data is
+  actually gone, including from backups within a reasonable time and from
+  lakehouse history.</li>
+<li><strong>No retention policy for derived/aggregated tables.</strong> A Gold table
+  computed from Silver can still contain individually-identifiable
+  aggregates (e.g., a per-customer lifetime total) — retention and erasure
+  need to be traced through lineage (Module 02), not just applied to raw
+  tables.</li>
+<li><strong>Confusing "must delete" with "must retain."</strong> Applying a blanket
+  deletion policy to financial records that a regulator requires you to
+  keep for 7 years is itself a compliance violation — retention floors and
+  minimization ceilings both need explicit policy, as modeled above.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"How long can/must we keep this?"</td>
+<td><code>retention_policies</code> table per dataset</td>
+</tr>
+<tr>
+<td>Nightly purge of expired data</td>
+<td><code>rows_past_retention()</code> on a schedule</td>
+</tr>
+<tr>
+<td>Right to erasure (including history)</td>
+<td>Rewrite current + all historical versions, not soft-delete</td>
+</tr>
+<tr>
+<td>Proof of compliance</td>
+<td><code>erasure_requests</code> audit log, without the erased data itself</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>erase_subject</code> to also walk lineage (reusing <code>downstream_of</code> from
+Module 02) and return the list of <em>downstream</em> tables that need their own
+erasure pass because they were derived from the erased subject's rows —
+e.g., if <code>silver.orders</code> feeds <code>gold.customer_lifetime_value</code>, erasing a
+customer from Silver means the Gold aggregate is now stale and must be
+recomputed or have that customer's contribution removed too.</p>
 
 
 

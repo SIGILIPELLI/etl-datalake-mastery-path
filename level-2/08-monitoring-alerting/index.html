@@ -1138,6 +1138,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Monitoring & Alerting for Pipelines
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1154,6 +1172,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-metrics-every-pipeline-run-should-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four metrics every pipeline run should record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-anomaly-detection-rows-inout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume anomaly detection (rows in/out)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-drop-rate-and-duration-anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row-drop-rate and duration anomalies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turning-flags-into-an-alert-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Turning flags into an alert payload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-metrics-every-pipeline-run-should-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four metrics every pipeline run should record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-anomaly-detection-rows-inout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume anomaly detection (rows in/out)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-drop-rate-and-duration-anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row-drop-rate and duration anomalies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turning-flags-into-an-alert-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Turning flags into an alert payload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,173 @@
 
 
 <h1 id="08-monitoring-alerting-for-pipelines">08 · Monitoring &amp; Alerting for Pipelines<a class="headerlink" href="#08-monitoring-alerting-for-pipelines" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>A pipeline that fails silently at 3 a.m. and isn't noticed until a
+stakeholder complains about a stale dashboard two days later is a
+monitoring failure, not just a pipeline failure. This module builds the
+metrics and alerting logic that catches problems before people do.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>Reasoned through step by step against the real <code>pandas</code> API, not
+executed in a live interpreter — DataFrame outputs match documented
+pandas behavior precisely.</p>
+</div>
+<h2 id="the-four-metrics-every-pipeline-run-should-record">The four metrics every pipeline run should record<a class="headerlink" href="#the-four-metrics-every-pipeline-run-should-record" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_run_record</span><span class="p">(</span><span class="n">dag_id</span><span class="p">,</span> <span class="n">run_date</span><span class="p">,</span> <span class="n">rows_in</span><span class="p">,</span> <span class="n">rows_out</span><span class="p">,</span> <span class="n">duration_sec</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">"dag_id"</span><span class="p">:</span> <span class="n">dag_id</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="s2">"run_date"</span><span class="p">:</span> <span class="n">run_date</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="s2">"rows_in"</span><span class="p">:</span> <span class="n">rows_in</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s2">"rows_out"</span><span class="p">:</span> <span class="n">rows_out</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="s2">"row_drop_pct"</span><span class="p">:</span> <span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">rows_out</span> <span class="o">/</span> <span class="n">rows_in</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows_in</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="s2">"duration_sec"</span><span class="p">:</span> <span class="n">duration_sec</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="s2">"status"</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="s2">"recorded_at"</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">run_log</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-25"</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">9950</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-26"</span><span class="p">,</span> <span class="mi">10200</span><span class="p">,</span> <span class="mi">10100</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-27"</span><span class="p">,</span> <span class="mi">10100</span><span class="p">,</span> <span class="mi">10050</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-28"</span><span class="p">,</span> <span class="mi">10300</span><span class="p">,</span> <span class="mi">6200</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>   <span class="c1"># anomaly</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-29"</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">295</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>        <span class="c1"># anomaly</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">build_run_record</span><span class="p">(</span><span class="s2">"orders_pipeline"</span><span class="p">,</span> <span class="s2">"2026-08-30"</span><span class="p">,</span> <span class="mi">10400</span><span class="p">,</span> <span class="mi">10350</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">),</span>  <span class="c1"># anomaly</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">])</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nb">print</span><span class="p">(</span><span class="n">run_log</span><span class="p">[[</span><span class="s2">"run_date"</span><span class="p">,</span> <span class="s2">"rows_in"</span><span class="p">,</span> <span class="s2">"rows_out"</span><span class="p">,</span> <span class="s2">"row_drop_pct"</span><span class="p">,</span> <span class="s2">"duration_sec"</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>     run_date  rows_in  rows_out  row_drop_pct  duration_sec
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0  2026-08-25    10000      9950          0.50            42
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1  2026-08-26    10200     10100          0.98            45
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2  2026-08-27    10100     10050          0.50            44
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>3  2026-08-28    10300      6200         39.81            41
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>4  2026-08-29      300       295          1.67             3
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>5  2026-08-30    10400     10350          0.50           310
+</code></pre></div>
+<p>Every run recorded here "succeeded" from the DAG's point of view — no
+exception was thrown. But three of these six runs are clearly wrong: a
+39.8% row drop, a 97% volume collapse, and a 7x runtime spike. Task-level
+success/failure alone misses all three.</p>
+<h2 id="volume-anomaly-detection-rows-inout">Volume anomaly detection (rows in/out)<a class="headerlink" href="#volume-anomaly-detection-rows-inout" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">flag_volume_anomaly</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">lookback</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">log</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"run_date"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">baseline</span> <span class="o">=</span> <span class="n">log</span><span class="p">[</span><span class="s2">"rows_in"</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">lookback</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">pct_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">log</span><span class="p">[</span><span class="s2">"rows_in"</span><span class="p">]</span> <span class="o">-</span> <span class="n">baseline</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">/</span> <span class="n">baseline</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">log</span><span class="p">[</span><span class="s2">"volume_anomaly"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pct_change</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">return</span> <span class="n">log</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">flagged</span> <span class="o">=</span> <span class="n">flag_volume_anomaly</span><span class="p">(</span><span class="n">run_log</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">flagged</span><span class="p">[[</span><span class="s2">"run_date"</span><span class="p">,</span> <span class="s2">"rows_in"</span><span class="p">,</span> <span class="s2">"volume_anomaly"</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>     run_date  rows_in  volume_anomaly
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0  2026-08-25    10000           False
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1  2026-08-26    10200           False
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>2  2026-08-27    10100           False
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>3  2026-08-28    10300           False
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>4  2026-08-29      300            True
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>5  2026-08-30    10400            True
+</code></pre></div>
+<p>Comparing each run's <code>rows_in</code> to a rolling average of the last 3 runs
+catches the Aug 29 volume collapse (300 vs. an ~10,200 baseline) without
+needing a hardcoded threshold that would need constant retuning as normal
+volume grows over time.</p>
+<h2 id="row-drop-rate-and-duration-anomalies">Row-drop-rate and duration anomalies<a class="headerlink" href="#row-drop-rate-and-duration-anomalies" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">flag_quality_and_duration</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">drop_threshold</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">duration_multiplier</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">log</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">log</span><span class="p">[</span><span class="s2">"high_drop_rate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="p">[</span><span class="s2">"row_drop_pct"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">drop_threshold</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">baseline_duration</span> <span class="o">=</span> <span class="n">log</span><span class="p">[</span><span class="s2">"duration_sec"</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">log</span><span class="p">[</span><span class="s2">"duration_anomaly"</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="p">[</span><span class="s2">"duration_sec"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">baseline_duration</span> <span class="o">*</span> <span class="n">duration_multiplier</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">return</span> <span class="n">log</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">full_check</span> <span class="o">=</span> <span class="n">flag_quality_and_duration</span><span class="p">(</span><span class="n">flagged</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">full_check</span><span class="p">[[</span><span class="s2">"run_date"</span><span class="p">,</span> <span class="s2">"row_drop_pct"</span><span class="p">,</span> <span class="s2">"high_drop_rate"</span><span class="p">,</span> <span class="s2">"duration_sec"</span><span class="p">,</span> <span class="s2">"duration_anomaly"</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>     run_date  row_drop_pct  high_drop_rate  duration_sec  duration_anomaly
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0  2026-08-25          0.50           False            42              False
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>1  2026-08-26          0.98           False            45              False
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>2  2026-08-27          0.50           False            44              False
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>3  2026-08-28         39.81            True            41              False
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>4  2026-08-29          1.67           False             3              False
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>5  2026-08-30          0.50           False           310              True
+</code></pre></div>
+<p>Three independent checks, three independent anomalies caught: Aug 28's
+row-drop spike, Aug 29's volume collapse, Aug 30's runtime blowout (7x the
+recent median). None of these would trip a plain try/except around the DAG.</p>
+<h2 id="turning-flags-into-an-alert-payload">Turning flags into an alert payload<a class="headerlink" href="#turning-flags-into-an-alert-payload" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_alert</span><span class="p">(</span><span class="n">log_row</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">reasons</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">if</span> <span class="n">log_row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"volume_anomaly"</span><span class="p">):</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"volume anomaly: </span><span class="si">{</span><span class="n">log_row</span><span class="p">[</span><span class="s1">'rows_in'</span><span class="p">]</span><span class="si">}</span><span class="s2"> rows in"</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">if</span> <span class="n">log_row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"high_drop_rate"</span><span class="p">):</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"row drop rate </span><span class="si">{</span><span class="n">log_row</span><span class="p">[</span><span class="s1">'row_drop_pct'</span><span class="p">]</span><span class="si">}</span><span class="s2">% exceeds threshold"</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">if</span> <span class="n">log_row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"duration_anomaly"</span><span class="p">):</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"duration </span><span class="si">{</span><span class="n">log_row</span><span class="p">[</span><span class="s1">'duration_sec'</span><span class="p">]</span><span class="si">}</span><span class="s2">s exceeds baseline x3"</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">reasons</span><span class="p">:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"[ALERT] </span><span class="si">{</span><span class="n">log_row</span><span class="p">[</span><span class="s1">'dag_id'</span><span class="p">]</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">log_row</span><span class="p">[</span><span class="s1">'run_date'</span><span class="p">]</span><span class="si">}</span><span class="s2">: "</span> <span class="o">+</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reasons</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">full_check</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="n">alert</span> <span class="o">=</span> <span class="n">build_alert</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="k">if</span> <span class="n">alert</span><span class="p">:</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[ALERT] orders_pipeline on 2026-08-28: row drop rate 39.81% exceeds threshold
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>[ALERT] orders_pipeline on 2026-08-29: volume anomaly: 300 rows in
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>[ALERT] orders_pipeline on 2026-08-30: duration anomaly: duration 310s exceeds baseline x3
+</code></pre></div>
+<p>These three strings are what would route to Slack/PagerDuty/email in a real
+system — each one names the specific run, the specific metric, and the
+specific threshold crossed, which is what makes an alert actionable instead
+of a vague "something's wrong."</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Only alerting on task failure/exception.</strong> As shown here, the most
+  dangerous failures are the ones where the code runs to completion but
+  produces wrong output.</li>
+<li><strong>Static thresholds that never adapt.</strong> A hardcoded "alert if rows &lt; 9000"
+  breaks the day your legitimate traffic grows past that, or when it's a
+  known-low-volume weekend — rolling baselines age better.</li>
+<li><strong>Alert fatigue from too-sensitive thresholds.</strong> If every run pages
+  someone, people start ignoring the pager. Tune thresholds against a few
+  weeks of real history before turning alerts on for real.</li>
+<li><strong>No dashboard, only alerts.</strong> Alerts tell you something is wrong <em>now</em>;
+  a dashboard of the <code>run_log</code> metrics over time is what lets you spot slow
+  degradation before it crosses an alert threshold.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Detection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volume anomaly</td>
+<td>Compare <code>rows_in</code> to rolling mean of recent runs</td>
+</tr>
+<tr>
+<td>Quality anomaly</td>
+<td><code>row_drop_pct</code> over a fixed threshold</td>
+</tr>
+<tr>
+<td>Performance anomaly</td>
+<td><code>duration_sec</code> over N× the rolling median</td>
+</tr>
+<tr>
+<td>Alert payload</td>
+<td>Name the DAG, the run date, the metric, and the threshold</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a fourth check, <code>schema_anomaly</code>, that flags a run if its <code>rows_out</code>
+column count differs from the previous run's (simulate this with an added
+<code>"column_count"</code> field in <code>build_run_record</code>). Wire it into <code>build_alert</code>
+and confirm it fires correctly against a synthetic run where column count
+drops from 12 to 10.</p>
 
 
 

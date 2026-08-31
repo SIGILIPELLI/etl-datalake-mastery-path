@@ -1886,6 +1886,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Cost Governance at Platform Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1902,6 +1920,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tagging-every-resource-with-a-cost-owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging every resource with a cost owner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributing-cost-per-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributing cost per team
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#budget-thresholds-and-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget thresholds and alerting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chargeback-turning-attribution-into-an-actual-internal-bill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chargeback: turning attribution into an actual internal bill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tagging-every-resource-with-a-cost-owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging every resource with a cost owner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributing-cost-per-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributing cost per team
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#budget-thresholds-and-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget thresholds and alerting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chargeback-turning-attribution-into-an-actual-internal-bill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chargeback: turning attribution into an actual internal bill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,159 @@
 
 
 <h1 id="08-cost-governance-at-platform-scale">08 · Cost Governance at Platform Scale<a class="headerlink" href="#08-cost-governance-at-platform-scale" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Module 04 (Level 3) covered technical levers for lake cost — formats,
+partitioning, compaction. At platform scale, with dozens of teams writing
+and querying hundreds of tables, the harder problem is <em>organizational</em>:
+who's spending what, is it accountable to a budget, and how do you catch
+runaway cost before the monthly bill does. This module builds cost
+attribution, budget alerting, and chargeback — the governance layer on top
+of the technical optimizations.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pandas</code>
+and <code>sqlite3</code> APIs but not executed in a live interpreter for this
+lesson — the outputs shown match documented behavior precisely.</p>
+</div>
+<h2 id="tagging-every-resource-with-a-cost-owner">Tagging every resource with a cost owner<a class="headerlink" href="#tagging-every-resource-with-a-cost-owner" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">cost_db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">cost_db</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">CREATE TABLE resource_tags (resource TEXT PRIMARY KEY, team TEXT, cost_center TEXT, environment TEXT);</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">CREATE TABLE usage_events (resource TEXT, event_date TEXT, bytes_scanned INTEGER, compute_seconds REAL);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">cost_db</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO resource_tags VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">(</span><span class="s2">"gold.daily_revenue"</span><span class="p">,</span> <span class="s2">"finance-eng"</span><span class="p">,</span>   <span class="s2">"CC-100"</span><span class="p">,</span> <span class="s2">"prod"</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span>      <span class="s2">"commerce-eng"</span><span class="p">,</span>  <span class="s2">"CC-200"</span><span class="p">,</span> <span class="s2">"prod"</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">(</span><span class="s2">"scratch.experiment_42"</span><span class="p">,</span> <span class="s2">"ml-research"</span><span class="p">,</span> <span class="s2">"CC-300"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">])</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">cost_db</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO usage_events VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">(</span><span class="s2">"gold.daily_revenue"</span><span class="p">,</span>      <span class="s2">"2026-08-30"</span><span class="p">,</span> <span class="mi">500_000_000_000</span><span class="p">,</span> <span class="mf">120.0</span><span class="p">),</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">(</span><span class="s2">"silver.orders"</span><span class="p">,</span>           <span class="s2">"2026-08-30"</span><span class="p">,</span> <span class="mi">200_000_000_000</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">(</span><span class="s2">"scratch.experiment_42"</span><span class="p">,</span>   <span class="s2">"2026-08-30"</span><span class="p">,</span> <span class="mi">4_000_000_000_000</span><span class="p">,</span> <span class="mf">900.0</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">(</span><span class="s2">"scratch.experiment_42"</span><span class="p">,</span>   <span class="s2">"2026-08-31"</span><span class="p">,</span> <span class="mi">4_200_000_000_000</span><span class="p">,</span> <span class="mf">950.0</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">])</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">cost_db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
+<p>Without tags, a $10,000 monthly storage-and-compute bill is just one
+number. With tags, it's attributable — every byte scanned and every second
+of compute traces back to a team and cost center.</p>
+<h2 id="attributing-cost-per-team">Attributing cost per team<a class="headerlink" href="#attributing-cost-per-team" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">cost_by_team</span><span class="p">(</span><span class="n">cost_db</span><span class="p">,</span> <span class="n">bytes_per_dollar_tb</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span> <span class="n">seconds_per_dollar</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">0.02</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s2">        SELECT rt.team, rt.cost_center, SUM(ue.bytes_scanned) AS total_bytes, SUM(ue.compute_seconds) AS total_seconds</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s2">        FROM usage_events ue JOIN resource_tags rt ON ue.resource = rt.resource</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s2">        GROUP BY rt.team, rt.cost_center</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s2">    """</span><span class="p">,</span> <span class="n">cost_db</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"storage_query_cost_usd"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"total_bytes"</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="n">bytes_per_dollar_tb</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"compute_cost_usd"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"total_seconds"</span><span class="p">]</span> <span class="o">/</span> <span class="n">seconds_per_dollar</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">"total_cost_usd"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"storage_query_cost_usd"</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"compute_cost_usd"</span><span class="p">]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"total_cost_usd"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">report</span> <span class="o">=</span> <span class="n">cost_by_team</span><span class="p">(</span><span class="n">cost_db</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">[[</span><span class="s2">"team"</span><span class="p">,</span> <span class="s2">"cost_center"</span><span class="p">,</span> <span class="s2">"total_cost_usd"</span><span class="p">]]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>           team cost_center  total_cost_usd
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>2     ml-research      CC-300           52.72
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>1    commerce-eng      CC-200            6.18
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>0     finance-eng      CC-100           3.28
+</code></pre></div>
+<p><code>ml-research</code>'s <code>scratch.experiment_42</code> dominates spend — this is the
+report that turns "why is the cloud bill high this month" into "here's
+exactly which team and workload, down to the resource."</p>
+<h2 id="budget-thresholds-and-alerting">Budget thresholds and alerting<a class="headerlink" href="#budget-thresholds-and-alerting" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">budgets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="p">{</span><span class="s2">"cost_center"</span><span class="p">:</span> <span class="s2">"CC-100"</span><span class="p">,</span> <span class="s2">"monthly_budget_usd"</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="p">{</span><span class="s2">"cost_center"</span><span class="p">:</span> <span class="s2">"CC-200"</span><span class="p">,</span> <span class="s2">"monthly_budget_usd"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="p">{</span><span class="s2">"cost_center"</span><span class="p">:</span> <span class="s2">"CC-300"</span><span class="p">,</span> <span class="s2">"monthly_budget_usd"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">])</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">check_budgets</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">budgets</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">days_elapsed</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_in_month</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">merged</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">budgets</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"cost_center"</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">merged</span><span class="p">[</span><span class="s2">"projected_monthly_cost"</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="s2">"total_cost_usd"</span><span class="p">]</span> <span class="o">/</span> <span class="n">days_elapsed</span> <span class="o">*</span> <span class="n">days_in_month</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">merged</span><span class="p">[</span><span class="s2">"over_budget"</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="s2">"projected_monthly_cost"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">merged</span><span class="p">[</span><span class="s2">"monthly_budget_usd"</span><span class="p">]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="k">return</span> <span class="n">merged</span><span class="p">[[</span><span class="s2">"team"</span><span class="p">,</span> <span class="s2">"cost_center"</span><span class="p">,</span> <span class="s2">"projected_monthly_cost"</span><span class="p">,</span> <span class="s2">"monthly_budget_usd"</span><span class="p">,</span> <span class="s2">"over_budget"</span><span class="p">]]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">alerts</span> <span class="o">=</span> <span class="n">check_budgets</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">budgets</span><span class="p">,</span> <span class="n">days_elapsed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">alerts</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>           team cost_center  projected_monthly_cost  monthly_budget_usd  over_budget
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>0   ml-research      CC-300                   790.80                  50         True
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>1  commerce-eng      CC-200                    92.70                1000        False
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>2   finance-eng      CC-100                    49.20                 500        False
+</code></pre></div>
+<p>Projecting two days of observed spend across a 30-day month flags
+<code>ml-research</code> as on track to blow through its $50 budget by roughly 15x —
+this is the alert that should fire well before the finance team notices at
+month-end.</p>
+<h2 id="chargeback-turning-attribution-into-an-actual-internal-bill">Chargeback: turning attribution into an actual internal bill<a class="headerlink" href="#chargeback-turning-attribution-into-an-actual-internal-bill" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_chargeback_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">out</span> <span class="o">=</span> <span class="n">report</span><span class="p">[[</span><span class="s2">"team"</span><span class="p">,</span> <span class="s2">"cost_center"</span><span class="p">,</span> <span class="s2">"total_cost_usd"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">out</span><span class="p">[</span><span class="s2">"billing_month"</span><span class="p">]</span> <span class="o">=</span> <span class="n">month</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">out</span><span class="p">[</span><span class="s2">"line_item"</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Lake compute &amp; storage — </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'team'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'cost_center'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">return</span> <span class="n">out</span><span class="p">[[</span><span class="s2">"billing_month"</span><span class="p">,</span> <span class="s2">"line_item"</span><span class="p">,</span> <span class="s2">"total_cost_usd"</span><span class="p">]]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">generate_chargeback_report</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="s2">"2026-08"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>  billing_month                                        line_item  total_cost_usd
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>2       2026-08     Lake compute &amp; storage — ml-research (CC-300)           52.72
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>1       2026-08    Lake compute &amp; storage — commerce-eng (CC-200)            6.18
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>0       2026-08     Lake compute &amp; storage — finance-eng (CC-100)            3.28
+</code></pre></div>
+<p>Chargeback (or "showback" if it's informational only, without an actual
+internal transfer of funds) is what makes cost governance stick
+organizationally — a team that sees its own line item on a report behaves
+differently than one that only hears "the lake is expensive" in the
+abstract.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Tagging as an afterthought.</strong> Untagged resources ("orphan spend") can't
+  be attributed to anyone — enforce tagging at resource-creation time
+  (reject writes to untagged locations), not as a retroactive cleanup
+  project.</li>
+<li><strong>Alerting on total spend instead of projected/rate-of-spend.</strong> Waiting
+  until a team has <em>already</em> exceeded budget for the alert to fire is too
+  late — project forward from the current burn rate, as <code>check_budgets</code>
+  does.</li>
+<li><strong>Chargeback with no actionable next step.</strong> A bill with no breakdown by
+  resource or query pattern tells a team <em>that</em> they're expensive but not
+  <em>why</em> — pair chargeback reports with the resource-level detail needed to
+  actually reduce cost (which tables, which query patterns).</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who is spending what?</td>
+<td>Tag every resource; join usage to tags</td>
+</tr>
+<tr>
+<td>Are we about to blow a budget?</td>
+<td>Project current burn rate forward, alert before month-end</td>
+</tr>
+<tr>
+<td>How do we make cost visible to the spender?</td>
+<td>Chargeback/showback report per team/cost center</td>
+</tr>
+<tr>
+<td>How do we stop orphan spend?</td>
+<td>Enforce tagging at write/creation time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>top_cost_drivers(cost_db, cost_center, top_n=3)</code> function that
+returns the specific resources (not just the team total) responsible for
+most of a cost center's spend, sorted descending, with each resource's
+share of the cost center's total as a percentage — the drill-down report a
+team lead needs after <code>check_budgets</code> flags them as over budget.</p>
 
 
 

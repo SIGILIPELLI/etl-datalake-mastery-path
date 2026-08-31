@@ -1858,6 +1858,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Multi-Cloud & Hybrid Data Lake Strategy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1874,6 +1892,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-abstraction-layer-over-storage-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An abstraction layer over storage location
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-registry-mapping-logical-tables-to-physical-provider-specific-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A registry mapping logical tables to physical, provider-specific locations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-gravity-why-you-replicate-metadata-but-not-always-the-data-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data gravity: why you replicate metadata but not always the data itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-catalog-metadata-unified-data-left-in-place" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Federated catalog: metadata unified, data left in place
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-abstraction-layer-over-storage-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An abstraction layer over storage location
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-registry-mapping-logical-tables-to-physical-provider-specific-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A registry mapping logical tables to physical, provider-specific locations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-gravity-why-you-replicate-metadata-but-not-always-the-data-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data gravity: why you replicate metadata but not always the data itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-catalog-metadata-unified-data-left-in-place" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Federated catalog: metadata unified, data left in place
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,165 @@
 
 
 <h1 id="07-multi-cloud-hybrid-data-lake-strategy">07 · Multi-Cloud &amp; Hybrid Data Lake Strategy<a class="headerlink" href="#07-multi-cloud-hybrid-data-lake-strategy" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Large organizations rarely run on a single cloud by choice alone — mergers
+bring in acquired companies' infrastructure, different business units pick
+different vendors, and some workloads must legally stay on-premises. A
+multi-cloud/hybrid lake strategy is about making data usable across those
+boundaries without duplicating pipelines per environment. This module
+covers the concrete patterns: an abstraction layer over storage, cross-cloud
+metadata, and data gravity trade-offs.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real Python
+(<code>pathlib</code>, <code>urllib.parse</code>) and <code>pandas</code> APIs but not executed in a live
+interpreter for this lesson — the outputs shown match documented
+behavior precisely. Actual object-store I/O would use <code>boto3</code> (S3),
+<code>google-cloud-storage</code> (GCS), or <code>azure-storage-blob</code>, abstracted behind
+the same interface shown here.</p>
+</div>
+<h2 id="an-abstraction-layer-over-storage-location">An abstraction layer over storage location<a class="headerlink" href="#an-abstraction-layer-over-storage-location" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlparse</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse_lake_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">scheme_to_provider</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"s3"</span><span class="p">:</span> <span class="s2">"aws"</span><span class="p">,</span> <span class="s2">"gs"</span><span class="p">:</span> <span class="s2">"gcp"</span><span class="p">,</span> <span class="s2">"abfss"</span><span class="p">:</span> <span class="s2">"azure"</span><span class="p">,</span> <span class="s2">"file"</span><span class="p">:</span> <span class="s2">"on-prem"</span><span class="p">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="s2">"provider"</span><span class="p">:</span> <span class="n">scheme_to_provider</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parsed</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="s2">"unknown"</span><span class="p">),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s2">"bucket_or_container"</span><span class="p">:</span> <span class="n">parsed</span><span class="o">.</span><span class="n">netloc</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="s2">"path"</span><span class="p">:</span> <span class="n">parsed</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="s2">"uri"</span><span class="p">:</span> <span class="n">uri</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">locations</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s2">"s3://acme-lake-us/silver/orders"</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="s2">"gs://acme-lake-eu/silver/orders"</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="s2">"abfss://acme-lake-onprem-sync@storage.dfs.core.windows.net/silver/orders"</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="s2">"file:///mnt/onprem-lake/silver/orders"</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">]</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">parse_lake_uri</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">locations</span><span class="p">]))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  provider           bucket_or_container         path                                    uri
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0      aws               acme-lake-us  silver/orders                s3://acme-lake-us/silver/orders
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1      gcp               acme-lake-eu  silver/orders                gs://acme-lake-eu/silver/orders
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2    azure   acme-lake-onprem-sync@storage.dfs.core.windows.net  silver/orders  abfss://acme-lake-onprem-sync@storage.dfs.core.windows.net/silver/orders
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>3  on-prem                                     mnt/onprem-lake/silver/orders  file:///mnt/onprem-lake/silver/orders
+</code></pre></div>
+<p>A pipeline written against <code>parse_lake_uri</code> and a matching read/write
+adapter per provider can run against any of the four locations without
+branching on provider throughout the business logic — this is the core
+idea behind tools like Apache Iceberg's pluggable <code>FileIO</code> or Delta Lake's
+storage abstraction: the table format doesn't care which cloud the bytes
+sit in.</p>
+<h2 id="a-registry-mapping-logical-tables-to-physical-provider-specific-locations">A registry mapping logical tables to physical, provider-specific locations<a class="headerlink" href="#a-registry-mapping-logical-tables-to-physical-provider-specific-locations" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">table_registry</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="p">{</span><span class="s2">"logical_table"</span><span class="p">:</span> <span class="s2">"orders"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"us"</span><span class="p">,</span> <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"aws"</span><span class="p">,</span> <span class="s2">"uri"</span><span class="p">:</span> <span class="s2">"s3://acme-lake-us/silver/orders"</span><span class="p">},</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">{</span><span class="s2">"logical_table"</span><span class="p">:</span> <span class="s2">"orders"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"eu"</span><span class="p">,</span> <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"gcp"</span><span class="p">,</span> <span class="s2">"uri"</span><span class="p">:</span> <span class="s2">"gs://acme-lake-eu/silver/orders"</span><span class="p">},</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="p">{</span><span class="s2">"logical_table"</span><span class="p">:</span> <span class="s2">"hr_records"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"us"</span><span class="p">,</span> <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"on-prem"</span><span class="p">,</span> <span class="s2">"uri"</span><span class="p">:</span> <span class="s2">"file:///mnt/onprem-lake/hr"</span><span class="p">},</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">])</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_location</span><span class="p">(</span><span class="n">registry</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">logical_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">match</span> <span class="o">=</span> <span class="n">registry</span><span class="p">[(</span><span class="n">registry</span><span class="p">[</span><span class="s2">"logical_table"</span><span class="p">]</span> <span class="o">==</span> <span class="n">logical_table</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">registry</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">)]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"no location registered for </span><span class="si">{</span><span class="n">logical_table</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"uri"</span><span class="p">]</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">resolve_location</span><span class="p">(</span><span class="n">table_registry</span><span class="p">,</span> <span class="s2">"orders"</span><span class="p">,</span> <span class="s2">"eu"</span><span class="p">))</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">resolve_location</span><span class="p">(</span><span class="n">table_registry</span><span class="p">,</span> <span class="s2">"hr_records"</span><span class="p">,</span> <span class="s2">"us"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gs://acme-lake-eu/silver/orders
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>file:///mnt/onprem-lake/hr
+</code></pre></div>
+<p>A single logical table name (<code>orders</code>) can resolve to different physical
+locations per region — this is often <em>required</em>, not optional: EU customer
+data legally residing in an EU data center is a common data-residency
+constraint that a multi-cloud strategy must satisfy structurally.</p>
+<h2 id="data-gravity-why-you-replicate-metadata-but-not-always-the-data-itself">Data gravity: why you replicate metadata but not always the data itself<a class="headerlink" href="#data-gravity-why-you-replicate-metadata-but-not-always-the-data-itself" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">estimate_cross_cloud_query_cost</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">avg_row_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">egress_cost_per_gb</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.09</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">total_gb</span> <span class="o">=</span> <span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">avg_row_bytes</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">egress_cost</span> <span class="o">=</span> <span class="n">total_gb</span> <span class="o">*</span> <span class="n">egress_cost_per_gb</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"total_gb"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">total_gb</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">"estimated_egress_cost_usd"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">egress_cost</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># A query engine in AWS reading a 50GB table stored in GCP has to pull it across</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">estimate_cross_cloud_query_cost</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">50_000_000</span><span class="p">,</span> <span class="n">avg_row_bytes</span><span class="o">=</span><span class="mi">1024</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>{'total_gb': 46.566, 'estimated_egress_cost_usd': 4.19}
+</code></pre></div>
+<p>Cross-cloud egress isn't free, and it compounds — a recurring hourly job
+that scans a large cross-cloud table pays this cost every run. This is
+"data gravity": data tends to pull compute toward it, because moving
+compute to the data is usually cheaper than moving the data to the
+compute. The practical implication is to run the query engine <em>in the same
+cloud</em> as the data whenever the workload is recurring or large, and reserve
+actual cross-cloud data movement for smaller, less frequent transfers.</p>
+<h2 id="federated-catalog-metadata-unified-data-left-in-place">Federated catalog: metadata unified, data left in place<a class="headerlink" href="#federated-catalog-metadata-unified-data-left-in-place" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">federated_catalog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">table_registry</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">catalog_source</span><span class="o">=</span><span class="s2">"central"</span><span class="p">),</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_table_anywhere</span><span class="p">(</span><span class="n">catalog</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">logical_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">return</span> <span class="n">catalog</span><span class="p">[</span><span class="n">catalog</span><span class="p">[</span><span class="s2">"logical_table"</span><span class="p">]</span> <span class="o">==</span> <span class="n">logical_table</span><span class="p">][[</span><span class="s2">"region"</span><span class="p">,</span> <span class="s2">"provider"</span><span class="p">,</span> <span class="s2">"uri"</span><span class="p">]]</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">find_table_anywhere</span><span class="p">(</span><span class="n">federated_catalog</span><span class="p">,</span> <span class="s2">"orders"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>  region provider                              uri
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>0     us      aws  s3://acme-lake-us/silver/orders
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1     eu      gcp  gs://acme-lake-eu/silver/orders
+</code></pre></div>
+<p>A federated catalog (Level 3, Module 03's ideas extended across providers)
+lets an analyst discover that <code>orders</code> exists in two regions/clouds and
+query the one relevant to them, without a central team having copied the
+data anywhere — only the <em>metadata</em> is centralized.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Replicating everything everywhere "to be safe."</strong> This multiplies
+  storage cost and, worse, creates consistency problems (which copy is
+  authoritative after an update?) — replicate deliberately, per a specific
+  compliance or latency requirement, not by default.</li>
+<li><strong>Ignoring egress costs in architecture decisions.</strong> A design that looks
+  clean on a whiteboard but routes every query cross-cloud can be far more
+  expensive in practice than an uglier design that keeps compute next to
+  data.</li>
+<li><strong>No single source of truth for "where does this table actually live."</strong>
+  Without a registry like <code>table_registry</code>, "which cloud has the real
+  orders data for the EU region" becomes tribal knowledge that breaks the
+  moment the one person who knows it leaves.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline code shouldn't hardcode a cloud provider</td>
+<td>URI-based abstraction (<code>parse_lake_uri</code>)</td>
+</tr>
+<tr>
+<td>Same logical table, different physical location per region</td>
+<td>Table registry keyed on <code>(logical_table, region)</code></td>
+</tr>
+<tr>
+<td>Recurring cross-cloud queries are expensive</td>
+<td>Run compute where the data lives (data gravity)</td>
+</tr>
+<tr>
+<td>Discovering data across clouds without copying it</td>
+<td>Federated catalog with metadata only</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>replication_policy</code> table (<code>logical_table</code>, <code>source_region</code>,
+<code>replicate_to_region</code>, <code>sync_frequency_hours</code>) and a
+<code>is_replication_stale(registry, replication_policy, logical_table,
+region, last_synced_at, now)</code> function that flags when a required
+replica hasn't synced within its configured frequency — the check a
+platform team runs before trusting that an EU disaster-recovery copy of a
+US table is actually current.</p>
 
 
 

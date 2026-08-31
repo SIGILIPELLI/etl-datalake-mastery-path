@@ -1428,6 +1428,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Handling Late-Arriving & Out-of-Order Data
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1444,6 +1462,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#event-time-vs-arrival-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event time vs. arrival time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-pattern-reprocess-a-bounded-lookback-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch pattern: reprocess a bounded lookback window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcting-an-already-emitted-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correcting an already-emitted aggregate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-quarantine-and-reconcile-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: quarantine and reconcile separately
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#event-time-vs-arrival-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event time vs. arrival time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-pattern-reprocess-a-bounded-lookback-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch pattern: reprocess a bounded lookback window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcting-an-already-emitted-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correcting an already-emitted aggregate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-quarantine-and-reconcile-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: quarantine and reconcile separately
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,170 @@
 
 
 <h1 id="05-handling-late-arriving-out-of-order-data">05 · Handling Late-Arriving &amp; Out-of-Order Data<a class="headerlink" href="#05-handling-late-arriving-out-of-order-data" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Real event sources don't deliver in perfect order: mobile clients buffer
+offline, retries reorder network packets, and clocks drift between servers.
+"Late-arriving data" is any record whose <em>event time</em> is well before other
+records you've already processed, but whose <em>arrival time</em> is after. This
+module covers the concrete patterns for handling it in both batch and
+streaming pipelines, building on the watermarking introduced in Module 02.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pandas</code> and
+<code>datetime</code> APIs but not executed in a live interpreter for this lesson —
+the DataFrame shapes and printed values shown match documented behavior
+precisely.</p>
+</div>
+<h2 id="event-time-vs-arrival-time">Event time vs. arrival time<a class="headerlink" href="#event-time-vs-arrival-time" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">{</span><span class="s2">"event_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"event_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:00:00"</span><span class="p">,</span> <span class="s2">"arrival_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:00:02"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">{</span><span class="s2">"event_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"event_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:00:05"</span><span class="p">,</span> <span class="s2">"arrival_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:00:06"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">{</span><span class="s2">"event_id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"event_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T08:59:50"</span><span class="p">,</span> <span class="s2">"arrival_time"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:05:00"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>  <span class="c1"># late!</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">])</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">])</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">events</span><span class="p">[</span><span class="s2">"arrival_time"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="s2">"arrival_time"</span><span class="p">])</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">events</span><span class="p">[</span><span class="s2">"lateness_seconds"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="s2">"arrival_time"</span><span class="p">]</span> <span class="o">-</span> <span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>   event_id          event_time        arrival_time  amount  lateness_seconds
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0         1 2026-08-01 09:00:00 2026-08-01 09:00:02      10               2.0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1         2 2026-08-01 09:00:05 2026-08-01 09:00:06      20               6.0
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2         3 2026-08-01 08:59:50 2026-08-01 09:05:00      15             310.0
+</code></pre></div>
+<p>Event 3 happened <em>before</em> events 1 and 2 (event time), but arrived last —
+five minutes after the fact. Any pipeline that already closed out the
+<code>09:00:00</code> batch/window before event 3 shows up needs a deliberate policy
+for what happens next.</p>
+<h2 id="batch-pattern-reprocess-a-bounded-lookback-window">Batch pattern: reprocess a bounded lookback window<a class="headerlink" href="#batch-pattern-reprocess-a-bounded-lookback-window" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">batch_pull</span><span class="p">(</span><span class="n">events</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">batch_end</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lookback_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="sd">"""Pull rows whose event_time falls in [batch_start, batch_end), but re-scan</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">    a lookback window before batch_start too, to catch stragglers."""</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">extended_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">batch_start</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">lookback_minutes</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">window</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">extended_start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">batch_end</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">return</span> <span class="n">window</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">reprocessed</span> <span class="o">=</span> <span class="n">batch_pull</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="s2">"2026-08-01T09:00:00"</span><span class="p">,</span> <span class="s2">"2026-08-01T09:01:00"</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">reprocessed</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   event_id          event_time        arrival_time  amount  lateness_seconds
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0         1 2026-08-01 09:00:00 2026-08-01 09:00:02      10               2.0
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1         2 2026-08-01 09:00:05 2026-08-01 09:00:06      20               6.0
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>2         3 2026-08-01 08:59:50 2026-08-01 09:05:00      15             310.0
+</code></pre></div>
+<p>This is the standard batch fix: re-run each batch's aggregation over a
+lookback window wider than the batch itself, so a straggler that lands after
+the original run still gets picked up on the <em>next</em> scheduled run — at the
+cost of recomputing overlapping ranges, which is why the aggregation must be
+idempotent (Level 2, Module 06).</p>
+<h2 id="correcting-an-already-emitted-aggregate">Correcting an already-emitted aggregate<a class="headerlink" href="#correcting-an-already-emitted-aggregate" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">published</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="p">{</span><span class="s2">"window_start"</span><span class="p">:</span> <span class="s2">"2026-08-01T09:00:00"</span><span class="p">,</span> <span class="s2">"total"</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>   <span class="c1"># only events 1+2 when first emitted</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">])</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">published</span><span class="p">[</span><span class="s2">"window_start"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">published</span><span class="p">[</span><span class="s2">"window_start"</span><span class="p">])</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">recompute_and_correct</span><span class="p">(</span><span class="n">published</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">all_events</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">window_start</span><span class="p">,</span> <span class="n">window_seconds</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">window_end</span> <span class="o">=</span> <span class="n">window_start</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">window_seconds</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">in_window</span> <span class="o">=</span> <span class="n">all_events</span><span class="p">[</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="p">(</span><span class="n">all_events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">window_start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">window_end</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">corrected_total</span> <span class="o">=</span> <span class="n">in_window</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">published</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"window_start"</span><span class="p">]</span> <span class="o">==</span> <span class="n">window_start</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">"total"</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected_total</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">result</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">"window_start"</span><span class="p">:</span> <span class="n">window_start</span><span class="p">,</span> <span class="s2">"total"</span><span class="p">:</span> <span class="n">corrected_total</span><span class="p">}])])</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="k">return</span> <span class="n">result</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="n">corrected</span> <span class="o">=</span> <span class="n">recompute_and_correct</span><span class="p">(</span><span class="n">published</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2026-08-01T09:00:00"</span><span class="p">))</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>       window_start  total
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0 2026-08-01 09:00:00     45
+</code></pre></div>
+<p>Instead of appending event 3's amount as a new row (which would double-count
+events 1 and 2), the whole window is <strong>recomputed from source</strong> and the
+published row is overwritten in place — this is a corrective update, and it
+requires downstream consumers to treat published aggregates as mutable, not
+append-only.</p>
+<h2 id="alternative-quarantine-and-reconcile-separately">Alternative: quarantine and reconcile separately<a class="headerlink" href="#alternative-quarantine-and-reconcile-separately" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">split_on_time</span><span class="p">(</span><span class="n">events</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">watermark</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">on_time</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">watermark</span><span class="p">]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">late</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="p">[</span><span class="s2">"event_time"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">watermark</span><span class="p">]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">return</span> <span class="n">on_time</span><span class="p">,</span> <span class="n">late</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">watermark</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2026-08-01T09:00:00"</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">on_time</span><span class="p">,</span> <span class="n">late</span> <span class="o">=</span> <span class="n">split_on_time</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">watermark</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"On time:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">on_time</span><span class="p">[[</span><span class="s2">"event_id"</span><span class="p">,</span> <span class="s2">"event_time"</span><span class="p">]])</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Late (quarantined for a separate reconciliation job):</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">late</span><span class="p">[[</span><span class="s2">"event_id"</span><span class="p">,</span> <span class="s2">"event_time"</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>On time:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    event_id          event_time
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>0         1 2026-08-01 09:00:00
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>1         2 2026-08-01 09:00:05
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Late (quarantined for a separate reconciliation job):
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    event_id          event_time
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>2         3 2026-08-01 08:59:50
+</code></pre></div>
+<p>When corrective updates are too disruptive for downstream consumers (e.g., a
+dashboard that can't handle numbers changing after the fact), the
+alternative is to route late events to a separate table and publish a daily
+or hourly "reconciliation" job that adjusts totals on its own schedule —
+trading immediacy for a simpler consumer contract.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No lookback window in a batch job.</strong> Filtering <code>event_time</code> strictly to
+  <code>[batch_start, batch_end)</code> with no overlap silently drops every straggler
+  forever — they were never in a window that got re-run.</li>
+<li><strong>Appending instead of recomputing on correction.</strong> Adding a late event's
+  value to a published total (<code>total += late_amount</code>) works only if you're
+  certain the total was never itself the product of a previous correction —
+  recomputing from source events is far safer.</li>
+<li><strong>No cutoff at all.</strong> Without <em>some</em> limit (a watermark, a lookback
+  window, an "accept lateness up to N hours" rule), a pipeline must keep
+  every historical aggregate open forever to theoretically handle
+  arbitrarily late data — pick a business-appropriate cutoff and quarantine
+  or drop past it.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lookback window on batch re-run</td>
+<td>Simple, works with existing idempotent batch jobs</td>
+</tr>
+<tr>
+<td>Corrective recompute-and-overwrite</td>
+<td>Streaming/near-real-time, consumers can handle updated values</td>
+</tr>
+<tr>
+<td>Quarantine + separate reconciliation</td>
+<td>Consumers need append-only/immutable published data</td>
+</tr>
+<tr>
+<td>Hard cutoff (drop past N)</td>
+<td>Bounds cost/complexity when perfect correctness isn't required</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>recompute_and_correct</code> to also record a <code>correction_count</code> column
+that increments every time a given <code>window_start</code> is recomputed with a
+different total than before, and a <code>last_corrected_at</code> timestamp. Then
+simulate three late events arriving for the same window across three
+separate reconciliation runs and confirm <code>correction_count</code> reaches 3 while
+<code>total</code> reflects the sum of all events seen so far.</p>
 
 
 

@@ -1344,6 +1344,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Streaming ETL Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1360,6 +1378,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#batch-vs-streaming-concretely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs. streaming, concretely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tumbling-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tumbling windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watermarks-when-is-a-window-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watermarks: when is a window "done"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-to-events-that-arrive-too-late" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens to events that arrive too late
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#batch-vs-streaming-concretely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs. streaming, concretely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tumbling-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tumbling windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watermarks-when-is-a-window-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watermarks: when is a window "done"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-to-events-that-arrive-too-late" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens to events that arrive too late
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,187 @@
 
 
 <h1 id="02-streaming-etl-basics">02 · Streaming ETL Basics<a class="headerlink" href="#02-streaming-etl-basics" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Every pipeline so far has been <strong>batch</strong>: run on a schedule, pull whatever
+changed, finish, exit. Streaming ETL processes events continuously as they
+arrive, with latency measured in seconds instead of the hours between batch
+runs. This module builds the core streaming concepts — unbounded input,
+windowing, and watermarking for lateness — using plain Python so the
+mechanism is visible before you reach for Kafka/Flink/Spark Structured
+Streaming in production.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real Python
+(<code>collections.deque</code>, <code>heapq</code>, <code>datetime</code>) but not executed in a live
+interpreter for this lesson — the printed states match documented
+behavior precisely. A production system would use Kafka as the event
+log and Flink/Spark for the processing engine; the concepts transfer
+directly.</p>
+</div>
+<h2 id="batch-vs-streaming-concretely">Batch vs. streaming, concretely<a class="headerlink" href="#batch-vs-streaming-concretely" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Batch: process a finite DataFrame, once, then stop.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">batch</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"user"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"user"</span><span class="p">)[</span><span class="s2">"amount"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>user
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>a    15
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>b    20
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Name: amount, dtype: int64
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Streaming: an unbounded generator of events with no defined "end".</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span><span class="o">,</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">event_stream</span><span class="p">():</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">users</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="k">yield</span> <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">users</span><span class="p">),</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="s2">"seq"</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span>
+</code></pre></div>
+<p>A batch job can call <code>.groupby().sum()</code> because it has the whole dataset in
+hand. A streaming job never does — it must produce useful output while the
+input is still arriving, which means aggregating over <strong>windows</strong> of time
+instead of the whole history.</p>
+<h2 id="tumbling-windows">Tumbling windows<a class="headerlink" href="#tumbling-windows" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">tumbling_window_key</span><span class="p">(</span><span class="n">event_time</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="n">size_seconds</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">epoch</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">seconds_since_epoch</span> <span class="o">=</span> <span class="p">(</span><span class="n">event_time</span> <span class="o">-</span> <span class="n">epoch</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">window_start</span> <span class="o">=</span> <span class="n">seconds_since_epoch</span> <span class="o">-</span> <span class="p">(</span><span class="n">seconds_since_epoch</span> <span class="o">%</span> <span class="n">size_seconds</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">return</span> <span class="n">epoch</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">window_start</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)},</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)},</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)},</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>  <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">31</span><span class="p">)},</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">]</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">windows</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">tumbling_window_key</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s2">"ts"</span><span class="p">],</span> <span class="n">size_seconds</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="n">windows</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">for</span> <span class="p">(</span><span class="n">window_start</span><span class="p">,),</span> <span class="n">total</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">windows</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">window_start</span><span class="p">,</span> <span class="s2">"-&gt;"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>2026-08-01 09:00:00 -&gt; 30.0
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>2026-08-01 09:00:20 -&gt; 5.0
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>2026-08-01 09:00:30 -&gt; 8.0
+</code></pre></div>
+<p>A <strong>tumbling window</strong> is a fixed, non-overlapping bucket of time (here, 10
+seconds). Every event belongs to exactly one window, keyed by its event
+timestamp rounded down to the window boundary — this is how "revenue per
+minute" dashboards are computed from a raw event stream.</p>
+<h2 id="watermarks-when-is-a-window-done">Watermarks: when is a window "done"?<a class="headerlink" href="#watermarks-when-is-a-window-done" title="Permanent link">&para;</a></h2>
+<p>The hard problem in streaming isn't computing the sum — it's knowing <em>when</em>
+to emit it. Events don't always arrive in order.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_stream</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_lateness</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">windows</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">emitted</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">max_event_time_seen</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">min</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="n">max_event_time_seen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_event_time_seen</span><span class="p">,</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"ts"</span><span class="p">])</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="n">watermark</span> <span class="o">=</span> <span class="n">max_event_time_seen</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">max_lateness</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="n">key</span> <span class="o">=</span> <span class="n">tumbling_window_key</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="s2">"ts"</span><span class="p">],</span> <span class="n">window_size</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">emitted</span><span class="p">:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">"LATE-DROPPED"</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">ev</span><span class="p">))</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>            <span class="k">continue</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="n">windows</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        <span class="c1"># Emit any window whose end is now behind the watermark.</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        <span class="k">for</span> <span class="n">w_start</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">windows</span><span class="p">):</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            <span class="n">w_end</span> <span class="o">=</span> <span class="n">w_start</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">window_size</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            <span class="k">if</span> <span class="n">w_end</span> <span class="o">&lt;=</span> <span class="n">watermark</span> <span class="ow">and</span> <span class="n">w_start</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">emitted</span><span class="p">:</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">"EMIT"</span><span class="p">,</span> <span class="n">w_start</span><span class="p">,</span> <span class="n">windows</span><span class="p">[</span><span class="n">w_start</span><span class="p">]))</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>                <span class="n">emitted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w_start</span><span class="p">)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="k">return</span> <span class="n">results</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="n">late_events</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)},</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">)},</span>  <span class="c1"># advances watermark</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)},</span>   <span class="c1"># late but within lateness</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="p">]</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">process_stream</span><span class="p">(</span><span class="n">late_events</span><span class="p">):</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>('EMIT', datetime.datetime(2026, 8, 1, 9, 0), 38.0)
+</code></pre></div>
+<p>The third event (<code>09:00:22</code>) advances the watermark to <code>09:00:17</code>
+(<code>22 - 5</code> seconds of allowed lateness), which is past the <code>[09:00:00,
+09:00:10)</code> window's end — so that window finally emits, correctly including
+the late event for user <code>c</code> at <code>09:00:03</code> because it arrived <em>before</em> the
+watermark passed its window.</p>
+<h2 id="what-happens-to-events-that-arrive-too-late">What happens to events that arrive too late<a class="headerlink" href="#what-happens-to-events-that-arrive-too-late" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">too_late_events</span> <span class="o">=</span> <span class="n">late_events</span> <span class="o">+</span> <span class="p">[</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"z"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)},</span>  <span class="c1"># arrives after emit</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">]</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">process_stream</span><span class="p">(</span><span class="n">too_late_events</span><span class="p">):</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>('EMIT', datetime.datetime(2026, 8, 1, 9, 0), 38.0)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>('LATE-DROPPED', datetime.datetime(2026, 8, 1, 9, 0), {'user': 'z', 'amount': 99, 'ts': datetime.datetime(2026, 8, 1, 9, 0, 1)})
+</code></pre></div>
+<p>Once a window has been emitted, real streaming engines either drop
+further-late events (as here), route them to a side output for manual
+reconciliation, or emit a correcting update — which one is a business
+decision, not a technical default, and it's exactly the topic of the next
+module.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No watermark at all.</strong> Without one, a streaming job either never emits
+  (waits forever for possible late data) or emits immediately and produces
+  wrong totals for every window that still has stragglers coming.</li>
+<li><strong>Watermark lateness too tight.</strong> Set from a wall-clock guess instead of
+  observed data, it silently drops legitimate late events (mobile clients,
+  retried writes) as if they never happened.</li>
+<li><strong>Confusing event time with processing time.</strong> Windowing on "when my
+  pipeline saw the event" instead of "when the event actually happened"
+  gives wrong answers the moment there's any delivery delay — always window
+  on event time when it's available.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tumbling window</td>
+<td>Fixed, non-overlapping time buckets keyed by event time</td>
+</tr>
+<tr>
+<td>Watermark</td>
+<td>"I don't expect events older than this anymore"</td>
+</tr>
+<tr>
+<td><code>max_lateness</code></td>
+<td>How long a window stays open after its nominal end</td>
+</tr>
+<tr>
+<td>Late-arrival handling</td>
+<td>Drop, side-output, or corrective re-emit — a policy choice</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <strong>sliding window</strong> variant: instead of <code>tumbling_window_key</code>, write
+<code>sliding_window_keys(event_time, size_seconds, slide_seconds)</code> that returns
+<em>every</em> window an event falls into (a sliding window overlaps, so one event
+can belong to several windows at once — e.g., a 10-second window sliding
+every 5 seconds means each event lands in two consecutive windows). Re-run
+the first <code>events</code> list through it and confirm the total counted amount
+across all emitted windows is more than the sum of the raw events, since
+each event is now double-counted by design.</p>
 
 
 

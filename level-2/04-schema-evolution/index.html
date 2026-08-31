@@ -1026,6 +1026,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Schema Evolution & Handling
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1042,6 +1060,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#detecting-drift-comparing-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detecting drift: comparing schemas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additive-changes-safe-to-auto-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additive changes: safe to auto-merge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-widening-safe-in-one-direction-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type widening: safe in one direction only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#renames-and-removals-never-auto-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renames and removals: never auto-merge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-schema-evolution-policy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A schema-evolution policy function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#detecting-drift-comparing-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detecting drift: comparing schemas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additive-changes-safe-to-auto-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additive changes: safe to auto-merge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-widening-safe-in-one-direction-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type widening: safe in one direction only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#renames-and-removals-never-auto-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renames and removals: never auto-merge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-schema-evolution-policy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A schema-evolution policy function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,190 @@
 
 
 <h1 id="04-schema-evolution-handling">04 · Schema Evolution &amp; Handling<a class="headerlink" href="#04-schema-evolution-handling" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Source schemas change: a new column appears, a type widens, a field gets
+renamed. A pipeline that assumes the schema is frozen forever will break the
+first time an upstream team ships a change. This module covers detecting
+schema drift and handling it without crashing the pipeline.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>Reasoned through step by step against the real <code>pandas</code> and <code>pyarrow</code>
+APIs, not executed in a live interpreter — schema comparisons and merge
+results match documented behavior precisely.</p>
+</div>
+<h2 id="detecting-drift-comparing-schemas">Detecting drift: comparing schemas<a class="headerlink" href="#detecting-drift-comparing-schemas" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Version 1 of the schema (what the pipeline was built against)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">schema_v1</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">schema</span><span class="p">([</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">(</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">()),</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">(</span><span class="s2">"customer"</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">(</span><span class="s2">"amount"</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">float64</span><span class="p">()),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">])</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Version 2 arrives from the source with a new column and a widened type</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">batch_v2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"alice"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">},</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"bob"</span><span class="p">,</span>   <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">89.00</span><span class="p">,</span>  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">},</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">])</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">schema_v2</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">batch_v2</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">diff_schemas</span><span class="p">(</span><span class="n">old</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Schema</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Schema</span><span class="p">):</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">old_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">old</span><span class="p">}</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">new_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">new</span><span class="p">}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">added</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">new_fields</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_fields</span><span class="p">]</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">removed</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">old_fields</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_fields</span><span class="p">]</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">changed</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">old_fields</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">new_fields</span> <span class="ow">and</span> <span class="n">old_fields</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="n">new_fields</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="p">]</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"added"</span><span class="p">:</span> <span class="n">added</span><span class="p">,</span> <span class="s2">"removed"</span><span class="p">:</span> <span class="n">removed</span><span class="p">,</span> <span class="s2">"type_changed"</span><span class="p">:</span> <span class="n">changed</span><span class="p">}</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">diff_schemas</span><span class="p">(</span><span class="n">schema_v1</span><span class="p">,</span> <span class="n">schema_v2</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{'added': ['currency'], 'removed': [], 'type_changed': []}
+</code></pre></div>
+<p>Running this diff on every incoming batch, before writing it into the lake,
+turns "the pipeline mysteriously failed downstream" into "here's exactly
+what changed and when" — logged and alertable.</p>
+<h2 id="additive-changes-safe-to-auto-merge">Additive changes: safe to auto-merge<a class="headerlink" href="#additive-changes-safe-to-auto-merge" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">existing</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"alice"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">120.50</span><span class="p">},</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"bob"</span><span class="p">,</span>   <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">89.00</span><span class="p">},</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">])</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">merge_additive</span><span class="p">(</span><span class="n">existing</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">incoming</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">all_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">existing</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">incoming</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">existing_aligned</span> <span class="o">=</span> <span class="n">existing</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">all_cols</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">incoming_aligned</span> <span class="o">=</span> <span class="n">incoming</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">all_cols</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">existing_aligned</span><span class="p">,</span> <span class="n">incoming_aligned</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">merged</span> <span class="o">=</span> <span class="n">merge_additive</span><span class="p">(</span><span class="n">existing</span><span class="p">,</span> <span class="n">batch_v2</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   order_id customer  amount currency
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0         1    alice  120.50      NaN
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1         2      bob   89.00      NaN
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>2         1    alice  120.50      USD
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>3         2      bob   89.00      USD
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>order_id      int64
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>customer     object
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>amount      float64
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>currency     object
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>dtype: object
+</code></pre></div>
+<p>Adding a new nullable column is the one schema change that's always safe to
+auto-merge: old rows simply get <code>NaN</code>/<code>null</code> for the new field, and nothing
+that reads the old columns breaks.</p>
+<h2 id="type-widening-safe-in-one-direction-only">Type widening: safe in one direction only<a class="headerlink" href="#type-widening-safe-in-one-direction-only" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># int32 -&gt; int64 is a safe widening (every int32 value fits in int64)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">narrow</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"int32"</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">widened</span> <span class="o">=</span> <span class="n">narrow</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">widened</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># int64 -&gt; int32 is a narrowing that can silently truncate large values</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">risky_values</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5_000_000_000</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"int64"</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">risky_values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int32"</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">except</span> <span class="ne">OverflowError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Blocked unsafe narrowing: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>int64
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Blocked unsafe narrowing: Python int too large to convert to C long
+</code></pre></div>
+<p>pandas/NumPy raise on an out-of-range narrowing cast, which is the correct,
+loud failure — the trap is code that catches this exception and silently
+falls back to some default, hiding real data loss.</p>
+<h2 id="renames-and-removals-never-auto-merge">Renames and removals: never auto-merge<a class="headerlink" href="#renames-and-removals-never-auto-merge" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># A rename looks like "add + remove" to a naive schema diff</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">batch_v3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"buyer"</span><span class="p">:</span> <span class="s2">"alice"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">120.50</span><span class="p">},</span>  <span class="c1"># customer -&gt; buyer</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">])</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">schema_v3</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">batch_v3</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">diff_schemas</span><span class="p">(</span><span class="n">schema_v1</span><span class="p">,</span> <span class="n">schema_v3</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>{'added': ['buyer'], 'removed': ['customer'], 'type_changed': []}
+</code></pre></div>
+<p>A rename is indistinguishable from "one column dropped, one unrelated
+column added" by a naive diff — auto-merging this would silently lose every
+existing <code>customer</code> value and start a brand-new, unrelated-looking <code>buyer</code>
+column. Renames and removals should always route to a human (or a schema
+registry / data contract review — see Module 9) rather than being merged
+automatically.</p>
+<h2 id="a-schema-evolution-policy-function">A schema-evolution policy function<a class="headerlink" href="#a-schema-evolution-policy-function" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">classify_schema_change</span><span class="p">(</span><span class="n">diff</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="k">if</span> <span class="n">diff</span><span class="p">[</span><span class="s2">"type_changed"</span><span class="p">]:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="k">return</span> <span class="s2">"REVIEW: type change requires manual approval"</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="k">if</span> <span class="n">diff</span><span class="p">[</span><span class="s2">"removed"</span><span class="p">]:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="k">return</span> <span class="s2">"REVIEW: column removal — check for a possible rename"</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="k">if</span> <span class="n">diff</span><span class="p">[</span><span class="s2">"added"</span><span class="p">]:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="k">return</span> <span class="s2">"AUTO-MERGE: new nullable column(s), safe to add"</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">return</span> <span class="s2">"NO CHANGE"</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">diff</span> <span class="ow">in</span> <span class="p">[</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="p">(</span><span class="s2">"v1-&gt;v2"</span><span class="p">,</span> <span class="n">diff_schemas</span><span class="p">(</span><span class="n">schema_v1</span><span class="p">,</span> <span class="n">schema_v2</span><span class="p">)),</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="p">(</span><span class="s2">"v1-&gt;v3"</span><span class="p">,</span> <span class="n">diff_schemas</span><span class="p">(</span><span class="n">schema_v1</span><span class="p">,</span> <span class="n">schema_v3</span><span class="p">)),</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">]:</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">"-&gt;"</span><span class="p">,</span> <span class="n">classify_schema_change</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>v1-&gt;v2 -&gt; AUTO-MERGE: new nullable column(s), safe to add
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>v1-&gt;v3 -&gt; REVIEW: column removal — check for a possible rename
+</code></pre></div>
+<p>Codifying this policy as a function — rather than a mental rule someone
+applies inconsistently — means the pipeline can automatically merge the
+safe 80% of schema changes and only page a human for the risky 20%.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Auto-merging column removals.</strong> Almost always a rename in disguise —
+  always route to manual review.</li>
+<li><strong>Silently casting on type mismatch.</strong> <code>pd.to_numeric(..., errors="coerce")</code>
+  applied blindly to a schema change can turn a legitimate string column
+  into a column of <code>NaN</code>s without anyone noticing.</li>
+<li><strong>No schema version history.</strong> Without logging every diff with a
+  timestamp, you can't answer "when did this column show up" during an
+  incident.</li>
+<li><strong>Testing schema changes only in production.</strong> Any pipeline ingesting
+  from an external source should validate incoming schema against the last
+  known-good schema <em>before</em> writing anything to the lake.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Change type</th>
+<th>Safe to auto-merge?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New nullable column</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Type widening (int32→int64, float32→float64)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Type narrowing</td>
+<td>No — review</td>
+</tr>
+<tr>
+<td>Column rename</td>
+<td>No — always looks like remove+add</td>
+</tr>
+<tr>
+<td>Column removal</td>
+<td>No — review (may be a rename)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Write a function <code>apply_schema_policy(existing_df, incoming_df)</code> that runs
+<code>diff_schemas</code>, calls <code>classify_schema_change</code>, and either returns the
+merged DataFrame (for <code>AUTO-MERGE</code> cases) or raises a <code>SchemaReviewRequired</code>
+exception carrying the diff (for <code>REVIEW</code> cases). Test it against both
+<code>batch_v2</code> and <code>batch_v3</code> from this lesson.</p>
 
 
 

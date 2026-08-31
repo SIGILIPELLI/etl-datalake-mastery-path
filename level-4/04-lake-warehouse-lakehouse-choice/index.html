@@ -1774,6 +1774,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Lake vs. Warehouse vs. Lakehouse: Choosing for a Use Case
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1790,6 +1808,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modeling-the-three-architectures-costcapability-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modeling the three architectures' cost/capability trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-decision-function-grounded-in-workload-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A decision function grounded in workload characteristics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-three-teams-three-different-right-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: three teams, three different right answers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-real-cost-of-just-use-a-lakehouse-for-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The real cost of "just use a lakehouse for everything"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modeling-the-three-architectures-costcapability-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modeling the three architectures' cost/capability trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-decision-function-grounded-in-workload-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A decision function grounded in workload characteristics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-three-teams-three-different-right-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: three teams, three different right answers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-real-cost-of-just-use-a-lakehouse-for-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The real cost of "just use a lakehouse for everything"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,161 @@
 
 
 <h1 id="04-lake-vs-warehouse-vs-lakehouse-choosing-for-a-use-case">04 · Lake vs. Warehouse vs. Lakehouse: Choosing for a Use Case<a class="headerlink" href="#04-lake-vs-warehouse-vs-lakehouse-choosing-for-a-use-case" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>By Level 4 you've built pieces of all three architectures — plain object
+storage (Level 1), a transactional lakehouse table (Level 3), and touched
+warehouse-style guarantees (schema enforcement, ACID). This module is about
+the actual decision: given a real workload, which architecture fits, and
+why "just use a lakehouse for everything" is itself a trade-off, not a free
+win.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pandas</code>
+and <code>pyarrow</code> characteristics but not executed in a live interpreter for
+this lesson — the comparisons shown reflect documented, well-known
+behavior of each architecture precisely.</p>
+</div>
+<h2 id="modeling-the-three-architectures-costcapability-trade-offs">Modeling the three architectures' cost/capability trade-offs<a class="headerlink" href="#modeling-the-three-architectures-costcapability-trade-offs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">architectures</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">{</span><span class="s2">"arch"</span><span class="p">:</span> <span class="s2">"Data Lake"</span><span class="p">,</span>       <span class="s2">"schema_enforcement"</span><span class="p">:</span> <span class="s2">"none (schema-on-read)"</span><span class="p">,</span> <span class="s2">"acid"</span><span class="p">:</span> <span class="s2">"no (per-file only)"</span><span class="p">,</span>     <span class="s2">"cost_per_tb"</span><span class="p">:</span> <span class="s2">"$"</span><span class="p">,</span>   <span class="s2">"query_latency"</span><span class="p">:</span> <span class="s2">"high (full scans common)"</span><span class="p">,</span> <span class="s2">"best_for"</span><span class="p">:</span> <span class="s2">"raw/unstructured retention, ML training data, cheap archival"</span><span class="p">},</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">{</span><span class="s2">"arch"</span><span class="p">:</span> <span class="s2">"Data Warehouse"</span><span class="p">,</span>  <span class="s2">"schema_enforcement"</span><span class="p">:</span> <span class="s2">"strict (schema-on-write)"</span><span class="p">,</span> <span class="s2">"acid"</span><span class="p">:</span> <span class="s2">"yes, mature"</span><span class="p">,</span>          <span class="s2">"cost_per_tb"</span><span class="p">:</span> <span class="s2">"$$$"</span><span class="p">,</span> <span class="s2">"query_latency"</span><span class="p">:</span> <span class="s2">"low (optimized engine)"</span><span class="p">,</span>    <span class="s2">"best_for"</span><span class="p">:</span> <span class="s2">"BI dashboards, financial reporting, structured analytics"</span><span class="p">},</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">{</span><span class="s2">"arch"</span><span class="p">:</span> <span class="s2">"Lakehouse"</span><span class="p">,</span>       <span class="s2">"schema_enforcement"</span><span class="p">:</span> <span class="s2">"enforced, evolvable"</span><span class="p">,</span>     <span class="s2">"acid"</span><span class="p">:</span> <span class="s2">"yes (via transaction log)"</span><span class="p">,</span> <span class="s2">"cost_per_tb"</span><span class="p">:</span> <span class="s2">"$$"</span><span class="p">,</span>  <span class="s2">"query_latency"</span><span class="p">:</span> <span class="s2">"medium-low"</span><span class="p">,</span>                <span class="s2">"best_for"</span><span class="p">:</span> <span class="s2">"unify BI + ML on one copy of data, avoid dual-write pipelines"</span><span class="p">},</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">])</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_colwidth"</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">architectures</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>       arch     schema_enforcement                 acid cost_per_tb                query_latency                                    best_for
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  Data Lake  none (schema-on-read)   no (per-file only)           $ high (full scans common)     raw/unstructured retention, ML training data, cheap archival
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Data Warehouse strict (schema-on-write)         yes, mature         $$$    low (optimized engine)          BI dashboards, financial reporting, structured analytics
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Lakehouse  enforced, evolvable  yes (via transaction log)          $$               medium-low  unify BI + ML on one copy of data, avoid dual-write pipelines
+</code></pre></div>
+<h2 id="a-decision-function-grounded-in-workload-characteristics">A decision function grounded in workload characteristics<a class="headerlink" href="#a-decision-function-grounded-in-workload-characteristics" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">recommend_architecture</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">needs_sub_second_bi</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">has_ml_training_workloads</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">data_is_mostly_unstructured</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">needs_acid_updates</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">team_already_runs_spark_or_trino</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">if</span> <span class="n">data_is_mostly_unstructured</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">needs_acid_updates</span><span class="p">:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">return</span> <span class="s2">"Data Lake — cheap storage for raw/unstructured data with no update guarantees needed"</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">if</span> <span class="n">needs_sub_second_bi</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_ml_training_workloads</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">return</span> <span class="s2">"Data Warehouse — dedicated engine optimization matters more than unifying with ML workloads"</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">if</span> <span class="n">has_ml_training_workloads</span> <span class="ow">and</span> <span class="n">needs_acid_updates</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">return</span> <span class="s2">"Lakehouse — one copy of governed, ACID data serves both BI and ML without duplicating pipelines"</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">if</span> <span class="n">needs_acid_updates</span> <span class="ow">and</span> <span class="n">team_already_runs_spark_or_trino</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="k">return</span> <span class="s2">"Lakehouse — you already have the query engines; add the transactional layer on existing storage"</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">return</span> <span class="s2">"Data Warehouse — default to the simpler, most mature option absent a specific lake/lakehouse driver"</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">recommend_architecture</span><span class="p">(</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">needs_sub_second_bi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">has_ml_training_workloads</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">data_is_mostly_unstructured</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="n">needs_acid_updates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="n">team_already_runs_spark_or_trino</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Lakehouse — one copy of governed, ACID data serves both BI and ML without duplicating pipelines
+</code></pre></div>
+<h2 id="worked-example-three-teams-three-different-right-answers">Worked example: three teams, three different right answers<a class="headerlink" href="#worked-example-three-teams-three-different-right-answers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="s2">"team"</span><span class="p">:</span> <span class="s2">"Fraud ML team"</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="s2">"needs_sub_second_bi"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"has_ml_training_workloads"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="s2">"data_is_mostly_unstructured"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"needs_acid_updates"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="s2">"team_already_runs_spark_or_trino"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">},</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="s2">"team"</span><span class="p">:</span> <span class="s2">"Finance reporting"</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="s2">"needs_sub_second_bi"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"has_ml_training_workloads"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="s2">"data_is_mostly_unstructured"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"needs_acid_updates"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="s2">"team_already_runs_spark_or_trino"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="p">},</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="p">{</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="s2">"team"</span><span class="p">:</span> <span class="s2">"Platform data team (serves both)"</span><span class="p">,</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="s2">"needs_sub_second_bi"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"has_ml_training_workloads"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        <span class="s2">"data_is_mostly_unstructured"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"needs_acid_updates"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="s2">"team_already_runs_spark_or_trino"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="p">},</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="p">]</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scenarios</span><span class="p">:</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="n">team</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"team"</span><span class="p">)</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">team</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">recommend_architecture</span><span class="p">(</span><span class="o">**</span><span class="n">s</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Fraud ML team: Data Lake — cheap storage for raw/unstructured data with no update guarantees needed
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Finance reporting: Data Warehouse — dedicated engine optimization matters more than unifying with ML workloads
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Platform data team (serves both): Lakehouse — one copy of governed, ACID data serves both BI and ML without duplicating pipelines
+</code></pre></div>
+<p>Three legitimate architectures for three different teams inside the same
+company — the mistake isn't picking "the wrong one" in the abstract, it's
+picking one architecture company-wide and forcing every workload to fit it.</p>
+<h2 id="the-real-cost-of-just-use-a-lakehouse-for-everything">The real cost of "just use a lakehouse for everything"<a class="headerlink" href="#the-real-cost-of-just-use-a-lakehouse-for-everything" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">lakehouse_overkill_check</span><span class="p">(</span><span class="n">workload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">workload</span><span class="p">[</span><span class="s2">"needs_acid_updates"</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">workload</span><span class="p">[</span><span class="s2">"has_ml_training_workloads"</span><span class="p">]:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="k">return</span> <span class="s2">"Lakehouse adds transaction-log overhead and operational complexity with no benefit here — plain lake or warehouse is simpler"</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">return</span> <span class="s2">"Lakehouse trade-offs (extra metadata, compaction jobs, learning curve) are justified by the ACID/unification need"</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">lakehouse_overkill_check</span><span class="p">({</span><span class="s2">"needs_acid_updates"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"has_ml_training_workloads"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Lakehouse adds transaction-log overhead and operational complexity with no benefit here — plain lake or warehouse is simpler
+</code></pre></div>
+<p>A lakehouse still needs compaction jobs (Level 3, Module 06), a catalog
+(Level 3, Module 03), and a team that understands transaction-log semantics
+(Level 3, Modules 01/07/08) — none of that is free, and a workload that
+never needs ACID updates or ML access to the same data gets none of the
+benefit while paying all of the operational cost.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Choosing based on vendor marketing rather than workload shape.</strong> "Lake"
+  and "Lakehouse" are heavily marketed terms; the actual question is always
+  update patterns, latency requirements, and who else needs the same data.</li>
+<li><strong>Migrating a stable, working warehouse workload to a lakehouse "because
+  it's newer."</strong> If BI latency and update patterns are already met, this
+  trades a mature, well-understood system for migration risk with no
+  concrete win.</li>
+<li><strong>Running three separate copies of the same data across lake, warehouse,
+  and lakehouse "just in case."</strong> This is exactly the dual-write pipeline
+  problem lakehouses exist to solve — pick one governed source of truth per
+  dataset.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Leans toward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mostly unstructured, cheap archival, ML raw data</td>
+<td>Data Lake</td>
+</tr>
+<tr>
+<td>Sub-second BI, mature tooling, no ML/unification need</td>
+<td>Data Warehouse</td>
+</tr>
+<tr>
+<td>Same data needs both BI and ML, or needs ACID + existing lake tooling</td>
+<td>Lakehouse</td>
+</tr>
+<tr>
+<td>No update/ACID need at all</td>
+<td>Whichever is simplest to operate — usually not a lakehouse</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>recommend_architecture</code> with a <code>data_volume_tb</code> and
+<code>team_size</code> parameter, and add a rule: below some threshold (e.g., under 1TB
+and a team of 1-2 people), recommend against a lakehouse or warehouse
+regardless of other signals, favoring "a managed cloud data warehouse's
+free/small tier or just Parquet-on-object-storage with pandas/DuckDB" —
+capturing the real-world point that architecture choice also depends on
+whether the team has the headcount to operate the platform they're
+choosing.</p>
 
 
 

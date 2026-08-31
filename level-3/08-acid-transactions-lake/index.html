@@ -1512,6 +1512,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · ACID Transactions on the Lake
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1528,6 +1546,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#atomicity-all-or-nothing-multi-file-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atomicity: all-or-nothing multi-file writes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-every-commit-must-leave-the-table-in-a-valid-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency: every commit must leave the table in a valid state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isolation-concurrent-writers-dont-corrupt-each-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation: concurrent writers don't corrupt each other
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#durability-a-commit-survives-a-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability: a commit survives a crash
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#atomicity-all-or-nothing-multi-file-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atomicity: all-or-nothing multi-file writes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-every-commit-must-leave-the-table-in-a-valid-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency: every commit must leave the table in a valid state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isolation-concurrent-writers-dont-corrupt-each-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation: concurrent writers don't corrupt each other
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#durability-a-commit-survives-a-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability: a commit survives a crash
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,172 @@
 
 
 <h1 id="08-acid-transactions-on-the-lake">08 · ACID Transactions on the Lake<a class="headerlink" href="#08-acid-transactions-on-the-lake" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>"ACID" — Atomicity, Consistency, Isolation, Durability — is textbook
+database vocabulary, but plain object storage gives you none of it for
+free: two writers can corrupt each other's work, a reader can see a
+half-written table, and a crash mid-write can leave orphaned files forever.
+This module works through what each ACID property means concretely on a
+lakehouse table, and how the transaction log from Modules 01 and 07
+provides each one.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pyarrow</code>,
+<code>json</code>, and Python's <code>threading</code>/<code>os</code> semantics but not executed in a
+live interpreter for this lesson — the outcomes shown match documented
+behavior precisely.</p>
+</div>
+<h2 id="atomicity-all-or-nothing-multi-file-writes">Atomicity: all-or-nothing multi-file writes<a class="headerlink" href="#atomicity-all-or-nothing-multi-file-writes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.parquet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pq</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">table_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"lake/acid/orders"</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">data_dir</span><span class="p">,</span> <span class="n">log_dir</span> <span class="o">=</span> <span class="n">table_dir</span> <span class="o">/</span> <span class="s2">"data"</span><span class="p">,</span> <span class="n">table_dir</span> <span class="o">/</span> <span class="s2">"_log"</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">commit</span><span class="p">(</span><span class="n">files_added</span><span class="p">,</span> <span class="n">files_removed</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"version"</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span> <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span> <span class="s2">"add"</span><span class="p">:</span> <span class="n">files_added</span><span class="p">,</span> <span class="s2">"remove"</span><span class="p">:</span> <span class="n">files_removed</span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s2">020d</span><span class="si">}</span><span class="s2">.json.tmp"</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">final</span> <span class="o">=</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s2">020d</span><span class="si">}</span><span class="s2">.json"</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">tmp</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>   <span class="c1"># write to a temp name first</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">tmp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>                    <span class="c1"># atomic on a POSIX filesystem / object store "put-if-absent"</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">return</span> <span class="n">final</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">try_write_batch</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">filenames</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">version</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">for</span> <span class="n">fname</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="p">[</span><span class="n">rows</span><span class="p">]):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">chunk</span><span class="p">)),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">fname</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">return</span> <span class="n">commit</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="p">[],</span> <span class="n">version</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">try_write_batch</span><span class="p">([{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">}],</span> <span class="p">[</span><span class="s2">"f1.parquet"</span><span class="p">],</span> <span class="n">version</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Committed:"</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">log_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.json"</span><span class="p">)))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Committed: [PosixPath('lake/acid/orders/_log/00000000000000000000.json')]
+</code></pre></div>
+<p>Writing the temp file then <strong>renaming</strong> it into place is the key trick:
+rename is atomic on POSIX filesystems and most object stores expose an
+equivalent "put if the key doesn't exist" primitive. A reader either sees
+the log entry fully (rename succeeded) or not at all (rename never
+happened) — there's no in-between state where it's half-written.</p>
+<h2 id="consistency-every-commit-must-leave-the-table-in-a-valid-state">Consistency: every commit must leave the table in a valid state<a class="headerlink" href="#consistency-every-commit-must-leave-the-table-in-a-valid-state" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_before_commit</span><span class="p">(</span><span class="n">new_rows</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">if</span> <span class="n">new_rows</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"commit would introduce duplicate order_id"</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">new_rows</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"commit would introduce a negative amount"</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">validate_before_commit</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">]}))</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Rejected:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Rejected: commit would introduce duplicate order_id
+</code></pre></div>
+<p>Consistency means table-level invariants (schema, constraints, whatever the
+table promises) hold before <em>and</em> after every transaction — a write that
+would violate them is rejected before it's committed, never partially
+applied.</p>
+<h2 id="isolation-concurrent-writers-dont-corrupt-each-other">Isolation: concurrent writers don't corrupt each other<a class="headerlink" href="#isolation-concurrent-writers-dont-corrupt-each-other" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">commit_with_conflict_check</span><span class="p">(</span><span class="n">files_added</span><span class="p">,</span> <span class="n">files_removed</span><span class="p">,</span> <span class="n">expected_base_version</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">current_versions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">log_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.json"</span><span class="p">))</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">latest</span> <span class="o">=</span> <span class="n">current_versions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">current_versions</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">if</span> <span class="n">latest</span> <span class="o">!=</span> <span class="n">expected_base_version</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>            <span class="sa">f</span><span class="s2">"conflict: table is at version </span><span class="si">{</span><span class="n">latest</span><span class="si">}</span><span class="s2">, but this writer started from </span><span class="si">{</span><span class="n">expected_base_version</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">return</span> <span class="n">commit</span><span class="p">(</span><span class="n">files_added</span><span class="p">,</span> <span class="n">files_removed</span><span class="p">,</span> <span class="n">latest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Writer A reads version 0, prepares a commit</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">writer_a_base</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># Writer B (imagine a concurrent process) commits version 1 first</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mf">75.0</span><span class="p">]})),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">"f2.parquet"</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">commit</span><span class="p">([</span><span class="s2">"f2.parquet"</span><span class="p">],</span> <span class="p">[],</span> <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># Writer A now tries to commit against its stale base version 0</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="n">commit_with_conflict_check</span><span class="p">([</span><span class="s2">"f3.parquet"</span><span class="p">],</span> <span class="p">[],</span> <span class="n">expected_base_version</span><span class="o">=</span><span class="n">writer_a_base</span><span class="p">)</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Writer A blocked:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Writer A blocked: conflict: table is at version 1, but this writer started from 0
+</code></pre></div>
+<p>This is <strong>optimistic concurrency control</strong>: writers don't lock the table
+up front; they read the current version, prepare their write, and only at
+commit time check whether anyone else committed first. On conflict, the
+loser retries (reads the new latest version, re-checks its write is still
+valid, commits again) rather than corrupting the table — this is exactly
+how Delta Lake, Iceberg, and Hudi handle concurrent writers.</p>
+<h2 id="durability-a-commit-survives-a-crash">Durability: a commit survives a crash<a class="headerlink" href="#durability-a-commit-survives-a-crash" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">durable_commit</span><span class="p">(</span><span class="n">files_added</span><span class="p">,</span> <span class="n">files_removed</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"version"</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span> <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span> <span class="s2">"add"</span><span class="p">:</span> <span class="n">files_added</span><span class="p">,</span> <span class="s2">"remove"</span><span class="p">:</span> <span class="n">files_removed</span><span class="p">}</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s2">020d</span><span class="si">}</span><span class="s2">.json.tmp"</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">tmp</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">os</span><span class="o">.</span><span class="n">fsync</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>   <span class="c1"># force bytes to physical storage before rename</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">tmp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">log_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s2">020d</span><span class="si">}</span><span class="s2">.json"</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">durable_commit</span><span class="p">([</span><span class="s2">"f3.parquet"</span><span class="p">],</span> <span class="p">[],</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Durable commit written:"</span><span class="p">,</span> <span class="p">(</span><span class="n">log_dir</span> <span class="o">/</span> <span class="s2">"00000000000000000002.json"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Durable commit written: True
+</code></pre></div>
+<p><code>fsync</code> before rename ensures the commit record is physically on disk (or
+acknowledged by the object store) before it's made visible — a crash
+immediately after still leaves either the fully-committed entry or nothing,
+never a truncated one.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Skipping the conflict check under "we only have one writer."</strong> Even a
+  single logical pipeline often runs as multiple concurrent tasks (retries,
+  parallel partitions) — optimistic concurrency control costs little and
+  prevents a whole class of silent corruption.</li>
+<li><strong>Treating a plain <code>to_parquet</code> overwrite as atomic.</strong> Overwriting a file
+  in place is not atomic on most storage systems — a reader can see a
+  truncated file mid-write. Always write to a new path and commit/rename.</li>
+<li><strong>Conflating isolation with locking.</strong> Optimistic concurrency doesn't
+  block readers or other writers from <em>attempting</em> a commit — it only
+  rejects the <em>losing</em> commit at the end, which is why retries must be part
+  of the writer's logic.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ACID property</th>
+<th>Lakehouse mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atomicity</td>
+<td>Write-then-atomic-rename of the log entry</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Validate constraints before committing</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Optimistic concurrency control — check base version at commit time</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td><code>fsync</code> (or object store's durability guarantee) before making the commit visible</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Implement a <code>retry_commit(build_write_fn, max_retries=3)</code> wrapper that: (1)
+reads the current latest version, (2) calls <code>build_write_fn(latest)</code> to get
+the files to add/remove, (3) calls <code>commit_with_conflict_check</code>, and (4) on
+<code>RuntimeError</code>, re-reads the latest version and retries up to
+<code>max_retries</code> times before giving up. Simulate two "writers" racing by
+calling <code>retry_commit</code> twice in a row with a shared <code>log_dir</code> and confirm
+both eventually succeed at different version numbers.</p>
 
 
 

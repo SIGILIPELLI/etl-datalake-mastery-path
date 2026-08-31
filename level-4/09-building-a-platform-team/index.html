@@ -1914,6 +1914,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Building a Data Platform Team
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1930,6 +1948,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-platform-team-owns-vs-what-domain-teams-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a platform team owns vs. what domain teams own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-service-as-the-platform-teams-core-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-service as the platform team's core product
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-whether-the-platform-is-actually-serving-its-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measuring whether the platform is actually serving its users
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slas-between-the-platform-team-and-its-internal-customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SLAs between the platform team and its internal customers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-platform-team-owns-vs-what-domain-teams-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a platform team owns vs. what domain teams own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-service-as-the-platform-teams-core-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-service as the platform team's core product
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measuring-whether-the-platform-is-actually-serving-its-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measuring whether the platform is actually serving its users
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slas-between-the-platform-team-and-its-internal-customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SLAs between the platform team and its internal customers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,171 @@
 
 
 <h1 id="09-building-a-data-platform-team">09 · Building a Data Platform Team<a class="headerlink" href="#09-building-a-data-platform-team" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Everything in this course so far — pipelines, lakehouse tables, cataloging,
+governance, cost controls — eventually needs a team to build and operate
+the shared infrastructure other teams build on. This module is less code
+and more organizational design: what a data platform team actually owns,
+how to structure it, and the self-service tooling that lets it scale
+without becoming a bottleneck for every other team's pipeline.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module includes runnable Python for the self-service and
+on-call/SLA tooling sections, reasoned through step by step against
+real <code>pandas</code>/<code>sqlite3</code> APIs but not executed in a live interpreter —
+the outputs shown match documented behavior precisely. The
+organizational sections are prose by nature; there's no code to run for
+"how should this team be structured."</p>
+</div>
+<h2 id="what-a-platform-team-owns-vs-what-domain-teams-own">What a platform team owns vs. what domain teams own<a class="headerlink" href="#what-a-platform-team-owns-vs-what-domain-teams-own" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">ownership</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Storage &amp; compute infrastructure (buckets, clusters, IAM)"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Platform team"</span><span class="p">},</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Catalog &amp; lineage tooling"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Platform team"</span><span class="p">},</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Orchestration framework (Airflow/Dagster itself)"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Platform team"</span><span class="p">},</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Golden-path pipeline templates &amp; CI/CD for pipelines"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Platform team"</span><span class="p">},</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Individual pipeline business logic"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Domain team"</span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"Data product schema &amp; SLA for their own domain"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Domain team"</span><span class="p">},</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"On-call for a specific pipeline's failures"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Domain team"</span><span class="p">},</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">{</span><span class="s2">"capability"</span><span class="p">:</span> <span class="s2">"On-call for platform-wide outages (storage, orchestrator down)"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"Platform team"</span><span class="p">},</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">])</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">ownership</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                                                          capability          owner
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Storage &amp; compute infrastructure (buckets, clusters, IAM)         Platform team
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                                  Catalog &amp; lineage tooling         Platform team
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>             Orchestration framework (Airflow/Dagster itself)         Platform team
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>     Golden-path pipeline templates &amp; CI/CD for pipelines         Platform team
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>                              Individual pipeline business logic    Domain team
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                     Data product schema &amp; SLA for their own domain Domain team
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                    On-call for a specific pipeline's failures       Domain team
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>On-call for platform-wide outages (storage, orchestrator down)      Platform team
+</code></pre></div>
+<p>The dividing line: the platform team builds and operates <em>shared
+infrastructure and paved roads</em>; domain teams (Module 05's mesh model) own
+the <em>business logic and specific pipelines</em> that run on top of it. A
+platform team that starts writing every domain's pipelines has become the
+old centralized bottleneck with a new name.</p>
+<h2 id="self-service-as-the-platform-teams-core-product">Self-service as the platform team's core product<a class="headerlink" href="#self-service-as-the-platform-teams-core-product" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PipelineTemplate</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="sd">"""A minimal 'golden path' scaffold a domain team can start from</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">    instead of building ingestion/validation/orchestration from scratch."""</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">source_type</span><span class="p">,</span> <span class="n">target_zone</span><span class="p">,</span> <span class="n">schedule_cron</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">source_type</span> <span class="o">=</span> <span class="n">source_type</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">target_zone</span> <span class="o">=</span> <span class="n">target_zone</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">schedule_cron</span> <span class="o">=</span> <span class="n">schedule_cron</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generate_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="s2">"pipeline_name"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            <span class="s2">"source"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_type</span><span class="p">},</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="s2">"target"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"zone"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_zone</span><span class="p">,</span> <span class="s2">"format"</span><span class="p">:</span> <span class="s2">"parquet"</span><span class="p">},</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="s2">"schedule"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_cron</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>            <span class="s2">"validation"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"schema_check"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"null_check"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"duplicate_check"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>            <span class="s2">"monitoring"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"freshness_sla_hours"</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">"alert_on_volume_anomaly"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="p">}</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">new_pipeline</span> <span class="o">=</span> <span class="n">PipelineTemplate</span><span class="p">(</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">"returns_ingestion"</span><span class="p">,</span> <span class="n">source_type</span><span class="o">=</span><span class="s2">"postgres_cdc"</span><span class="p">,</span> <span class="n">target_zone</span><span class="o">=</span><span class="s2">"bronze"</span><span class="p">,</span> <span class="n">schedule_cron</span><span class="o">=</span><span class="s2">"0 * * * *"</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_pipeline</span><span class="o">.</span><span class="n">generate_config</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{'pipeline_name': 'returns_ingestion', 'source': {'type': 'postgres_cdc'}, 'target': {'zone': 'bronze', 'format': 'parquet'}, 'schedule': '0 * * * *', 'validation': {'schema_check': True, 'null_check': True, 'duplicate_check': True}, 'monitoring': {'freshness_sla_hours': 24, 'alert_on_volume_anomaly': True}}
+</code></pre></div>
+<p>A golden-path template like this — with validation and monitoring wired in
+by default — is what lets a domain team ship a compliant, observable
+pipeline in an afternoon instead of a sprint, and it's what makes the
+governance and observability patterns from earlier modules the <em>default</em>
+rather than something each team has to remember to add.</p>
+<h2 id="measuring-whether-the-platform-is-actually-serving-its-users">Measuring whether the platform is actually serving its users<a class="headerlink" href="#measuring-whether-the-platform-is-actually-serving-its-users" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">adoption_metrics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="p">{</span><span class="s2">"month"</span><span class="p">:</span> <span class="s2">"2026-06"</span><span class="p">,</span> <span class="s2">"pipelines_on_golden_path"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"pipelines_total"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">"platform_tickets_open"</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">{</span><span class="s2">"month"</span><span class="p">:</span> <span class="s2">"2026-07"</span><span class="p">,</span> <span class="s2">"pipelines_on_golden_path"</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">"pipelines_total"</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">"platform_tickets_open"</span><span class="p">:</span> <span class="mi">19</span><span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">{</span><span class="s2">"month"</span><span class="p">:</span> <span class="s2">"2026-08"</span><span class="p">,</span> <span class="s2">"pipelines_on_golden_path"</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">"pipelines_total"</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">"platform_tickets_open"</span><span class="p">:</span> <span class="mi">11</span><span class="p">},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">])</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">adoption_metrics</span><span class="p">[</span><span class="s2">"golden_path_adoption_pct"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="mi">100</span> <span class="o">*</span> <span class="n">adoption_metrics</span><span class="p">[</span><span class="s2">"pipelines_on_golden_path"</span><span class="p">]</span> <span class="o">/</span> <span class="n">adoption_metrics</span><span class="p">[</span><span class="s2">"pipelines_total"</span><span class="p">]</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">adoption_metrics</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>     month  pipelines_on_golden_path  pipelines_total  platform_tickets_open  golden_path_adoption_pct
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0  2026-06                        12                40                     28                      30.0
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>1  2026-07                        22                45                     19                      42.2
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>2  2026-08                        35                48                     11                      72.9
+</code></pre></div>
+<p>Rising golden-path adoption alongside falling open ticket count is the
+concrete signal that self-service tooling is actually reducing the
+platform team's bottleneck load — the alternative (adoption flat, tickets
+rising) means the "self-service" tooling isn't actually self-service.</p>
+<h2 id="slas-between-the-platform-team-and-its-internal-customers">SLAs between the platform team and its internal customers<a class="headerlink" href="#slas-between-the-platform-team-and-its-internal-customers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">platform_slas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="p">{</span><span class="s2">"service"</span><span class="p">:</span> <span class="s2">"Orchestrator uptime"</span><span class="p">,</span> <span class="s2">"target"</span><span class="p">:</span> <span class="s2">"99.9% monthly"</span><span class="p">,</span> <span class="s2">"measured_last_month"</span><span class="p">:</span> <span class="s2">"99.94%"</span><span class="p">},</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">{</span><span class="s2">"service"</span><span class="p">:</span> <span class="s2">"New pipeline onboarding via golden path"</span><span class="p">,</span> <span class="s2">"target"</span><span class="p">:</span> <span class="s2">"&lt; 2 business days"</span><span class="p">,</span> <span class="s2">"measured_last_month"</span><span class="p">:</span> <span class="s2">"1.4 days avg"</span><span class="p">},</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="p">{</span><span class="s2">"service"</span><span class="p">:</span> <span class="s2">"Catalog metadata freshness"</span><span class="p">,</span> <span class="s2">"target"</span><span class="p">:</span> <span class="s2">"&lt; 15 min after commit"</span><span class="p">,</span> <span class="s2">"measured_last_month"</span><span class="p">:</span> <span class="s2">"9 min avg"</span><span class="p">},</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">])</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">platform_slas</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>                                 service               target measured_last_month
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>                     Orchestrator uptime        99.9% monthly              99.94%
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>New pipeline onboarding via golden path    &lt; 2 business days       1.4 days avg
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>             Catalog metadata freshness  &lt; 15 min after commit         9 min avg
+</code></pre></div>
+<p>Treating domain teams as internal customers with explicit SLAs — not just
+"the infra team, ask nicely" — is what makes a platform team's reliability
+and responsiveness accountable, the same way Module 02's freshness SLAs
+made table reliability accountable.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A platform team that never says no.</strong> Taking on every domain team's
+  one-off request as platform work re-centralizes the bottleneck the team
+  was created to remove — a platform team's product is the <em>paved road</em>,
+  not bespoke pipelines for whoever asks loudest.</li>
+<li><strong>Building tools nobody asked for.</strong> Golden-path templates and
+  self-service tooling built without talking to the domain teams who'll use
+  them tend to miss the actual friction points — adoption metrics (as
+  above) are the feedback loop that catches this early.</li>
+<li><strong>No clear escalation path for platform-wide outages.</strong> If the
+  orchestrator goes down and every domain team independently pages their
+  own on-call with no shared incident process, resolution is slower and
+  duplicated — platform-wide failures need a platform-wide incident owner.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Platform team responsibility</th>
+<th>Domain team responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared infra, catalog, orchestration engine</td>
+<td>Pipeline business logic</td>
+</tr>
+<tr>
+<td>Golden-path templates, CI/CD</td>
+<td>Their own data product's schema &amp; SLA</td>
+</tr>
+<tr>
+<td>Platform-wide incident response</td>
+<td>On-call for their own pipeline's failures</td>
+</tr>
+<tr>
+<td>Self-service tooling, adoption tracking</td>
+<td>Actually using the self-service tools</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>PipelineTemplate.generate_config</code> to accept a <code>compliance_tier</code>
+parameter (<code>"standard"</code>, <code>"pii"</code>, <code>"financial"</code>) that automatically adds
+the right defaults from earlier modules — e.g., <code>"pii"</code> turns on column
+masking config (Module 03) and a shorter default retention (Module 06),
+<code>"financial"</code> sets a 7-year retention floor. This is what "governance by
+default" looks like in a real golden-path template: the compliance
+requirement is baked into the paved road, not left to each domain team to
+remember.</p>
 
 
 

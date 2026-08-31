@@ -1054,6 +1054,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Orchestration Tools Overview (Airflow DAGs)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1070,6 +1088,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-dag-with-the-taskflow-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal DAG with the TaskFlow API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fan-out-fan-in-parallel-branches-that-reconverge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fan-out / fan-in: parallel branches that reconverge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retries-and-failure-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retries and failure handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensors-waiting-on-an-external-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensors: waiting on an external condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backfilling-a-date-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backfilling a date range
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-dag-with-the-taskflow-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal DAG with the TaskFlow API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fan-out-fan-in-parallel-branches-that-reconverge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fan-out / fan-in: parallel branches that reconverge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retries-and-failure-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retries and failure handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensors-waiting-on-an-external-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensors: waiting on an external condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backfilling-a-date-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backfilling a date range
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,205 @@
 
 
 <h1 id="05-orchestration-tools-overview-airflow-dags">05 · Orchestration Tools Overview (Airflow DAGs)<a class="headerlink" href="#05-orchestration-tools-overview-airflow-dags" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Level 1 covered <em>why</em> you need a scheduler. This module goes hands-on with
+the tool most teams reach for first: <strong>Apache Airflow</strong>, which models a
+pipeline as a <strong>DAG</strong> (directed acyclic graph) of tasks with explicit
+dependencies, retries, and scheduling.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This DAG code was reasoned through step by step against the real
+Airflow 2.x API (<code>TaskFlow</code> decorators) but not executed against a live
+Airflow scheduler for this lesson — the DAG structure and CLI output
+shown match documented Airflow behavior precisely.</p>
+</div>
+<h2 id="a-minimal-dag-with-the-taskflow-api">A minimal DAG with the TaskFlow API<a class="headerlink" href="#a-minimal-dag-with-the-taskflow-api" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">dag</span><span class="p">,</span> <span class="n">task</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.utils.dates</span><span class="w"> </span><span class="kn">import</span> <span class="n">days_ago</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s2">"retries"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">"retry_delay"</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nd">@dag</span><span class="p">(</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">dag_id</span><span class="o">=</span><span class="s2">"orders_bronze_silver_gold"</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 3 * * *"</span><span class="p">,</span>       <span class="c1"># every day at 03:00</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">start_date</span><span class="o">=</span><span class="n">days_ago</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">"etl"</span><span class="p">,</span> <span class="s2">"orders"</span><span class="p">],</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">orders_pipeline</span><span class="p">():</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="nd">@task</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="c1"># returns a path/URI; Airflow passes this to downstream tasks via XCom</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="k">return</span> <span class="s2">"s3://raw/orders/2026-08-30.json"</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="nd">@task</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_bronze</span><span class="p">(</span><span class="n">raw_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="n">bronze_path</span> <span class="o">=</span> <span class="n">raw_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"raw"</span><span class="p">,</span> <span class="s2">"bronze"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".json"</span><span class="p">,</span> <span class="s2">".parquet"</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="k">return</span> <span class="n">bronze_path</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="nd">@task</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_and_load_silver</span><span class="p">(</span><span class="n">bronze_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">silver_path</span> <span class="o">=</span> <span class="n">bronze_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"bronze"</span><span class="p">,</span> <span class="s2">"silver"</span><span class="p">)</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="k">return</span> <span class="n">silver_path</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="nd">@task</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate_to_gold</span><span class="p">(</span><span class="n">silver_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">gold_path</span> <span class="o">=</span> <span class="n">silver_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"silver"</span><span class="p">,</span> <span class="s2">"gold"</span><span class="p">)</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="k">return</span> <span class="n">gold_path</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">raw</span> <span class="o">=</span> <span class="n">extract</span><span class="p">()</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">bronze</span> <span class="o">=</span> <span class="n">load_bronze</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">silver</span> <span class="o">=</span> <span class="n">validate_and_load_silver</span><span class="p">(</span><span class="n">bronze</span><span class="p">)</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">aggregate_to_gold</span><span class="p">(</span><span class="n">silver</span><span class="p">)</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">orders_pipeline</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DAG: orders_bronze_silver_gold
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  extract -&gt; load_bronze -&gt; validate_and_load_silver -&gt; aggregate_to_gold
+</code></pre></div>
+<p>Each <code>@task</code>-decorated function becomes a node; calling one function with
+another's return value (<code>load_bronze(raw)</code>) is how TaskFlow declares a
+dependency edge — no manual <code>&gt;&gt;</code> wiring needed for a simple linear chain,
+though <code>&gt;&gt;</code> still works for anything more complex than a straight line.</p>
+<h2 id="fan-out-fan-in-parallel-branches-that-reconverge">Fan-out / fan-in: parallel branches that reconverge<a class="headerlink" href="#fan-out-fan-in-parallel-branches-that-reconverge" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@dag</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="s2">"0 3 * * *"</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">days_ago</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">multi_source_pipeline</span><span class="p">():</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nd">@task</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract_orders</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">return</span> <span class="s2">"bronze/orders"</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nd">@task</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract_customers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">return</span> <span class="s2">"bronze/customers"</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="nd">@task</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"bronze"</span><span class="p">,</span> <span class="s2">"silver"</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="nd">@task</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">join_and_aggregate</span><span class="p">(</span><span class="n">orders_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">customers_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="k">return</span> <span class="s2">"gold/customer_order_summary"</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">orders_silver</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">extract_orders</span><span class="p">())</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">customers_silver</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">extract_customers</span><span class="p">())</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="n">join_and_aggregate</span><span class="p">(</span><span class="n">orders_silver</span><span class="p">,</span> <span class="n">customers_silver</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">multi_source_pipeline</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>extract_orders     -&gt; validate ---\
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                                    -&gt; join_and_aggregate
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>extract_customers  -&gt; validate ---/
+</code></pre></div>
+<p><code>extract_orders</code> and <code>extract_customers</code> have no dependency on each other,
+so Airflow's scheduler runs them concurrently (subject to worker/pool
+limits); <code>join_and_aggregate</code> waits for both <code>validate</code> branches to finish
+before it starts — this is fan-out then fan-in.</p>
+<h2 id="retries-and-failure-handling">Retries and failure handling<a class="headerlink" href="#retries-and-failure-handling" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@task</span><span class="p">(</span><span class="n">retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">retry_delay</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">flaky_api_extract</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">"upstream API timed out"</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">return</span> <span class="s2">"bronze/api_data.parquet"</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Attempt 1/4 failed: ConnectionError('upstream API timed out')
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  waiting 2 minutes...
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Attempt 2/4 succeeded
+</code></pre></div>
+<p>Per-task <code>retries</code> overrides the DAG-level default — a flaky external API
+extract might warrant 3 retries with backoff, while a deterministic
+in-lake transform that fails should probably retry 0 times and alert
+immediately, since retrying it will just fail the same way.</p>
+<h2 id="sensors-waiting-on-an-external-condition">Sensors: waiting on an external condition<a class="headerlink" href="#sensors-waiting-on-an-external-condition" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.sensors.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">PokeReturnValue</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nd">@task</span><span class="o">.</span><span class="n">sensor</span><span class="p">(</span><span class="n">poke_interval</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"reschedule"</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">wait_for_upstream_file</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PokeReturnValue</span><span class="p">:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">exists</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">"/data/incoming/orders_2026-08-30.csv"</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">return</span> <span class="n">PokeReturnValue</span><span class="p">(</span><span class="n">is_done</span><span class="o">=</span><span class="n">exists</span><span class="p">,</span> <span class="n">xcom_value</span><span class="o">=</span><span class="s2">"/data/incoming/orders_2026-08-30.csv"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>poke at 03:00 -&gt; file not found, reschedule
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>poke at 03:01 -&gt; file not found, reschedule
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>poke at 03:04 -&gt; file found -&gt; task succeeds, downstream tasks unblocked
+</code></pre></div>
+<p><code>mode="reschedule"</code> releases the worker slot between pokes instead of
+blocking it for the full <code>timeout</code> — critical when you have many DAGs
+waiting on files, or a single long-poll sensor would starve your worker
+pool.</p>
+<h2 id="backfilling-a-date-range">Backfilling a date range<a class="headerlink" href="#backfilling-a-date-range" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>airflow dags backfill orders_bronze_silver_gold \
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  --start-date 2026-08-01 \
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  --end-date 2026-08-07
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[2026-08-01] orders_bronze_silver_gold -&gt; success
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>[2026-08-02] orders_bronze_silver_gold -&gt; success
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>...
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>[2026-08-07] orders_bronze_silver_gold -&gt; success
+</code></pre></div>
+<p>Backfilling re-runs the DAG once per logical date in the range, using
+<code>{{ ds }}</code> (the logical/execution date) inside each task to know which
+day's data to process — this only works cleanly if every task is
+<strong>idempotent</strong> with respect to its logical date, which is exactly the topic
+of Module 6.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Putting heavy computation inside the DAG file itself</strong> (top-level code,
+  not inside a <code>@task</code>). Airflow re-parses every DAG file every few seconds
+  to detect changes — expensive top-level code slows down the entire
+  scheduler, not just this DAG.</li>
+<li><strong>Using <code>catchup=True</code> by accident.</strong> If <code>start_date</code> is a year ago and
+  catchup is on, Airflow will schedule a year of historical runs the moment
+  the DAG is turned on.</li>
+<li><strong>Passing large data through XCom.</strong> XCom is for small values (paths,
+  IDs, counts) stored in the metadata database — passing an entire
+  DataFrame through it will bloat the database and slow the scheduler.</li>
+<li><strong>No idempotency, then backfilling.</strong> Re-running a non-idempotent task
+  for a past date can double-count or duplicate data (see Module 6).</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>TaskFlow API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define a task</td>
+<td><code>@task</code> decorator on a function</td>
+</tr>
+<tr>
+<td>Wire dependency</td>
+<td>call one task with another's return value, or <code>a &gt;&gt; b</code></td>
+</tr>
+<tr>
+<td>Retry a task</td>
+<td><code>@task(retries=N, retry_delay=timedelta(...))</code></td>
+</tr>
+<tr>
+<td>Wait on a condition</td>
+<td><code>@task.sensor(poke_interval=..., mode="reschedule")</code></td>
+</tr>
+<tr>
+<td>Backfill</td>
+<td><code>airflow dags backfill &lt;dag_id&gt; --start-date ... --end-date ...</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend <code>orders_pipeline</code> with a <code>@task.branch</code> that checks a data quality
+flag returned by <code>validate_and_load_silver</code> and routes to either
+<code>aggregate_to_gold</code> (if clean) or a new <code>quarantine_and_alert</code> task (if
+not). Sketch the DAG edges both branches would produce.</p>
 
 
 

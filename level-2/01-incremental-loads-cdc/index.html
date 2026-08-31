@@ -942,6 +942,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Incremental Loads & Change Data Capture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -958,6 +976,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-source-table-with-an-updated_at-watermark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a source table with an updated_at watermark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-watermark-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The watermark pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-watermark-trap-updates-vs-inserts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The watermark trap: updates vs. inserts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdc-capturing-deletes-and-full-change-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CDC: capturing deletes and full change history
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watermark-vs-cdc-when-to-use-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watermark vs. CDC: when to use which
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-source-table-with-an-updated_at-watermark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a source table with an updated_at watermark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-watermark-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The watermark pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-watermark-trap-updates-vs-inserts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The watermark trap: updates vs. inserts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdc-capturing-deletes-and-full-change-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CDC: capturing deletes and full change history
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watermark-vs-cdc-when-to-use-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watermark vs. CDC: when to use which
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,245 @@
 
 
 <h1 id="01-incremental-loads-change-data-capture">01 · Incremental Loads &amp; Change Data Capture<a class="headerlink" href="#01-incremental-loads-change-data-capture" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Full-refresh loads (drop and reload everything every run) are simple but they
+stop scaling the moment a source table has millions of rows and your load
+window is minutes, not hours. This module covers the two dominant patterns
+for loading only what changed: <strong>watermark-based incremental loads</strong> and
+<strong>change data capture (CDC)</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This pipeline was reasoned through step by step against the real
+<code>sqlite3</code> and <code>pandas</code> APIs but not executed in a live interpreter for
+this lesson — the SQL results and DataFrame shapes shown match
+documented behavior precisely.</p>
+</div>
+<h2 id="setting-up-a-source-table-with-an-updated_at-watermark">Setting up a source table with an updated_at watermark<a class="headerlink" href="#setting-up-a-source-table-with-an-updated_at-watermark" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">    CREATE TABLE orders (</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">        order_id INTEGER PRIMARY KEY,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">        customer TEXT,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">        amount REAL,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s2">        status TEXT,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">        updated_at TEXT</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">    )</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">conn</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s2">"INSERT INTO orders VALUES (?, ?, ?, ?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">[</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"alice"</span><span class="p">,</span>  <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"paid"</span><span class="p">,</span>     <span class="s2">"2026-08-01T09:00:00"</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"bob"</span><span class="p">,</span>     <span class="mf">89.00</span><span class="p">,</span> <span class="s2">"paid"</span><span class="p">,</span>     <span class="s2">"2026-08-01T09:05:00"</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"carla"</span><span class="p">,</span>   <span class="mf">45.25</span><span class="p">,</span> <span class="s2">"shipped"</span><span class="p">,</span>  <span class="s2">"2026-08-01T10:00:00"</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="p">],</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM orders"</span><span class="p">,</span> <span class="n">conn</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>   order_id customer  amount   status           updated_at
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0         1    alice  120.50     paid  2026-08-01T09:00:00
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1         2      bob   89.00     paid  2026-08-01T09:05:00
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2         3    carla   45.25  shipped  2026-08-01T10:00:00
+</code></pre></div>
+<p>Every incremental strategy needs <em>some</em> signal that tells you a row changed.
+<code>updated_at</code> is the most common: the source system bumps it on every
+insert/update, and your pipeline only asks for rows newer than the last
+watermark it successfully processed.</p>
+<h2 id="the-watermark-pattern">The watermark pattern<a class="headerlink" href="#the-watermark-pattern" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_watermark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1"># In production this comes from a small state table or file, not a</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="c1"># Python variable — it must survive across pipeline runs.</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">return</span> <span class="s2">"2026-08-01T09:00:00"</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">watermark</span> <span class="o">=</span> <span class="n">load_watermark</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">incremental</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="s2">"SELECT * FROM orders WHERE updated_at &gt; ? ORDER BY updated_at"</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">conn</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">watermark</span><span class="p">,),</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">incremental</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">new_watermark</span> <span class="o">=</span> <span class="n">incremental</span><span class="p">[</span><span class="s2">"updated_at"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">incremental</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="n">watermark</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"New watermark to persist:"</span><span class="p">,</span> <span class="n">new_watermark</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   order_id customer  amount   status           updated_at
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>0         2      bob   89.00     paid  2026-08-01T09:05:00
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1         3    carla   45.25  shipped  2026-08-01T10:00:00
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>New watermark to persist: 2026-08-01T10:00:00
+</code></pre></div>
+<p>Order 1 (<code>updated_at = 09:00:00</code>) is excluded because the watermark uses a
+strict <code>&gt;</code> — it was already loaded in the run that set this watermark. After
+a successful load, you persist <code>new_watermark</code> so the <em>next</em> run starts from
+here, not from the beginning.</p>
+<h2 id="the-watermark-trap-updates-vs-inserts">The watermark trap: updates vs. inserts<a class="headerlink" href="#the-watermark-trap-updates-vs-inserts" title="Permanent link">&para;</a></h2>
+<p>A pure watermark catches new rows, but what about a row that already loaded
+and then got updated?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">"UPDATE orders SET status = 'refunded', updated_at = ? WHERE order_id = 1"</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">(</span><span class="s2">"2026-08-01T11:00:00"</span><span class="p">,),</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">incremental_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">"SELECT * FROM orders WHERE updated_at &gt; ? ORDER BY updated_at"</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">conn</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">new_watermark</span><span class="p">,),</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">incremental_2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>   order_id customer  amount    status           updated_at
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0         1    alice   120.50  refunded  2026-08-01T11:00:00
+</code></pre></div>
+<p>This is why <code>updated_at</code>-based incrementals work for updates too — order 1
+comes back because its watermark advanced, even though its <code>order_id</code>
+already exists downstream. The load step then needs an <strong>upsert</strong>, not a
+plain insert, or you'll get a duplicate row for order 1 instead of an
+updated one.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Simulate the target table and an upsert via a MERGE-style pattern</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">target</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"alice"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">120.50</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"paid"</span><span class="p">},</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"bob"</span><span class="p">,</span>   <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">89.00</span><span class="p">,</span>  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"paid"</span><span class="p">},</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"carla"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">45.25</span><span class="p">,</span>  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"shipped"</span><span class="p">},</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">])</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">incoming</span> <span class="o">=</span> <span class="n">incremental_2</span><span class="p">[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">]]</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">target</span><span class="p">,</span> <span class="n">incoming</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s2">"last"</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">merged</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>   order_id customer  amount    status
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>0         1    alice   120.50  refunded
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1         2      bob    89.00     paid
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>2         3    carla    45.25   shipped
+</code></pre></div>
+<p><code>keep="last"</code> is what makes this an upsert: when the same <code>order_id</code> appears
+in both the existing target and the incoming batch, the incoming (newer) row
+wins.</p>
+<h2 id="cdc-capturing-deletes-and-full-change-history">CDC: capturing deletes and full change history<a class="headerlink" href="#cdc-capturing-deletes-and-full-change-history" title="Permanent link">&para;</a></h2>
+<p>Watermarks have a blind spot: <strong>deletes</strong>. If order 2 is deleted from the
+source, no row with a fresh <code>updated_at</code> ever arrives to tell you that.
+Change Data Capture solves this by reading the database's own change log
+(e.g., MySQL binlog, Postgres logical replication, or a CDC tool like
+Debezium) instead of querying the table. Each captured change carries an
+explicit operation type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># A simplified CDC event stream, as you'd receive from a tool like Debezium</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cdc_events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"op"</span><span class="p">:</span> <span class="s2">"delete"</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"bob"</span><span class="p">,</span>   <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">89.00</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="s2">"2026-08-01T12:00:00"</span><span class="p">},</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"op"</span><span class="p">:</span> <span class="s2">"insert"</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"dana"</span><span class="p">,</span>  <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">60.00</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="s2">"2026-08-01T12:05:00"</span><span class="p">},</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"op"</span><span class="p">:</span> <span class="s2">"update"</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="s2">"carla"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">50.00</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">:</span> <span class="s2">"2026-08-01T12:10:00"</span><span class="p">},</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">])</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_cdc</span><span class="p">(</span><span class="n">target</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">events</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"ts"</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="k">if</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"op"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"delete"</span><span class="p">:</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]]</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="k">else</span><span class="p">:</span>  <span class="c1"># insert or update — both are upserts</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>            <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">],</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"customer"</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]}</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]]</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>            <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">result</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="n">final</span> <span class="o">=</span> <span class="n">apply_cdc</span><span class="p">(</span><span class="n">merged</span><span class="p">[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">]],</span> <span class="n">cdc_events</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>   order_id customer  amount
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>0         1    alice   120.50
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>1         3    carla    50.00
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>2         4     dana    60.00
+</code></pre></div>
+<p>Order 2 is gone (delete applied), order 3's amount is updated, and order 4
+is newly inserted — a single, ordered event stream drives all three
+operation types, which a watermark query alone cannot express.</p>
+<h2 id="watermark-vs-cdc-when-to-use-which">Watermark vs. CDC: when to use which<a class="headerlink" href="#watermark-vs-cdc-when-to-use-which" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Watermark (<code>updated_at</code> polling)</th>
+<th>CDC (log-based)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup cost</td>
+<td>Low — just a <code>WHERE</code> clause</td>
+<td>Higher — needs log access / Debezium / a CDC-capable connector</td>
+</tr>
+<tr>
+<td>Catches deletes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Catches every intermediate state</td>
+<td>No (only latest value at poll time)</td>
+<td>Yes (every change is an event)</td>
+</tr>
+<tr>
+<td>Load on source database</td>
+<td>A polling query every run</td>
+<td>Near-zero — reads the transaction log</td>
+</tr>
+<tr>
+<td>Good default for</td>
+<td>Most batch pipelines with append/update-only sources</td>
+<td>Sources with deletes, or where near-real-time is required</td>
+</tr>
+</tbody>
+</table>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Using <code>&gt;=</code> instead of <code>&gt;</code> on the watermark.</strong> <code>&gt;=</code> reprocesses the last
+  row of the previous run every time, silently duplicating it downstream
+  unless your load step is a true upsert.</li>
+<li><strong>Storing the watermark in memory or a config file that isn't
+  transactional with the load.</strong> If the pipeline crashes after loading but
+  before persisting the new watermark, you'll either reprocess or (worse)
+  skip rows. Persist the watermark in the same transaction as the load when
+  the target supports it.</li>
+<li><strong>Assuming watermarks catch deletes.</strong> They don't — plan explicitly for
+  soft-deletes (<code>is_deleted</code> flag + <code>updated_at</code> bump) or move to CDC.</li>
+<li><strong>Clock skew between the source app server and your pipeline.</strong> A
+  watermark based on wall-clock time from a different server than the one
+  writing rows can silently drop rows written in the skew window.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pull only new/changed rows</td>
+<td><code>WHERE updated_at &gt; :watermark</code></td>
+</tr>
+<tr>
+<td>Persist progress</td>
+<td>Write new watermark only after successful load</td>
+</tr>
+<tr>
+<td>Merge new+existing on key</td>
+<td><code>pd.concat([...]).drop_duplicates(subset=key, keep="last")</code></td>
+</tr>
+<tr>
+<td>Catch deletes</td>
+<td>CDC log stream with explicit <code>op</code> field, or soft-delete flag</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Extend the <code>apply_cdc</code> function to also record an <code>is_deleted</code> boolean
+column instead of physically removing rows (a <strong>soft delete</strong>), so
+downstream consumers can still see that order 2 existed and was later
+deleted, along with the timestamp it happened. Confirm the final DataFrame
+still lets you filter <code>is_deleted == False</code> to reconstruct the "current"
+view used in earlier sections.</p>
 
 
 

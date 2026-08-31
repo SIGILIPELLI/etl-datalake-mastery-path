@@ -1484,6 +1484,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Time Travel & Data Versioning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1500,6 +1518,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebuilding-the-versioned-table-from-module-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuilding the versioned table from Module 01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-up-history-and-querying-an-old-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building up history and querying an old version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovering-from-the-bad-write-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovering from the bad write: RESTORE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-as-of-a-timestamp-instead-of-a-version-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Querying "as of" a timestamp instead of a version number
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-beyond-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters beyond "undo"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebuilding-the-versioned-table-from-module-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuilding the versioned table from Module 01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-up-history-and-querying-an-old-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building up history and querying an old version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovering-from-the-bad-write-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovering from the bad write: RESTORE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-as-of-a-timestamp-instead-of-a-version-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Querying "as of" a timestamp instead of a version number
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-beyond-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters beyond "undo"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,190 @@
 
 
 <h1 id="07-time-travel-data-versioning">07 · Time Travel &amp; Data Versioning<a class="headerlink" href="#07-time-travel-data-versioning" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Module 01 showed that a lakehouse's transaction log makes multi-file writes
+atomic. The same log gives you something else almost for free: <strong>time
+travel</strong> — the ability to query a table as it existed at any past version or
+timestamp. This module goes deeper into how that's implemented and what
+it's actually used for: audits, reproducibility, and recovering from bad
+writes.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pyarrow</code>,
+<code>pandas</code>, and <code>json</code> APIs but not executed in a live interpreter for
+this lesson — the outputs shown match documented behavior precisely. It
+extends the minimal transaction-log table from Module 01.</p>
+</div>
+<h2 id="rebuilding-the-versioned-table-from-module-01">Rebuilding the versioned table from Module 01<a class="headerlink" href="#rebuilding-the-versioned-table-from-module-01" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.parquet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pq</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">table_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"lake/versioned/orders"</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">data_dir</span><span class="p">,</span> <span class="n">log_dir</span> <span class="o">=</span> <span class="n">table_dir</span> <span class="o">/</span> <span class="s2">"data"</span><span class="p">,</span> <span class="n">table_dir</span> <span class="o">/</span> <span class="s2">"_log"</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">commit</span><span class="p">(</span><span class="n">files_added</span><span class="p">,</span> <span class="n">files_removed</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="s2">"version"</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">"seconds"</span><span class="p">),</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="s2">"add"</span><span class="p">:</span> <span class="n">files_added</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="s2">"remove"</span><span class="p">:</span> <span class="n">files_removed</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="p">(</span><span class="n">log_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s2">020d</span><span class="si">}</span><span class="s2">.json"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">read_table_at</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">as_of_timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">entries</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">log_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.json"</span><span class="p">))</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">live</span><span class="p">,</span> <span class="n">removed</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">chosen_version</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">for</span> <span class="n">entry_path</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="n">entry</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">entry_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">entry</span><span class="p">[</span><span class="s2">"version"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">version</span><span class="p">:</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="k">break</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">if</span> <span class="n">as_of_timestamp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">entry</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">as_of_timestamp</span><span class="p">:</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="k">break</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">removed</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"remove"</span><span class="p">,</span> <span class="p">[]))</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">live</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s2">"add"</span><span class="p">])</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">chosen_version</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="s2">"version"</span><span class="p">]</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">live_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">live</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">removed</span><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">live_files</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">return</span> <span class="n">pa</span><span class="o">.</span><span class="n">concat_tables</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span> <span class="k">if</span> <span class="n">tables</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="n">chosen_version</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="c1"># Version 0</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">]})),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">"v0.parquet"</span><span class="p">)</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">commit</span><span class="p">([</span><span class="s2">"v0.parquet"</span><span class="p">],</span> <span class="p">[],</span> <span class="n">version</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="building-up-history-and-querying-an-old-version">Building up history and querying an old version<a class="headerlink" href="#building-up-history-and-querying-an-old-version" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Version 1: append</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mf">75.0</span><span class="p">]})),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">"v1.parquet"</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">commit</span><span class="p">([</span><span class="s2">"v1.parquet"</span><span class="p">],</span> <span class="p">[],</span> <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Version 2: a bad write — someone accidentally zeroes out all amounts</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]})),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">"v2-bad.parquet"</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">commit</span><span class="p">([</span><span class="s2">"v2-bad.parquet"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"v0.parquet"</span><span class="p">,</span> <span class="s2">"v1.parquet"</span><span class="p">],</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">current</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">()</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Current (v2, bad):</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">good</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">As of version 1 (before the bad write):</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">good</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Current (v2, bad):
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    order_id  amount
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>0         1     0.0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>1         2     0.0
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>2         3     0.0
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>As of version 1 (before the bad write):
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   order_id  amount
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>0         1   100.0
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>1         2    50.0
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>2         3    75.0
+</code></pre></div>
+<p><code>read_table_at(version=1)</code> reconstructs the table exactly as it was before
+the bad commit, without needing a separate backup — the transaction log is
+the backup.</p>
+<h2 id="recovering-from-the-bad-write-restore">Recovering from the bad write: RESTORE<a class="headerlink" href="#recovering-from-the-bad-write-restore" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">restore_to_version</span><span class="p">(</span><span class="n">target_version</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">current_version</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">"""Commit a new version whose add/remove set brings the table back to target_version's state."""</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">target_state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">target_version</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">current_state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">current_version</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="c1"># In a real system this diffs file sets; here we simulate by writing a</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="c1"># fresh snapshot file representing the restored state.</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">restore_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"v</span><span class="si">{</span><span class="n">current_version</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">-restore.parquet"</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">target_state</span><span class="p">),</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">restore_path</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">all_files_so_far</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"v0.parquet"</span><span class="p">,</span> <span class="s2">"v1.parquet"</span><span class="p">,</span> <span class="s2">"v2-bad.parquet"</span><span class="p">]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">commit</span><span class="p">([</span><span class="n">restore_path</span><span class="p">],</span> <span class="n">all_files_so_far</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">current_version</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">restore_to_version</span><span class="p">(</span><span class="n">target_version</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">restored</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">()</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">restored</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   order_id  amount
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>0         1   100.0
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>1         2    50.0
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>2         3    75.0
+</code></pre></div>
+<p>Crucially, <code>RESTORE</code> is itself a new commit (version 3) — it doesn't erase
+history. Version 2 (the bad write) is still queryable via
+<code>read_table_at(version=2)</code> for audit purposes; only the <em>current</em> pointer
+moves forward to a state matching version 1's data.</p>
+<h2 id="querying-as-of-a-timestamp-instead-of-a-version-number">Querying "as of" a timestamp instead of a version number<a class="headerlink" href="#querying-as-of-a-timestamp-instead-of-a-version-number" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">target_ts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">log_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.json"</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">read_text</span><span class="p">())[</span><span class="s2">"timestamp"</span><span class="p">]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">as_of</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">read_table_at</span><span class="p">(</span><span class="n">as_of_timestamp</span><span class="o">=</span><span class="n">target_ts</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"As of timestamp"</span><span class="p">,</span> <span class="n">target_ts</span><span class="p">,</span> <span class="s2">"-&gt; version"</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">as_of</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>As of timestamp 2026-08-31T00:00:01 -&gt; version 1
+</code></pre></div>
+<p>Real systems (Delta's <code>VERSION AS OF</code> / <code>TIMESTAMP AS OF</code>, Iceberg's
+snapshot IDs) support both forms — version numbers for precise, reproducible
+references (pin a job to <code>VERSION AS OF 42</code>), and timestamps for
+human-facing "what did this look like yesterday at 9am."</p>
+<h2 id="why-this-matters-beyond-undo">Why this matters beyond "undo"<a class="headerlink" href="#why-this-matters-beyond-undo" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Reproducible pipelines</strong>: a downstream job can pin its read to a
+  specific version so re-running it later (for a bug fix, an audit) gets
+  bit-identical input, even if the source table has moved on since.</li>
+<li><strong>Auditing</strong>: "who changed this row and when" is answerable by walking
+  the log's commit metadata (timestamp, and in real systems, the writer's
+  identity) rather than trusting application logs.</li>
+<li><strong>A/B comparison across versions</strong>: diffing <code>read_table_at(version=N)</code>
+  against <code>read_table_at(version=N-1)</code> shows exactly what a given pipeline
+  run changed.</li>
+</ul>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Assuming time travel is free forever.</strong> Old data files referenced only
+  by past versions still occupy storage — a <strong>vacuum/expire</strong> operation
+  eventually reclaims them, which means time travel has a retention window
+  in practice, not infinite history.</li>
+<li><strong>Restoring by deleting log entries.</strong> Never rewrite or delete past log
+  entries to "undo" a mistake — always add a new commit that restores state,
+  preserving the audit trail (as shown above).</li>
+<li><strong>Pinning production reads to a version forever.</strong> Useful for
+  reproducibility in a specific job run, but a dashboard pinned to a stale
+  version silently stops seeing new data.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query historical state</td>
+<td><code>read_table_at(version=N)</code> / <code>AS OF</code></td>
+</tr>
+<tr>
+<td>Undo a bad write</td>
+<td>New commit that restores prior state (never edit history)</td>
+</tr>
+<tr>
+<td>Reproducible downstream job</td>
+<td>Pin reads to a specific version number</td>
+</tr>
+<tr>
+<td>Reclaim old file storage</td>
+<td>Vacuum/expire past a retention window</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>describe_history(log_dir)</code> function that returns a DataFrame with one
+row per version: <code>version</code>, <code>timestamp</code>, <code>files_added</code>, <code>files_removed</code>, and
+an <code>operation</code> guess (<code>"WRITE"</code> if only adds, <code>"DELETE"</code> if only removes,
+<code>"RESTORE"</code> if the added file's name contains <code>"restore"</code>, else
+<code>"COMPACTION"</code> if both non-empty and the removed count is greater than the
+added count). Run it against the log built in this module and confirm it
+correctly labels version 3 as <code>"RESTORE"</code>.</p>
 
 
 

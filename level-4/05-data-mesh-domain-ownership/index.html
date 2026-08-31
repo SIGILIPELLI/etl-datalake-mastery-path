@@ -1802,6 +1802,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Data Mesh & Domain-Oriented Lake Ownership
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1818,6 +1836,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#centralized-vs-mesh-ownership-modeled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized vs. mesh ownership, modeled
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-data-product-as-a-self-describing-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A data product as a self-describing contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-governance-global-rules-domain-local-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Federated governance: global rules, domain-local implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interoperability-a-shared-discovery-layer-across-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interoperability: a shared discovery layer across domains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#centralized-vs-mesh-ownership-modeled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized vs. mesh ownership, modeled
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-data-product-as-a-self-describing-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A data product as a self-describing contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-governance-global-rules-domain-local-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Federated governance: global rules, domain-local implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interoperability-a-shared-discovery-layer-across-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interoperability: a shared discovery layer across domains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,187 @@
 
 
 <h1 id="05-data-mesh-domain-oriented-lake-ownership">05 · Data Mesh &amp; Domain-Oriented Lake Ownership<a class="headerlink" href="#05-data-mesh-domain-oriented-lake-ownership" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>A single centralized data team owning every pipeline for every business
+domain doesn't scale past a certain organization size — every new source
+becomes a ticket in one team's backlog. <strong>Data mesh</strong> is an organizational
+pattern (not a technology) that pushes ownership of data to the domain
+teams that generate it, treating each domain's output as a <strong>data
+product</strong> with an explicit contract. This module models the mesh's core
+mechanics: domain ownership, data products, and a federated (not
+centralized) governance layer.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>sqlite3</code>
+and <code>pandas</code> APIs but not executed in a live interpreter for this
+lesson — the outputs shown match documented behavior precisely.</p>
+</div>
+<h2 id="centralized-vs-mesh-ownership-modeled">Centralized vs. mesh ownership, modeled<a class="headerlink" href="#centralized-vs-mesh-ownership-modeled" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">registry</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">registry</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">CREATE TABLE data_products (</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">    name TEXT PRIMARY KEY,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">    domain_owner TEXT,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">    sla_freshness_hours INTEGER,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s2">    schema_version TEXT,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">    discoverable BOOLEAN</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">registry</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s2">"INSERT INTO data_products VALUES (?, ?, ?, ?, ?)"</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">[</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">(</span><span class="s2">"orders.v1"</span><span class="p">,</span>     <span class="s2">"commerce-team"</span><span class="p">,</span>   <span class="mi">4</span><span class="p">,</span>  <span class="s2">"1.2"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="p">(</span><span class="s2">"inventory.v1"</span><span class="p">,</span>  <span class="s2">"warehouse-team"</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="s2">"2.0"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="p">(</span><span class="s2">"marketing_spend.v1"</span><span class="p">,</span> <span class="s2">"marketing-team"</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">"1.0"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="p">],</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">registry</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM data_products"</span><span class="p">,</span> <span class="n">registry</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                 name    domain_owner  sla_freshness_hours schema_version  discoverable
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0            orders.v1   commerce-team                     4            1.2             1
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1         inventory.v1  warehouse-team                     1            2.0             1
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2  marketing_spend.v1   marketing-team                    24            1.0             1
+</code></pre></div>
+<p>Under centralized ownership, one data-engineering team would own the
+pipeline for all three of these; under a mesh, <code>commerce-team</code> owns and
+operates <code>orders.v1</code> end to end — they know the source system best and feel
+the pain directly if it breaks.</p>
+<h2 id="a-data-product-as-a-self-describing-contract">A data product as a self-describing contract<a class="headerlink" href="#a-data-product-as-a-self-describing-contract" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DataProductContract</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">sla_freshness_hours</span><span class="p">,</span> <span class="n">sample_query</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">schema</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">sla_freshness_hours</span> <span class="o">=</span> <span class="n">sla_freshness_hours</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">sample_query</span> <span class="o">=</span> <span class="n">sample_query</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="s2">"name"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="s2">"owner"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            <span class="s2">"columns"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="s2">"sla_freshness_hours"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sla_freshness_hours</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="s2">"how_to_query"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_query</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="p">}</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">orders_product</span> <span class="o">=</span> <span class="n">DataProductContract</span><span class="p">(</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">"orders.v1"</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">owner</span><span class="o">=</span><span class="s2">"commerce-team"</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">schema</span><span class="o">=</span><span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="s2">"bigint"</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">:</span> <span class="s2">"bigint"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"double"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">},</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="n">sla_freshness_hours</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="n">sample_query</span><span class="o">=</span><span class="s2">"SELECT * FROM commerce.orders_v1 WHERE order_date = CURRENT_DATE"</span><span class="p">,</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="p">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">orders_product</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{'name': 'orders.v1', 'owner': 'commerce-team', 'columns': ['order_id', 'customer_id', 'amount', 'order_date'], 'sla_freshness_hours': 4, 'how_to_query': 'SELECT * FROM commerce.orders_v1 WHERE order_date = CURRENT_DATE'}
+</code></pre></div>
+<p>Every data product exposes the same self-service shape — schema, owner, SLA,
+and how to query it — so a consumer in another domain (marketing, finance)
+can discover and use it without filing a request to the owning team.</p>
+<h2 id="federated-governance-global-rules-domain-local-implementation">Federated governance: global rules, domain-local implementation<a class="headerlink" href="#federated-governance-global-rules-domain-local-implementation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">global_standards</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">"min_schema_version_format"</span><span class="p">:</span> <span class="sa">r</span><span class="s2">"^\d+\.\d+$"</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">"requires_pii_tagging"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">"requires_owner"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">"max_sla_freshness_hours"</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_against_global_standards</span><span class="p">(</span><span class="n">product</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">standards</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="k">if</span> <span class="n">standards</span><span class="p">[</span><span class="s2">"requires_owner"</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">product</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"domain_owner"</span><span class="p">):</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"missing domain_owner"</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">standards</span><span class="p">[</span><span class="s2">"min_schema_version_format"</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"schema_version"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))):</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"schema_version doesn't match required format"</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sla_freshness_hours"</span><span class="p">,</span> <span class="mi">9999</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">standards</span><span class="p">[</span><span class="s2">"max_sla_freshness_hours"</span><span class="p">]:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SLA </span><span class="si">{</span><span class="n">product</span><span class="p">[</span><span class="s1">'sla_freshness_hours'</span><span class="p">]</span><span class="si">}</span><span class="s2">h exceeds platform max of </span><span class="si">{</span><span class="n">standards</span><span class="p">[</span><span class="s1">'max_sla_freshness_hours'</span><span class="p">]</span><span class="si">}</span><span class="s2">h"</span><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="k">return</span> <span class="n">violations</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="n">candidate</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"returns.v1"</span><span class="p">,</span> <span class="s2">"domain_owner"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"schema_version"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"sla_freshness_hours"</span><span class="p">:</span> <span class="mi">72</span><span class="p">}</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">validate_against_global_standards</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">global_standards</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>['missing domain_owner', "schema_version doesn't match required format", 'SLA 72h exceeds platform max of 48h']
+</code></pre></div>
+<p>This is the essence of federated governance: the <strong>platform</strong> sets a small
+number of non-negotiable global standards (naming, versioning, ownership,
+tagging) that every domain must meet, but each domain team decides <em>how</em>
+its own pipeline meets them — no central team reviews or approves the
+pipeline internals.</p>
+<h2 id="interoperability-a-shared-discovery-layer-across-domains">Interoperability: a shared discovery layer across domains<a class="headerlink" href="#interoperability-a-shared-discovery-layer-across-domains" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_products_by_domain</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="s2">"SELECT name, sla_freshness_hours FROM data_products WHERE domain_owner = ?"</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">registry</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">domain</span><span class="p">,),</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">cross_domain_join_candidates</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT name, domain_owner FROM data_products WHERE discoverable = 1"</span><span class="p">,</span> <span class="n">registry</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">cross_domain_join_candidates</span><span class="p">(</span><span class="n">registry</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>                 name    domain_owner
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>0            orders.v1   commerce-team
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1         inventory.v1  warehouse-team
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>2  marketing_spend.v1   marketing-team
+</code></pre></div>
+<p>A finance analyst building a "marketing ROI by product availability" report
+can discover <code>marketing_spend.v1</code> and <code>inventory.v1</code> through this shared
+catalog and join them directly — this is the payoff of the mesh: cross-domain
+analytics without waiting on a central team to build a combined pipeline.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>"Data mesh" as a rebrand for the same centralized team.</strong> If one team
+  still writes every pipeline, you haven't adopted a mesh — you've renamed
+  your data warehouse team's Jira board. True mesh requires domain teams to
+  own and operate their own pipelines.</li>
+<li><strong>No federated governance at all.</strong> Fully decentralized with zero shared
+  standards produces N incompatible naming conventions, N different
+  freshness expectations, and no way to discover or trust another domain's
+  data — the "federated" half of "federated governance" is what prevents
+  chaos.</li>
+<li><strong>Underestimating the organizational cost.</strong> A mesh requires domain
+  teams to have (or be given) data engineering skill — it's a people and
+  incentive change, not just an architecture pattern, and adopting it
+  without that investment produces worse pipelines than a competent
+  centralized team would.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mesh principle</th>
+<th>What it looks like in practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domain ownership</td>
+<td>The team closest to the source owns its pipeline</td>
+</tr>
+<tr>
+<td>Data as a product</td>
+<td>Explicit schema, SLA, owner, discoverability contract</td>
+</tr>
+<tr>
+<td>Self-serve platform</td>
+<td>Shared tooling (catalog, orchestration, storage) domains build on</td>
+</tr>
+<tr>
+<td>Federated governance</td>
+<td>Small set of global standards; domain-local implementation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>consumer_subscriptions</code> table (<code>consumer_domain</code>, <code>product_name</code>,
+<code>subscribed_at</code>) and a <code>breaking_change_impact(registry, product_name)</code>
+function that returns every domain subscribed to a product — the exact
+list a domain team must notify before shipping a breaking schema change to
+their data product, turning "who do I need to tell" into a query instead
+of a guess.</p>
 
 
 

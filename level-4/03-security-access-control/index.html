@@ -1746,6 +1746,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Security & Access Control Patterns for Data Lakes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1762,6 +1780,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rbac-permissions-attached-to-roles-roles-attached-to-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC: permissions attached to roles, roles attached to people
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abac-permissions-computed-from-attributes-not-fixed-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ABAC: permissions computed from attributes, not fixed roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-level-security-filtering-data-not-just-gating-table-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row-level security: filtering data, not just gating table access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-all-three-in-one-access-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining all three in one access path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rbac-permissions-attached-to-roles-roles-attached-to-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC: permissions attached to roles, roles attached to people
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abac-permissions-computed-from-attributes-not-fixed-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ABAC: permissions computed from attributes, not fixed roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-level-security-filtering-data-not-just-gating-table-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row-level security: filtering data, not just gating table access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-all-three-in-one-access-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining all three in one access path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2209,186 @@
 
 
 <h1 id="03-security-access-control-patterns-for-data-lakes">03 · Security &amp; Access Control Patterns for Data Lakes<a class="headerlink" href="#03-security-access-control-patterns-for-data-lakes" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>A data lake's files sit in one bucket, but different tables, columns, and
+even rows within them need different access rules for different people.
+This module covers the three access-control patterns that show up
+repeatedly at platform scale: role-based access (RBAC), attribute-based
+access (ABAC), and row-level security — building minimal, runnable versions
+of each.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>sqlite3</code>
+and <code>pandas</code> APIs but not executed in a live interpreter for this
+lesson — the outputs shown match documented behavior precisely.</p>
+</div>
+<h2 id="rbac-permissions-attached-to-roles-roles-attached-to-people">RBAC: permissions attached to roles, roles attached to people<a class="headerlink" href="#rbac-permissions-attached-to-roles-roles-attached-to-people" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">iam</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">iam</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">"""</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">CREATE TABLE role_permissions (role TEXT, resource TEXT, action TEXT);</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">CREATE TABLE user_roles (user TEXT, role TEXT);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">"""</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">iam</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO role_permissions VALUES (?, ?, ?)"</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">(</span><span class="s2">"data-eng"</span><span class="p">,</span> <span class="s2">"lake.*"</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">(</span><span class="s2">"data-eng"</span><span class="p">,</span> <span class="s2">"lake.*"</span><span class="p">,</span> <span class="s2">"write"</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">(</span><span class="s2">"analyst"</span><span class="p">,</span>  <span class="s2">"gold.*"</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">(</span><span class="s2">"analyst"</span><span class="p">,</span>  <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">])</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">iam</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO user_roles VALUES (?, ?)"</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">(</span><span class="s2">"priya"</span><span class="p">,</span> <span class="s2">"data-eng"</span><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">(</span><span class="s2">"sam"</span><span class="p">,</span> <span class="s2">"analyst"</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">])</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">iam</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">roles</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">iam</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT role FROM user_roles WHERE user=?"</span><span class="p">,</span> <span class="p">(</span><span class="n">user</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">roles</span><span class="p">:</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">perms</span> <span class="o">=</span> <span class="n">iam</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="s2">"SELECT resource FROM role_permissions WHERE role=? AND action=?"</span><span class="p">,</span> <span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">for</span> <span class="p">(</span><span class="n">pattern</span><span class="p">,)</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">:</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="n">prefix</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"*"</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>            <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>                <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"priya write bronze.orders:"</span><span class="p">,</span> <span class="n">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="s2">"priya"</span><span class="p">,</span> <span class="s2">"bronze.orders"</span><span class="p">,</span> <span class="s2">"write"</span><span class="p">))</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam write silver.orders:  "</span><span class="p">,</span> <span class="n">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="s2">"sam"</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"write"</span><span class="p">))</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam read silver.orders:   "</span><span class="p">,</span> <span class="n">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="s2">"sam"</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">))</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam read bronze.orders:   "</span><span class="p">,</span> <span class="n">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="s2">"sam"</span><span class="p">,</span> <span class="s2">"bronze.orders"</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>priya write bronze.orders: True
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sam write silver.orders:   False
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sam read silver.orders:    True
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>sam read bronze.orders:    False
+</code></pre></div>
+<p>RBAC is simple to reason about and audit ("what can the analyst role do")
+but coarse — it can't easily express "analysts can read orders, but only
+for their own region."</p>
+<h2 id="abac-permissions-computed-from-attributes-not-fixed-roles">ABAC: permissions computed from attributes, not fixed roles<a class="headerlink" href="#abac-permissions-computed-from-attributes-not-fixed-roles" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"sam"</span><span class="p">,</span>   <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"us"</span><span class="p">,</span> <span class="s2">"clearance"</span><span class="p">:</span> <span class="s2">"standard"</span><span class="p">},</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">{</span><span class="s2">"user"</span><span class="p">:</span> <span class="s2">"priya"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"eu"</span><span class="p">,</span> <span class="s2">"clearance"</span><span class="p">:</span> <span class="s2">"elevated"</span><span class="p">},</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">])</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">resources</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="p">{</span><span class="s2">"table"</span><span class="p">:</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"min_clearance"</span><span class="p">:</span> <span class="s2">"standard"</span><span class="p">,</span> <span class="s2">"region_scoped"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">{</span><span class="s2">"table"</span><span class="p">:</span> <span class="s2">"gold.payroll"</span><span class="p">,</span>  <span class="s2">"min_clearance"</span><span class="p">:</span> <span class="s2">"elevated"</span><span class="p">,</span> <span class="s2">"region_scoped"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">])</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">clearance_rank</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"standard"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"elevated"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">abac_allow</span><span class="p">(</span><span class="n">user_row</span><span class="p">,</span> <span class="n">resource_row</span><span class="p">,</span> <span class="n">requested_region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">if</span> <span class="n">clearance_rank</span><span class="p">[</span><span class="n">user_row</span><span class="p">[</span><span class="s2">"clearance"</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">clearance_rank</span><span class="p">[</span><span class="n">resource_row</span><span class="p">[</span><span class="s2">"min_clearance"</span><span class="p">]]:</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="k">if</span> <span class="n">resource_row</span><span class="p">[</span><span class="s2">"region_scoped"</span><span class="p">]</span> <span class="ow">and</span> <span class="n">requested_region</span> <span class="o">!=</span> <span class="n">user_row</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]:</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">sam</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="s2">"user"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"sam"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">orders_table</span> <span class="o">=</span> <span class="n">resources</span><span class="p">[</span><span class="n">resources</span><span class="p">[</span><span class="s2">"table"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"silver.orders"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="n">payroll_table</span> <span class="o">=</span> <span class="n">resources</span><span class="p">[</span><span class="n">resources</span><span class="p">[</span><span class="s2">"table"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"gold.payroll"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam -&gt; silver.orders (own region us):  "</span><span class="p">,</span> <span class="n">abac_allow</span><span class="p">(</span><span class="n">sam</span><span class="p">,</span> <span class="n">orders_table</span><span class="p">,</span> <span class="s2">"us"</span><span class="p">))</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam -&gt; silver.orders (other region eu):"</span><span class="p">,</span> <span class="n">abac_allow</span><span class="p">(</span><span class="n">sam</span><span class="p">,</span> <span class="n">orders_table</span><span class="p">,</span> <span class="s2">"eu"</span><span class="p">))</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sam -&gt; gold.payroll:                   "</span><span class="p">,</span> <span class="n">abac_allow</span><span class="p">(</span><span class="n">sam</span><span class="p">,</span> <span class="n">payroll_table</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sam -&gt; silver.orders (own region us):   True
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sam -&gt; silver.orders (other region eu): False
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sam -&gt; gold.payroll:                    False
+</code></pre></div>
+<p>ABAC evaluates a <em>policy expression</em> against attributes of the user and the
+resource at request time, instead of a static role-to-permission mapping —
+this is what lets "your own region only" and "sufficient clearance level"
+compose without needing a new role for every combination.</p>
+<h2 id="row-level-security-filtering-data-not-just-gating-table-access">Row-level security: filtering data, not just gating table access<a class="headerlink" href="#row-level-security-filtering-data-not-just-gating-table-access" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"us"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">},</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"eu"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"us"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">150.0</span><span class="p">},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">])</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">row_level_view</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">user_row</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">if</span> <span class="n">user_row</span><span class="p">[</span><span class="s2">"clearance"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"elevated"</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">return</span> <span class="n">df</span>  <span class="c1"># sees everything</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_row</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">row_level_view</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">sam</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>   order_id region  amount
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0         1     us   100.0
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>2         3     us   150.0
+</code></pre></div>
+<p>Row-level security is applied <em>after</em> table-level access is already
+granted — sam can read <code>silver.orders</code> (from the ABAC check above), but the
+rows returned are filtered to just his region, so the same physical table
+serves every region's analysts safely without duplicating it per region.</p>
+<h2 id="combining-all-three-in-one-access-path">Combining all three in one access path<a class="headerlink" href="#combining-all-three-in-one-access-path" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">secured_query</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">resources</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">requested_region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">user_row</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="s2">"user"</span><span class="p">]</span> <span class="o">==</span> <span class="n">user</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">resource_row</span> <span class="o">=</span> <span class="n">resources</span><span class="p">[</span><span class="n">resources</span><span class="p">[</span><span class="s2">"table"</span><span class="p">]</span> <span class="o">==</span> <span class="n">table</span><span class="p">]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">if</span> <span class="n">resource_row</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="c1"># fall back to RBAC for tables not modeled in the ABAC resource list</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">can</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">raise</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2"> has no read access to </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="k">return</span> <span class="n">df</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">resource_row</span> <span class="o">=</span> <span class="n">resource_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">abac_allow</span><span class="p">(</span><span class="n">user_row</span><span class="p">,</span> <span class="n">resource_row</span><span class="p">,</span> <span class="n">requested_region</span><span class="p">):</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="k">raise</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2"> fails attribute check for </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="k">return</span> <span class="n">row_level_view</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">user_row</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">secured_query</span><span class="p">(</span><span class="n">iam</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">resources</span><span class="p">,</span> <span class="s2">"sam"</span><span class="p">,</span> <span class="s2">"silver.orders"</span><span class="p">,</span> <span class="s2">"us"</span><span class="p">,</span> <span class="n">orders</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>   order_id region  amount
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>0         1     us   100.0
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>2         3     us   150.0
+</code></pre></div>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>RBAC role explosion.</strong> Trying to model every fine-grained combination
+  (region × department × clearance) as separate roles produces hundreds of
+  near-duplicate roles that nobody can audit — that's the signal to move
+  the fine-grained part to ABAC/row-level rules instead.</li>
+<li><strong>Enforcing row-level security in application code inconsistently.</strong> If
+  every consuming tool has to remember to apply the region filter itself,
+  one that forgets leaks data — push row-level security into the query
+  engine/warehouse layer (views, row access policies) wherever possible so
+  it can't be bypassed.</li>
+<li><strong>No separation between "can read the table" and "can read these rows."</strong>
+  Conflating the two makes audits harder — keep table-level and row-level
+  checks as distinct, composable steps as shown above.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RBAC</td>
+<td>Coarse, auditable permissions with a small number of roles</td>
+</tr>
+<tr>
+<td>ABAC</td>
+<td>Fine-grained rules that combine multiple attributes without role explosion</td>
+</tr>
+<tr>
+<td>Row-level security</td>
+<td>Same physical table, different visible rows per requester</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>masked_columns</code> policy to <code>resources</code> (e.g., <code>gold.payroll</code> masks a
+<code>salary</code> column for anyone below <code>elevated</code> clearance) and extend
+<code>secured_query</code> to apply column masking (reusing the pattern from Module
+01's <code>mask_pii_columns</code>) after row-level filtering. Confirm a <code>standard</code>
+clearance user sees <code>***</code> for <code>salary</code> while an <code>elevated</code> user sees the
+real value.</p>
 
 
 

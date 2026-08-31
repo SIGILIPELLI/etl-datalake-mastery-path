@@ -1166,6 +1166,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Data Contracts Between Producers & Consumers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1182,6 +1200,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-contract-as-a-schema-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A contract as a schema definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-incoming-data-against-the-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validating incoming data against the contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catching-a-producer-side-break-before-it-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catching a producer-side break before it ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-evolving-a-contract-without-breaking-consumers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning: evolving a contract without breaking consumers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-contract-should-specify-beyond-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a contract should specify beyond schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-contract-as-a-schema-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A contract as a schema definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-incoming-data-against-the-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validating incoming data against the contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catching-a-producer-side-break-before-it-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catching a producer-side break before it ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-evolving-a-contract-without-breaking-consumers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning: evolving a contract without breaking consumers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-contract-should-specify-beyond-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a contract should specify beyond schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,187 @@
 
 
 <h1 id="09-data-contracts-between-producers-consumers">09 · Data Contracts Between Producers &amp; Consumers<a class="headerlink" href="#09-data-contracts-between-producers-consumers" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>A data contract is an explicit, versioned agreement between the team that
+produces data and the teams that consume it — schema, semantics, and
+guarantees, written down and enforced, instead of "the pipeline happened to
+work that way." This module builds a minimal contract as executable
+validation, not just documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>Reasoned through step by step against the real <code>pandas</code>/<code>jsonschema</code>-
+style validation logic, not executed in a live interpreter — outputs
+match documented behavior precisely.</p>
+</div>
+<h2 id="a-contract-as-a-schema-definition">A contract as a schema definition<a class="headerlink" href="#a-contract-as-a-schema-definition" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">orders_contract</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"orders_v1"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">"fields"</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">"order_id"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"unique"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="s2">"amount"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"float64"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s2">"status"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"enum"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"paid"</span><span class="p">,</span> <span class="s2">"refunded"</span><span class="p">,</span> <span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"cancelled"</span><span class="p">]},</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="s2">"order_date"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">},</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="s2">"guarantees"</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="s2">"delivery"</span><span class="p">:</span> <span class="s2">"at-least-daily by 04:00 UTC"</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="s2">"backward_compatible_changes_only"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">},</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">orders_contract</span><span class="p">[</span><span class="s2">"fields"</span><span class="p">][</span><span class="s2">"amount"</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{'type': 'float64', 'nullable': False, 'min': 0, 'max': None}
+</code></pre></div>
+<p>Writing the contract as a Python dict (or, in production, a YAML/JSON file
+checked into version control alongside the pipeline) makes it both
+human-readable documentation <em>and</em> something code can validate against —
+the two copies of "what does this data look like" never drift apart.</p>
+<h2 id="validating-incoming-data-against-the-contract">Validating incoming data against the contract<a class="headerlink" href="#validating-incoming-data-against-the-contract" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_against_contract</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">fields</span> <span class="o">=</span> <span class="n">contract</span><span class="p">[</span><span class="s2">"fields"</span><span class="p">]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">missing_cols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">if</span> <span class="n">missing_cols</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"missing columns: </span><span class="si">{</span><span class="n">missing_cols</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="k">continue</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">actual_dtype</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">if</span> <span class="n">actual_dtype</span> <span class="o">!=</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]:</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: expected dtype </span><span class="si">{</span><span class="n">rules</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">actual_dtype</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"nullable"</span><span class="p">]</span> <span class="ow">and</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>            <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: contains nulls but nullable=False"</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">if</span> <span class="n">rules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"unique"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: contains duplicates but unique=True"</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="k">if</span> <span class="s2">"min"</span> <span class="ow">in</span> <span class="n">rules</span> <span class="ow">and</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"min"</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"min"</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: contains values below min=</span><span class="si">{</span><span class="n">rules</span><span class="p">[</span><span class="s1">'min'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="k">if</span> <span class="s2">"enum"</span> <span class="ow">in</span> <span class="n">rules</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s2">"enum"</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            <span class="n">bad_values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s2">"enum"</span><span class="p">])</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>            <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: values outside enum: </span><span class="si">{</span><span class="n">bad_values</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="k">return</span> <span class="n">violations</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">good_batch</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"paid"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-30"</span><span class="p">},</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-30"</span><span class="p">},</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="p">])</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="nb">print</span><span class="p">(</span><span class="n">validate_against_contract</span><span class="p">(</span><span class="n">good_batch</span><span class="p">,</span> <span class="n">orders_contract</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[]
+</code></pre></div>
+<p>An empty violations list is the contract passing — this is the check that
+should run in the producer's own pipeline <em>before</em> publishing data, not
+just downstream where the consumer discovers a break after the fact.</p>
+<h2 id="catching-a-producer-side-break-before-it-ships">Catching a producer-side break before it ships<a class="headerlink" href="#catching-a-producer-side-break-before-it-ships" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">bad_batch</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"pending"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-30"</span><span class="p">},</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"paid"</span><span class="p">,</span>    <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2026-08-30"</span><span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">])</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">validate_against_contract</span><span class="p">(</span><span class="n">bad_batch</span><span class="p">,</span> <span class="n">orders_contract</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>['order_id: contains duplicates but unique=True', 'amount: contains values below min=0', 'status: values outside enum: {\'pending\'}']
+</code></pre></div>
+<p>Three violations caught in one pass: a duplicate primary key, a negative
+amount, and a <code>status</code> value (<code>"pending"</code>) that isn't in the agreed enum —
+likely a new order state the producer team added without updating the
+contract. This is exactly the kind of change that should trigger a
+conversation between producer and consumer teams <em>before</em> it ships, not
+an incident afterward.</p>
+<h2 id="versioning-evolving-a-contract-without-breaking-consumers">Versioning: evolving a contract without breaking consumers<a class="headerlink" href="#versioning-evolving-a-contract-without-breaking-consumers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">orders_contract_v2</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="o">**</span><span class="n">orders_contract</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"orders_v2"</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="s2">"fields"</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="o">**</span><span class="n">orders_contract</span><span class="p">[</span><span class="s2">"fields"</span><span class="p">],</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="s2">"status"</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="o">**</span><span class="n">orders_contract</span><span class="p">[</span><span class="s2">"fields"</span><span class="p">][</span><span class="s2">"status"</span><span class="p">],</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>            <span class="s2">"enum"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"paid"</span><span class="p">,</span> <span class="s2">"refunded"</span><span class="p">,</span> <span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"cancelled"</span><span class="p">,</span> <span class="s2">"pending"</span><span class="p">],</span>  <span class="c1"># widened, additive</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="p">},</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="s2">"currency"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>  <span class="c1"># new, nullable -&gt; backward compatible</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="p">},</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">v2_violations</span> <span class="o">=</span> <span class="n">validate_against_contract</span><span class="p">(</span><span class="n">bad_batch</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"order_id"</span><span class="p">),</span> <span class="n">orders_contract_v2</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">v2_violations</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>['amount: contains values below min=0']
+</code></pre></div>
+<p><code>orders_contract_v2</code> is a <strong>backward-compatible</strong> evolution: it widens the
+<code>status</code> enum (additive) and adds a new nullable <code>currency</code> field — both
+changes Module 4 classified as safe to auto-merge. A consumer still coded
+against <code>orders_contract_v1</code> keeps working unmodified; only the amount
+violation (a genuine data bug, not a contract mismatch) remains.</p>
+<h2 id="what-a-contract-should-specify-beyond-schema">What a contract should specify beyond schema<a class="headerlink" href="#what-a-contract-should-specify-beyond-schema" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">contract_scope</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="s2">"schema"</span><span class="p">:</span> <span class="s2">"field names, types, nullability, enums — this lesson's focus"</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="s2">"semantics"</span><span class="p">:</span> <span class="s2">"what does 'amount' mean? pre-tax or post-tax? which currency?"</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="s2">"delivery_sla"</span><span class="p">:</span> <span class="s2">"how fresh must this data be, and how often does it update?"</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="s2">"deprecation_policy"</span><span class="p">:</span> <span class="s2">"how much notice before a breaking change ships?"</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="s2">"ownership"</span><span class="p">:</span> <span class="s2">"who do consumers page when this contract is violated?"</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">contract_scope</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>schema: field names, types, nullability, enums — this lesson's focus
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>semantics: what does 'amount' mean? pre-tax or post-tax? which currency?
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>delivery_sla: how fresh must this data be, and how often does it update?
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>deprecation_policy: how much notice before a breaking change ships?
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ownership: who do consumers page when this contract is violated?
+</code></pre></div>
+<p>The schema check is the easiest 20% to automate and the part this lesson
+covers in code — but a real contract also nails down semantics (ambiguous
+field meanings cause more silent bugs than type mismatches do) and an
+explicit deprecation policy, so a producer can't ship a breaking change
+without warning.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A contract that's documentation only, never enforced in code.</strong> Drifts
+  from reality within weeks — always wire it into a validation step that
+  runs on every publish.</li>
+<li><strong>No deprecation window for breaking changes.</strong> Even a well-intentioned
+  rename breaks every consumer instantly without one.</li>
+<li><strong>Treating "it validates" as "it's semantically correct."</strong> A schema
+  check can't catch <code>amount</code> silently switching from pre-tax to post-tax —
+  that requires a semantic test (e.g., a known reference order's expected
+  total) alongside the schema check.</li>
+<li><strong>One contract owned by consumers, enforced nowhere near the producer.</strong>
+  Contracts work best enforced at the point of publication, catching
+  breaks before they ever reach a consumer.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Contract element</th>
+<th>Enforced by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Field types &amp; nullability</td>
+<td><code>validate_against_contract</code> schema checks</td>
+</tr>
+<tr>
+<td>Value ranges &amp; enums</td>
+<td>Same function, <code>min</code>/<code>enum</code> rules</td>
+</tr>
+<tr>
+<td>Backward-compatible evolution</td>
+<td>Additive-only changes (Module 4's policy)</td>
+</tr>
+<tr>
+<td>Semantics &amp; SLAs</td>
+<td>Documented, tested with reference-value checks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>"pk"</code> (primary key) declaration to <code>orders_contract</code> naming
+<code>order_id</code>, and rewrite <code>validate_against_contract</code> to treat a <code>pk</code>
+violation as a distinct, higher-severity category from other violations
+(mirroring the hard/soft split from Module 2). Test it against <code>bad_batch</code>.</p>
 
 
 

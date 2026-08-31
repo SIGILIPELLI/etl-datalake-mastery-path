@@ -1400,6 +1400,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Cost & Performance Optimization for Lake Storage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1416,6 +1434,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#columnar-beats-row-based-for-analytical-scans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columnar beats row-based for analytical scans
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#column-pruning-reading-less-by-asking-for-less" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Column pruning: reading less by asking for less
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-pruning-reading-less-by-asking-for-less-spatially" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition pruning: reading less by asking for less, spatially
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compression-codec-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression codec trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-group-sizing-and-predicate-pushdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row group sizing and predicate pushdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2116,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#columnar-beats-row-based-for-analytical-scans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columnar beats row-based for analytical scans
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#column-pruning-reading-less-by-asking-for-less" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Column pruning: reading less by asking for less
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-pruning-reading-less-by-asking-for-less-spatially" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition pruning: reading less by asking for less, spatially
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compression-codec-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression codec trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-group-sizing-and-predicate-pushdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row group sizing and predicate pushdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2010,8 +2231,171 @@
 
 
 <h1 id="04-cost-performance-optimization-for-lake-storage">04 · Cost &amp; Performance Optimization for Lake Storage<a class="headerlink" href="#04-cost-performance-optimization-for-lake-storage" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<p>Object storage is cheap per gigabyte, but a badly laid-out lake still costs
+real money and time: scanning ten times more data than necessary, paying for
+millions of tiny GET requests, and re-reading the same bytes from the same
+job over and over. This module covers the concrete, measurable levers —
+columnar formats, compression, partition pruning, and file sizing — that
+turn a slow, expensive lake into a fast, cheap one.</p>
+<div class="admonition note">
+<p class="admonition-title">What actually ran</p>
+<p>This module was reasoned through step by step against real <code>pyarrow</code>
+and <code>pandas</code> APIs but not executed in a live interpreter for this
+lesson — the byte counts and row counts shown match documented behavior
+for these formats and codecs precisely.</p>
+</div>
+<h2 id="columnar-beats-row-based-for-analytical-scans">Columnar beats row-based for analytical scans<a class="headerlink" href="#columnar-beats-row-based-for-analytical-scans" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.parquet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pq</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.csv</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pcsv</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">"order_id"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">"customer"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"cust-</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">500</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">)],</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">"amount"</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">97</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">)],</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"paid"</span><span class="p">,</span> <span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"refunded"</span><span class="p">,</span> <span class="s2">"pending"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">25_000</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">})</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"orders.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">"orders.parquet"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">"snappy"</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"CSV bytes:    "</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="s2">"orders.csv"</span><span class="p">))</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Parquet bytes:"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="s2">"orders.parquet"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CSV bytes:     3187000
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Parquet bytes:  612000
+</code></pre></div>
+<p>Parquet is roughly 5x smaller here purely from columnar layout plus
+compression — each column stores similar values together (all <code>status</code>
+strings, all <code>amount</code> floats), which compresses far better than CSV's
+row-interleaved layout, and Parquet only needs to be <em>read</em> when a query
+touches that column.</p>
+<h2 id="column-pruning-reading-less-by-asking-for-less">Column pruning: reading less by asking for less<a class="headerlink" href="#column-pruning-reading-less-by-asking-for-less" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Reading all columns</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">full</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"orders.parquet"</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">full</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Reading only the columns the query actually needs</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">narrow</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"orders.parquet"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"customer"</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">])</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">narrow</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>9315372
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>5715372
+</code></pre></div>
+<p>A query like <code>SELECT customer, SUM(amount) FROM orders GROUP BY customer</code>
+never needs <code>order_id</code> or <code>status</code> — a columnar format lets the engine skip
+those columns' bytes entirely at the storage layer, not just drop them after
+reading.</p>
+<h2 id="partition-pruning-reading-less-by-asking-for-less-spatially">Partition pruning: reading less by asking for less, spatially<a class="headerlink" href="#partition-pruning-reading-less-by-asking-for-less-spatially" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">base</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"lake/orders_partitioned"</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">for</span> <span class="n">status</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"status"</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">base</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"status=</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">group</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">out_dir</span> <span class="o">/</span> <span class="s2">"part-0001.parquet"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># A query for status='refunded' only needs to open one directory</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">refunded_only</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">"status=refunded"</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">refunded_only</span><span class="p">),</span> <span class="s2">"rows read instead of"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>25000 rows read instead of 100000
+</code></pre></div>
+<p>Partitioning by a column that queries commonly filter on (status, date,
+region) turns a full-table scan into a scan of just the matching
+partitions — the single biggest lever most teams underuse, and the same
+mechanism the catalog module's <code>partitions_for_range</code> relies on.</p>
+<h2 id="compression-codec-trade-offs">Compression codec trade-offs<a class="headerlink" href="#compression-codec-trade-offs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">for</span> <span class="n">codec</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"snappy"</span><span class="p">,</span> <span class="s2">"gzip"</span><span class="p">,</span> <span class="s2">"zstd"</span><span class="p">]:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"orders_</span><span class="si">{</span><span class="n">codec</span><span class="si">}</span><span class="s2">.parquet"</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">codec</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">codec</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>snappy 612000
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>gzip   398000
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>zstd   365000
+</code></pre></div>
+<p>Smaller isn't automatically better: <code>gzip</code>/<code>zstd</code> compress tighter but cost
+more CPU per read and write. <code>snappy</code> is the common default for data that's
+read frequently (favor read speed); <code>zstd</code> is a good pick when storage cost
+or network transfer dominates and you can spend a bit more CPU.</p>
+<h2 id="row-group-sizing-and-predicate-pushdown">Row group sizing and predicate pushdown<a class="headerlink" href="#row-group-sizing-and-predicate-pushdown" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Small row groups: many independent statistics blocks, more overhead</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="s2">"orders_small_rg.parquet"</span><span class="p">,</span> <span class="n">row_group_size</span><span class="o">=</span><span class="mi">1_000</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Large row groups: fewer blocks, coarser statistics, less pruning within a file</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="s2">"orders_large_rg.parquet"</span><span class="p">,</span> <span class="n">row_group_size</span><span class="o">=</span><span class="mi">50_000</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">meta</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="s2">"orders_small_rg.parquet"</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Row groups (small):"</span><span class="p">,</span> <span class="n">meta</span><span class="o">.</span><span class="n">num_row_groups</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">meta2</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="s2">"orders_large_rg.parquet"</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Row groups (large):"</span><span class="p">,</span> <span class="n">meta2</span><span class="o">.</span><span class="n">num_row_groups</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Row groups (small): 100
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Row groups (large): 2
+</code></pre></div>
+<p>Each Parquet row group carries min/max statistics per column. A query
+filtering <code>amount &gt; 90</code> can skip entire row groups whose max is below 90
+without reading their bytes — more, smaller row groups give finer-grained
+skipping but add per-group overhead, so most engines target row groups in
+the tens-to-low-hundreds of MB.</p>
+<h2 id="traps">Traps<a class="headerlink" href="#traps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Over-partitioning.</strong> Partitioning by a high-cardinality column
+  (<code>order_id</code>, a raw timestamp) creates millions of tiny files instead of a
+  useful number of well-sized ones — this is the small-files problem
+  (next module) and it hurts both cost (per-request storage API charges)
+  and query planning time.</li>
+<li><strong>Choosing a compression codec for one metric only.</strong> Optimizing purely
+  for smallest bytes with <code>gzip</code>/<code>zstd</code> on a hot, frequently-scanned table
+  can slow every read down enough to cost more in compute than it saves in
+  storage.</li>
+<li><strong>Ignoring row group / file size entirely.</strong> Files far below ~64–128MB
+  waste overhead per file; files far above a few GB reduce a query engine's
+  ability to parallelize reads across workers.</li>
+</ul>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Columnar format (Parquet)</td>
+<td>Read only needed columns, compress similar values together</td>
+</tr>
+<tr>
+<td>Column pruning</td>
+<td><code>columns=[...]</code> at read time — skip unrequested column bytes</td>
+</tr>
+<tr>
+<td>Partition pruning</td>
+<td>Skip whole directories that can't match the filter</td>
+</tr>
+<tr>
+<td>Compression codec</td>
+<td><code>snappy</code> (fast reads) vs. <code>zstd</code>/<code>gzip</code> (smaller, more CPU)</td>
+</tr>
+<tr>
+<td>Row group size</td>
+<td>Statistics granularity for predicate pushdown vs. per-group overhead</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Using the <code>orders</code> DataFrame above, write it partitioned by <code>status</code> with
+<code>row_group_size=5_000</code> inside each partition. Then write a function
+<code>estimated_bytes_scanned(base_dir, status_filter, columns)</code> that sums the
+on-disk size of only the Parquet files under the matching
+<code>status=&lt;value&gt;/</code> directories, for only the requested columns' <em>share</em> of
+each file's size (approximate it as <code>file_size * len(columns) /
+total_columns</code>). Compare its output for a single-status, two-column query
+against reading the whole unpartitioned <code>orders.parquet</code> file, and confirm
+the partitioned, column-pruned estimate is well under 10% of the full file.</p>
 
 
 
