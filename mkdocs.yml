@@ -1,8 +1,8 @@
 site_name: ETL & Data Lake Mastery Path
 site_description: A structured, module-wise training program on ETL/ELT pipeline design and Data Lake architecture — from your first extract-transform-load script to governed, multi-zone lakehouse platforms, with runnable Python code in every module.
-site_url: https://sigilipelli.github.io/etl-datalake-mastery-path/
-repo_url: https://github.com/SIGILIPELLI/etl-datalake-mastery-path
-repo_name: etl-datalake-mastery-path
+site_url: https://sigilipelli.github.io/etl-datalake-skillmastery/
+repo_url: https://github.com/SIGILIPELLI/etl-datalake-skillmastery
+repo_name: etl-datalake-skillmastery
 
 theme:
   name: material
