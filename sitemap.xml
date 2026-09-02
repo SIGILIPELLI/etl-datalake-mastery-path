@@ -2,186 +2,186 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/privacy/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/01-etl-vs-elt/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/02-data-sources-ingestion-patterns/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/03-extraction-basics/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/04-transformation-basics/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/05-loading-into-a-target/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/06-what-is-a-data-lake/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/07-bronze-silver-gold-layering/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/08-file-formats/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/09-orchestration-basics/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-1/10-capstone-etl-lake-pipeline/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/01-incremental-loads-cdc/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/02-data-quality-validation/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/03-partitioning-strategy/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/04-schema-evolution/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/05-orchestration-tools-airflow/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/06-idempotent-pipeline-design/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/07-backfills-reprocessing/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/08-monitoring-alerting/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/09-data-contracts/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-2/10-project-incremental-validated-pipeline/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/01-lakehouse-concepts/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/02-streaming-etl-basics/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/03-data-cataloging-metadata/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/04-cost-performance-optimization/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/05-late-arriving-data/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/06-small-files-compaction/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/07-time-travel-versioning/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/08-acid-transactions-lake/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/09-query-engines/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/10-project-streaming-lakehouse-table/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/01-governed-multi-zone-lake/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/02-data-lineage-observability/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/03-security-access-control/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/04-lake-warehouse-lakehouse-choice/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/05-data-mesh-domain-ownership/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/06-compliance-retention/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/07-multi-cloud-hybrid-strategy/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/08-cost-governance-platform-scale/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/09-building-a-platform-team/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/10-capstone-enterprise-lake-architecture/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-09-02</lastmod>
     </url>
 </urlset>
