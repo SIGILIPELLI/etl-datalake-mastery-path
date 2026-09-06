@@ -1732,6 +1732,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2472,6 +2494,35 @@ never a truncated one.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Bringing ACID guarantees to object storage — which natively offers only per-object atomic
+<code>PUT</code>s and no multi-object transactions — is achieved entirely through the transaction log's
+<strong>optimistic concurrency control</strong>, layered on top of a single atomic primitive the object
+store does provide.</p>
+<p><strong>Atomicity</strong> across many data files is achieved because a "transaction" in Delta/Iceberg
+terms is really just one new log entry — the actual data files can be written in any order,
+even partially, with zero visible effect until that single log entry is successfully
+committed, at which point the entire set of changes becomes visible together. If the writer
+crashes before committing the log entry, the already-written data files simply become
+unreferenced orphans (cleaned up later by vacuum), and the table's visible state is
+unaffected — exactly the same "all or nothing" guarantee ACID databases provide via WAL, but
+implemented at the granularity of a single log-entry commit instead of per-row.</p>
+<p><strong>Isolation</strong> between concurrent writers is optimistic concurrency control: each writer reads
+the log's current version when it starts, stages its changes, and at commit time attempts an
+atomic "write the next sequential version number" operation using the object store's
+conditional-write guarantee (or an external locking service like a DynamoDB table acting as a
+commit coordinator, for stores that don't support atomic conditional writes natively). If
+another writer already claimed that version number, the losing writer's commit is rejected;
+it must re-read the new log state and decide whether its changes still apply cleanly (a
+non-overlapping partition write typically retries and succeeds; a conflicting overwrite of
+the same rows typically must abort). This means writers never block each other while working
+— conflicts are detected only at the very end, at commit time — which is why lakehouse
+concurrency control is described as <em>optimistic</em>: it bets conflicts are rare rather than
+serializing all writers through a lock held during the entire write.</p>
+<p><strong>Consistency</strong> (schema and constraint enforcement) is checked by the engine against the
+log's currently recorded schema before allowing a commit to succeed, and <strong>durability</strong> is
+inherited directly from the object store's own multi-AZ replication of both the data files
+and the log entries themselves.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Implement a <code>retry_commit(build_write_fn, max_retries=3)</code> wrapper that: (1)
 reads the current latest version, (2) calls <code>build_write_fn(latest)</code> to get

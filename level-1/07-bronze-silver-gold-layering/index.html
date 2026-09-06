@@ -963,6 +963,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2511,6 +2533,32 @@ at all.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The bronze/silver/gold naming is a convention, but the mechanism it encodes is a real
+constraint: <strong>each layer is a separate, durable set of files, and moving data between layers
+is always a full read-transform-write job, never an in-place mutation.</strong></p>
+<p>Bronze stores data as close to the source's original bytes and schema as possible — often the
+exact JSON/CSV/Avro payload from the source system, partitioned by ingestion time. Mechanically
+this means bronze write jobs do almost no interpretation: they append new files under a new
+partition path and rely on the object store's put durability. Because bronze is immutable and
+append-only, it functions as an audit log and a replay source — if a downstream bug corrupts
+silver, you can always re-derive silver from bronze because bronze was never overwritten.</p>
+<p>Silver jobs read bronze files back in (as a distributed read across many small objects, which
+is why bronze retention and file sizing matter for silver job cost), apply schema
+enforcement (casting raw strings to typed columns, rejecting or quarantining rows that fail
+validation), deduplicate (usually via a window function over a natural key ordered by
+event time, keeping the latest), and rewrite the result as new, larger, columnar files
+(Parquet) in a new location. This rewrite is a real cost: cleaning even a small fraction of
+records normally means reading and rewriting <em>entire partitions</em>, because file formats like
+Parquet are not designed for partial in-file mutation — this is precisely the pain point that
+Delta Lake/Iceberg transaction logs exist to reduce.</p>
+<p>Gold aggregates silver into shapes tuned for a specific consumer (a BI dashboard's star
+schema, a ML feature table) — mechanically another engine job doing group-bys and joins and
+writing yet another set of files. Because each layer is physically separate files, storage
+cost triples data volume across the three layers (partially offset by columnar compression
+narrowing gold), and compute cost is paid at each transition — the layering trades storage
+and compute cost for the ability to reprocess any downstream layer from a stable, immutable
+upstream copy without touching the source system again.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a second bronze file for <code>2026-08-30</code> with two new raw order rows (one
 valid, one with a negative amount that should be rejected in silver). Re-run

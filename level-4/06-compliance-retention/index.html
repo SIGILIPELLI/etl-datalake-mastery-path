@@ -2052,6 +2052,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2496,6 +2518,33 @@ as proof of compliance.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Retention and deletion compliance in a lake/lakehouse runs directly into the tension between
+<strong>immutable, append-oriented storage</strong> and <strong>legally required deletion of specific records</strong>
+(GDPR/CCPA "right to erasure") — and the mechanism for resolving that tension differs sharply
+between raw lakes and lakehouse table formats.</p>
+<p>In a raw lake, a specific customer's records are typically scattered across many Parquet
+files (partitioned by date, not by customer), and Parquet provides no mechanism to delete a
+subset of rows from an existing file in place — deleting one customer's rows means locating
+every file containing any of their records, reading each one back into memory, filtering out
+the target rows, and rewriting the remainder as new files, then deleting the originals. At
+scale, "locate every file containing this customer" is itself a real engineering problem
+without an index — which is why lakes built for compliance from the start often maintain a
+secondary index (a customer-ID-to-file-list mapping) purely to make deletion requests
+tractable.</p>
+<p>Lakehouse formats make this mechanically cleaner via <code>DELETE FROM table WHERE customer_id =
+:id</code>, executed as a real transaction-log operation: the engine identifies which existing
+files contain matching rows (using the same file-level statistics used for query pruning —
+if a file's customer_id min/max range excludes the target ID, it's skipped entirely),
+rewrites only the affected files with those rows removed, and commits a new log entry marking
+old files removed and new files added — the same copy-on-write mechanism compaction uses,
+just triggered by a delete predicate instead of a size-based bin-packing policy. The
+subtlety compliance teams must account for is that, exactly as in time-travel, the <em>original</em>
+file (containing the "deleted" data) is not immediately purged from storage — it persists
+until vacuum's retention window expires, meaning a table isn't actually GDPR-compliant purely
+by virtue of running a <code>DELETE</code>; retention/vacuum policy has to be tightened and executed too,
+and any time-travel or snapshot export taken before vacuum runs can still expose the
+"deleted" data.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>erase_subject</code> to also walk lineage (reusing <code>downstream_of</code> from
 Module 02) and return the list of <em>downstream</em> tables that need their own

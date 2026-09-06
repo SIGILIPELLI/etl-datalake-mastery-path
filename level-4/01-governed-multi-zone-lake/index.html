@@ -1912,6 +1912,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2501,6 +2523,33 @@ rather than by maintaining separate masked copies.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A multi-zone governed lake enforces its zone boundaries through <strong>access control evaluated at
+the storage or catalog layer</strong>, not through convention alone — the mechanism that actually
+prevents an unauthorized reader from touching raw zone data is the same permission-checking
+machinery a database uses, just applied to object-store prefixes or catalog-level table
+grants instead of database rows.</p>
+<p>Concretely, this is implemented either as <strong>IAM policies scoped to storage prefixes</strong> (an S3
+bucket policy or IAM role that grants <code>s3:GetObject</code> only under
+<code>s3://lake/raw/*</code> to a narrow set of principals, and broader read access under
+<code>s3://lake/curated/*</code>) or as <strong>catalog-level grants</strong> (Lake Formation, Unity Catalog) that
+sit in front of the object store and enforce column- and row-level permissions independent of
+the underlying file layout — a query engine must authenticate against the catalog and have
+its access checked <em>before</em> the catalog will even hand back the physical file locations
+needed to read data, so an engine with no grant literally cannot discover where the bytes are,
+not just that it's told not to read them.</p>
+<p>Row- and column-level security in catalog-based systems is implemented by rewriting the query
+plan itself: the catalog injects filter predicates (for row-level security, e.g., appending
+<code>AND region = current_user_region()</code>) or masks/nulls specific columns <em>inside the physical
+plan</em> before execution, so the underlying Parquet files are read in full by the engine but
+the results returned to the requester have already been filtered/redacted — the enforcement
+point is the query compiler, not a post-hoc check on returned rows, which is what makes it
+resistant to a client simply requesting more columns than intended.</p>
+<p>Zone transitions (raw → curated) are themselves governed writes: a job promoting data from
+one zone to the next must hold write credentials scoped to the destination zone and read
+credentials scoped to the source, and because these are typically different IAM roles/service
+accounts, the promotion step is the actual point where governance rules (data classification
+tagging, PII scrubbing) get enforced as a hard gate rather than a convention.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add an <code>audit_log</code> table (<code>event_time</code>, <code>actor</code>, <code>action</code>, <code>dataset</code>,
 <code>zone</code>, <code>result</code>) and have <code>check_write_access</code> and <code>promote</code> insert a row

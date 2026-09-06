@@ -1395,6 +1395,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2512,6 +2534,30 @@ without warning.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A data contract is enforced through the same schema-validation and versioning mechanisms
+covered earlier, but applied at the <em>producer's</em> publish boundary instead of a downstream
+consumer's read boundary — and that placement is the entire point mechanically.</p>
+<p>Without a contract, schema validation (if it exists at all) runs where a consumer reads data,
+which means a breaking change is only <em>detected</em> after it has already been produced,
+propagated through however many hops, and broken however many downstream jobs read it in the
+interim — the failure surfaces far from its cause. A contract instead registers an explicit
+schema (often via a schema registry — Confluent Schema Registry for Kafka, or a versioned
+JSON/Avro schema file checked into the producer's own repo) that the producer's write path
+validates <em>against before the write is even attempted</em>. Mechanically this is usually
+implemented as a serialization step: the producer serializes each record using the
+registered schema (Avro/Protobuf schemas make this natural since they require a schema to
+serialize at all), and a mismatch — a missing required field, a type that doesn't match the
+registered definition — throws a serialization error synchronously, in the producer's own
+process, before anything is published to the broker or written to storage.</p>
+<p>Compatibility rules (backward, forward, full) are enforced by the schema registry running an
+automated compatibility check on every new schema version registration: it diffs the new
+schema against the previous version using the same name-and-type resolution logic from the
+schema evolution lesson, and rejects the registration outright if the diff violates the
+configured compatibility mode — for example, backward compatibility rejects removing a
+required field, because an old field would then be unreadable by consumers still running the
+prior schema. This makes the "contract" a real technical gate the producer's deploy pipeline
+must pass, not a documentation promise that only humans enforce.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a <code>"pk"</code> (primary key) declaration to <code>orders_contract</code> naming
 <code>order_id</code>, and rewrite <code>validate_against_contract</code> to treat a <code>pk</code>

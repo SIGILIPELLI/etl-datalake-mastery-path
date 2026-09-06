@@ -1019,6 +1019,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2535,6 +2557,30 @@ Airflow DAGs as soon as pipelines have more than one dependent step.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>An orchestrator's core mechanism is maintaining a <strong>directed acyclic graph (DAG)</strong> of tasks
+in a metadata database, and repeatedly asking a scheduler process "which tasks are now
+eligible to run?" rather than executing steps in a fixed sequence itself.</p>
+<p>Each task node records its upstream dependencies; the scheduler polls the metadata DB on an
+interval (Airflow's scheduler loop, for instance, runs every few seconds) and marks a task
+"eligible" only once every upstream task's state is <code>success</code> in that same database. This is
+why orchestrators are resilient to their own restarts — task state lives in a database, not
+in scheduler process memory, so killing and restarting the scheduler just means it re-reads
+the same state and resumes deciding what's eligible.</p>
+<p>Actual task execution is handed off to a separate <strong>executor</strong> — a subprocess, a Celery
+worker pulling from a queue, or a Kubernetes pod spun up per task — which is a deliberate
+separation: the scheduler's job is graph bookkeeping (cheap, must stay responsive), while
+executors do the heavy lifting (a Spark job, a SQL query) and can be scaled independently or
+run on entirely different machines. When a worker reports back, it writes task state and
+<code>try_number</code> back to the metadata DB, and retries are implemented as literally re-invoking
+the same task function with an incremented try counter — which is why retried tasks must be
+idempotent: the orchestrator has no way to know if a "failed" task partially wrote data
+before crashing, it only reruns the task's code from the top.</p>
+<p>Scheduling on a calendar interval (a cron-like <code>schedule_interval</code>) works by the scheduler
+computing the next "data interval" boundary from the DAG's start date and cron expression,
+then creating a new DAG run row for that interval once its end time has passed — this is why
+a backfill for a past date range is mechanically identical to normal scheduling, just with
+DAG run rows created for past intervals instead of waiting for wall-clock time to reach them.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>run_dag</code> above to support <strong>parallel independent branches</strong> — modify
 it so that <code>steps</code> can express "step C depends on both A and B" (rather than

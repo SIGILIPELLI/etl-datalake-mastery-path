@@ -896,6 +896,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2510,6 +2532,29 @@ repeatedly through the rest of this course.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Loading is where transformed data actually becomes durable, and the mechanism a target
+system uses to accept writes determines both throughput and what "success" means.</p>
+<p>A single-row <code>INSERT</code> forces the target database to do a full round trip per row: parse SQL,
+plan, acquire a row lock (or a page latch), write to the write-ahead log (WAL), and fsync
+that log to disk before acknowledging — and a transactional database will fsync the WAL on
+every commit unless you explicitly batch commits, because durability (the "D" in ACID) is
+implemented by never acknowledging a write until it's on stable storage. This is why
+row-by-row loads are catastrophically slow at scale: you pay a full fsync latency (often
+1-10ms on spinning disks, less on SSD/NVMe but still nonzero) per row instead of amortizing it.</p>
+<p>Bulk loaders (<code>COPY</code> in Postgres, <code>LOAD DATA INFILE</code> in MySQL, warehouse <code>COPY INTO</code>
+commands) bypass this by writing many rows into a single WAL record and doing one fsync for
+the whole batch, and in many databases bulk load can also skip per-row constraint checking
+during the load and validate constraints once at the end, or skip index maintenance during
+the load and rebuild indexes afterward — both of which are only safe because the load is
+wrapped in one transaction that's atomically visible or fully rolled back.</p>
+<p>Upserts (<code>MERGE</code>/<code>INSERT ... ON CONFLICT</code>) are mechanically a read-then-write under the hood:
+the engine must locate any existing row matching the conflict key (via an index seek, which
+is why the conflict key needs an index) and then choose between an in-place update (rewriting
+the row's storage page) or an insert. Under MVCC, an "in-place" update is actually often a
+new row version written alongside the old one, with the old version left for other
+transactions' snapshots and later reclaimed by vacuum/compaction — so a heavy upsert workload
+can bloat table storage until that background reclamation catches up.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the <code>load_upsert</code> function and adapt it to load into a Parquet-based
 "table" instead of SQLite: write a function that reads the existing Parquet

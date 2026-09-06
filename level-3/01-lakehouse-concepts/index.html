@@ -1536,6 +1536,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2499,6 +2521,32 @@ your organization already runs.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A lakehouse gets ACID guarantees on top of plain object storage by inserting a <strong>transaction
+log</strong> as an authoritative, append-only record of every change to a table — the actual data
+files never change, only the log's interpretation of which files currently constitute the
+table does.</p>
+<p>Concretely (Delta Lake's mechanism, which Iceberg mirrors with different file names): every
+write operation — an append, an overwrite, a delete — is expressed as a new JSON (or, after
+enough entries, a compacted Parquet checkpoint) commit file listing which data files were
+added and which were logically removed, written to a <code>_delta_log/</code> directory with a
+monotonically increasing version number. A reader determines "what does this table currently
+look like" not by listing every Parquet file under the table's path, but by reading the log's
+latest checkpoint plus any newer commit files and replaying them to compute the current set
+of <em>live</em> data files — the actual Parquet bytes referenced by that set are unchanged from
+whenever they were originally written.</p>
+<p>Atomicity comes from how a commit is published: the writer stages new data files first (which
+are inert until referenced), then attempts to atomically create the <em>next</em> sequential log
+entry — using the object store's conditional-write ("create if not exists," or a compare-
+and-swap primitive layered on top for stores that lack it natively) to guarantee only one
+writer can successfully claim a given version number. A concurrent writer that loses this
+race sees its commit rejected, reads the newer log state, and either fails or retries by
+re-checking whether its changes still apply — this compare-and-swap-on-the-log-tail is the
+entire mechanism behind lakehouse ACID isolation, layered entirely on infrastructure (S3, GCS)
+that itself has no native multi-object transaction support.</p>
+<p>Time travel and schema versioning are then free byproducts of the same log: reading table
+state "as of version N" or "as of timestamp T" is just replaying the log only up through that
+point instead of to its current tail.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>commit</code> to also support a <code>"remove"</code> list alongside <code>"add"</code>, and
 update <code>read_table_at</code> to exclude any file that has been removed by a

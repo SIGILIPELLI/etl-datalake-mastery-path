@@ -1631,6 +1631,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2491,6 +2513,33 @@ the tens-to-low-hundreds of MB.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Lake/warehouse cost and performance optimization comes down to minimizing three mechanical
+costs that every query pays: <strong>bytes scanned, bytes shuffled, and API call count</strong> — and
+every optimization technique reduces exactly one of these.</p>
+<p><strong>Bytes scanned</strong> is reduced by everything that lets the engine skip data before reading it:
+partition pruning (skip whole partitions via catalog metadata), file-level statistics
+pruning (skip row groups via Parquet footer min/max, as covered in the file formats lesson),
+and column pruning (columnar formats let a query that references 3 of 50 columns physically
+read only those 3 columns' bytes off disk/object storage, since each column is stored as a
+separate contiguous byte range). Choosing narrower types (int32 instead of int64 where the
+range allows, avoiding storing numeric data as strings) directly shrinks the physical bytes
+per value, which compounds with columnar compression since more homogeneous, narrower data
+compresses better.</p>
+<p><strong>Bytes shuffled</strong> is the cost of moving data between compute nodes for operations that need
+data co-located by key — a <code>GROUP BY</code> or <code>JOIN</code> that isn't already partitioned by the
+grouping/join key forces the engine to redistribute rows across the network (a shuffle) so
+matching keys land on the same node. This is typically the single largest cost in a
+distributed query plan because it's bound by network I/O, not local disk I/O — which is why
+pre-partitioning or bucketing tables by a frequent join key (so a join becomes a local,
+shuffle-free merge on already co-located data) is one of the highest-leverage physical layout
+decisions.</p>
+<p><strong>API call count</strong> matters because object stores charge and rate-limit per request, largely
+independent of object size: a table split across 100,000 tiny files costs 100,000 <code>GET</code>
+requests to scan fully regardless of total bytes, versus a few hundred <code>GET</code>s against
+well-sized files — this is the mechanical link between small-file compaction (later lesson)
+and both cost and latency, since request round-trip latency, not just bandwidth, dominates
+when files are small.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using the <code>orders</code> DataFrame above, write it partitioned by <code>status</code> with
 <code>row_group_size=5_000</code> inside each partition. Then write a function

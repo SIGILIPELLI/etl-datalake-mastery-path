@@ -868,6 +868,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2488,6 +2510,28 @@ you're deduplicating <em>on</em> before comparing them.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A transformation step is, mechanically, a sequence of operations applied to an in-memory (or
+spilled-to-disk) columnar or row-oriented data structure, and which representation the engine
+uses changes what operations are cheap.</p>
+<p>Row-oriented processing (a Python loop over dict rows, or a traditional RDBMS row store)
+touches an entire record for every operation — even a transform that only rewrites one
+column still walks the whole row in memory, because row-major layout stores all of a record's
+fields contiguously. Column-oriented processing (pandas, Polars, Spark DataFrames, Arrow)
+stores each column as a contiguous typed array, so a transform on one column touches only
+that array — no other columns are read into cache at all. This is the mechanical reason
+column-oriented tools vectorize transforms into tight SIMD loops over a single data type
+instead of dispatching per-row per-field: the CPU can pipeline identical operations over
+contiguous memory far faster than it can chase pointers through mixed-type row structs.</p>
+<p>Null handling is another place where the underlying mechanism leaks through: SQL's
+three-valued logic (<code>TRUE</code>/<code>FALSE</code>/<code>UNKNOWN</code>) means <code>NULL = NULL</code> evaluates to <code>UNKNOWN</code>, not
+<code>TRUE</code>, so a transform's join or filter condition silently drops rows with nulls in the
+join key unless you explicitly handle it with <code>IS NULL</code> or <code>COALESCE</code>. Type coercion during
+transformation is also not free: casting a string column to an integer forces the engine to
+parse every value's byte representation and validate it, and a single unparseable value
+either throws (fails the whole batch) or silently becomes null (corrupts data silently)
+depending on the engine's cast semantics — which is why production transforms almost always
+wrap type coercion in an explicit try/validate step rather than relying on an implicit cast.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using the <code>raw_csv</code> above, add a new column <code>amount_flag</code> that is
 <code>"missing"</code> when the original amount was <code>NaN</code>, <code>"suspicious"</code> when the

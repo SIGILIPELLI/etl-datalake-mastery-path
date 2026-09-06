@@ -1951,6 +1951,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2519,6 +2541,33 @@ anomaly (a column vanished) even though volume looks fine.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Automated lineage capture is fundamentally an <strong>event-emission problem</strong>: lineage cannot be
+derived purely by inspecting static SQL or code, because the actual read/write relationships
+only become concrete when a job executes against specific tables and partitions — so the
+mechanism is instrumentation hooks inside each execution engine that emit structured facts
+("this job run read dataset A version X, wrote dataset B version Y") to a central lineage
+store as jobs actually run.</p>
+<p>Frameworks like OpenLineage implement this by hooking into an engine's own execution
+lifecycle (Spark's <code>QueryExecutionListener</code>, Airflow's task lifecycle callbacks) and emitting
+a start event (job name, run ID, declared inputs) and a complete event (same run ID, actual
+outputs, column-level facts if the engine exposes them) to a lineage backend over HTTP. The
+lineage graph itself is then just these events assembled into a directed graph keyed by
+dataset identity — which is why lineage accuracy depends entirely on <em>every</em> engine touching
+a dataset having this instrumentation enabled; a manual script or an untracked notebook that
+writes to the same table is invisible to the graph even though it's a real dependency.</p>
+<p>Column-level lineage (tracing which upstream columns fed a specific downstream column) goes a
+level deeper: it requires the engine to expose its query plan's column-level provenance —
+Spark's <code>Dataset</code> API can trace which input columns fed each output expression through its
+logical plan's expression tree — and this trace is only as complete as the plan analysis;
+a UDF that opaquely combines several columns internally typically breaks column-level lineage
+at that boundary because the engine has no visibility into the UDF's own internal logic,
+falling back to reporting the UDF's entire input set as feeding its output rather than a
+precise column-to-column mapping.</p>
+<p>Observability (freshness, volume, schema-drift monitors) is built as continuous queries
+against this same lineage and dataset metadata, comparing each new dataset version's stats
+against a rolling historical baseline to flag anomalies statistically rather than against a
+fixed hand-set threshold.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add column-level lineage: an <code>edges_columns</code> table recording
 <code>(upstream_table, upstream_column, downstream_table, downstream_column,

@@ -2024,6 +2024,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2488,6 +2510,32 @@ analytics without waiting on a central team to build a combined pipeline.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Data mesh's "domain ownership" is enforced technically, not just organizationally, through
+the same access-control and contract mechanisms from earlier lessons, applied at
+<strong>domain boundaries</strong> instead of at a single central platform team's discretion.</p>
+<p>Each domain team owns a distinct storage namespace (their own catalog database, their own
+bucket prefix, their own IAM roles) with write access restricted to that domain's own
+pipelines — mechanically identical to the zone-based access control from the governed-lake
+lesson, just organized by business domain instead of by raw/curated/gold. A "data product" a
+domain exposes to others is, underneath the product framing, a registered schema (the same
+schema-registry mechanism from the data contracts lesson) plus a stable, versioned interface
+(a table name, a defined set of columns, a compatibility guarantee) that other domains'
+pipelines are allowed to read via catalog-level grants — the domain's <em>internal</em> tables and
+transformation logic remain inaccessible to consumers, who only ever see the published
+product's contracted schema.</p>
+<p>The self-serve platform layer that makes this practical is mechanically a shared set of
+reusable infrastructure (a common ingestion framework, a common catalog, common
+observability tooling) that every domain team's pipelines are built on top of, rather than
+each domain independently reinventing extraction/orchestration/monitoring — this is what
+keeps decentralized ownership from fragmenting into inconsistent, unmonitorable pipelines:
+the platform enforces a consistent contract-registration and lineage-emission mechanism
+across all domains even though each domain controls its own transformation logic.</p>
+<p>Federated governance is implemented as centrally-defined policies (naming conventions,
+required metadata fields, PII classification rules) that are mechanically enforced at publish
+time — a domain's data product registration is validated against these policies by the
+platform's own catalog/registry tooling before it's allowed to become discoverable to other
+domains, which is what keeps "federated" from meaning "ungoverned."</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a <code>consumer_subscriptions</code> table (<code>consumer_domain</code>, <code>product_name</code>,
 <code>subscribed_at</code>) and a <code>breaking_change_impact(registry, product_name)</code>

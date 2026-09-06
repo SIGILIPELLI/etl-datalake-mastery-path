@@ -840,6 +840,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2489,6 +2511,29 @@ nobody thought to check.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Extraction is fundamentally about pulling rows through a <strong>cursor</strong> — a server-side pointer
+into a result set — and the mechanics of that cursor determine both performance and
+correctness.</p>
+<p>When you issue a query against a source database, the database's query planner produces an
+execution plan and starts materializing results, but it does <strong>not</strong> send the entire result
+set over the wire at once. A cursor holds the query's execution state (where it is in the
+scan, what rows have been emitted) on the server side, and the client asks for the next
+batch (<code>FETCH 10000</code>, or a driver's internal page size) on demand. This is why streaming
+extraction from a 500 GB table doesn't require 500 GB of client-side memory: memory usage is
+bounded by batch size, not table size, as long as you actually consume the cursor
+incrementally instead of calling something like <code>fetchall()</code>.</p>
+<p>Connection-level mechanics matter too: a long-running extraction holds a database connection
+(and, depending on isolation level, a snapshot or read lock) open for the whole duration.
+Under <strong>MVCC</strong> (PostgreSQL, MySQL/InnoDB), your extraction query sees a consistent snapshot
+as of the transaction's start — rows updated by other transactions <em>after</em> your snapshot was
+taken are invisible to you, which is exactly why a naive extraction plus a separate row-count
+check can appear "inconsistent" against a system that kept changing underneath it. Extracting
+via an API instead of direct SQL adds another mechanical layer: pagination tokens (cursor-
+based, not offset-based, in well-designed APIs) that encode the last-seen sort key server-
+side, because offset-based pagination (<code>LIMIT 1000 OFFSET 50000</code>) forces the database to
+recompute and discard the first 50,000 rows on every page, which degrades to O(n²) across a
+full extraction.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Combine all three sources into one <code>extract_all()</code> function that returns a
 dict <code>{"products": [...], "users": [...], "customers": [...]}</code> using the

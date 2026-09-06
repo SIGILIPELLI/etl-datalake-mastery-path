@@ -991,6 +991,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2575,6 +2597,34 @@ versa — a property Level 2's schema evolution lesson covers in more depth.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>File formats differ in how they lay bytes out on disk, and that layout decides which
+operations are fast and which are expensive.</p>
+<p><strong>CSV/JSON</strong> are row-oriented and text-encoded: every value is stored as its literal
+character representation, delimited by commas/newlines or JSON syntax. Reading even a single
+column forces the parser to scan every byte of every row because there is no way to skip
+to "just the columns you need" — the format has no internal index into itself. Numeric and
+date values must be re-parsed from text on every read (<code>"3.14159"</code> → float), which is CPU
+work paid every single time the file is read, and there's no compression scheme built in
+beyond generic gzip over the whole byte stream.</p>
+<p><strong>Parquet</strong> is columnar and binary. Internally a Parquet file is organized into <strong>row
+groups</strong> (horizontal slices of, say, 128 MB), and within each row group, data is stored
+<strong>column by column</strong>, each column split into <strong>pages</strong>. Each column chunk carries its own
+encoding — dictionary encoding for low-cardinality strings (store each distinct value once,
+reference it by integer index), run-length encoding for repeated values, delta encoding for
+sorted integers — chosen per-column based on the data's actual distribution, then further
+compressed with a general codec (Snappy, Zstd). Critically, the <strong>file footer</strong> stores
+statistics (min/max, null count) per column per row group, which is what lets a query
+engine skip entire row groups without reading their bytes at all when a filter's range falls
+outside the recorded min/max — this is the mechanical basis of predicate pushdown and
+partition pruning working <em>inside</em> a single file, not just across files.</p>
+<p><strong>Avro</strong> is row-oriented but binary and schema-carrying: the schema (as JSON) is embedded in
+the file header once, and every record after that is encoded using that schema with no
+field names repeated per row — just raw typed bytes in field order. This makes Avro fast to
+<em>write</em> (append a record, no need to rewrite existing data or recompute per-column
+statistics) and a good fit for row-at-a-time streaming ingestion, but it can't skip columns
+on read the way Parquet can, since consuming any field means deserializing the whole record
+in schema order.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the <code>nested_record</code> JSON example and write a function that flattens it
 into a single-row <code>pandas</code> DataFrame (hint: <code>pd.json_normalize</code>), then write

@@ -773,6 +773,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2483,6 +2505,30 @@ redaction), transforming in flight is still the right call.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The ETL vs. ELT choice is really a choice about <strong>where the compute engine sits relative to
+the durable storage</strong>, and that placement changes the failure and cost profile more than any
+syntax difference does.</p>
+<p>In classic ETL, the transform step runs in a separate compute tier (an ETL server, a Spark
+cluster, a Python worker) that holds the <em>entire in-flight batch in its own memory or local
+disk</em> before the load step ever touches the target. That intermediate state is invisible to
+the target system and to anyone querying it — if the transform process crashes at row
+800,000 of 1,000,000, there is no partial table to inspect; you re-run the extract from
+scratch or from a checkpoint offset you tracked yourself. The target database only ever sees
+finished, transformed rows arrive via <code>INSERT</code>/<code>COPY</code>, which is why ETL targets can enforce
+strict schemas and constraints — nothing malformed ever reaches them.</p>
+<p>ELT inverts this by loading raw bytes into the target first (a warehouse table, a lake
+object) and only then running transformation <em>as SQL or a query-engine job executed inside
+the target's own compute</em>. Mechanically this works because modern warehouses (Snowflake,
+BigQuery, Redshift, Databricks SQL) separate storage from compute: raw data lands as
+columnar files (Parquet/ORC-like internal formats) and a stateless query engine spins up
+elastic worker nodes on demand to scan and rewrite those files into new tables. The
+"transform" is compiled into a physical query plan — scan → filter → aggregate → shuffle →
+write — and executed with the same optimizer (cost-based statistics, predicate pushdown,
+partition pruning) used for ordinary analytical queries. This is why ELT scales
+transformation elastically (add more warehouse compute) while ETL scales it linearly with
+however many workers you provision on the ETL server, and why ELT keeps a durable, queryable
+copy of raw data at every stage even if a downstream transform step fails halfway through.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the <code>raw_csv</code> above and add two more rows: one with a <code>plan</code> value of
 <code>"Enterprise "</code> (mixed case, trailing space) and one that is an exact

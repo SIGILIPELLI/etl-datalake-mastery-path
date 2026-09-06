@@ -1283,6 +1283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2530,6 +2552,31 @@ of Module 6.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Airflow's architecture separates <strong>DAG parsing</strong>, <strong>scheduling</strong>, and <strong>execution</strong> into
+distinct processes that communicate only through the metadata database — understanding that
+separation explains most of Airflow's operational behavior.</p>
+<p>The <strong>DAG file processor</strong> periodically re-imports every Python file in the DAGs folder,
+literally executing the module's top-level code to rebuild the DAG object in memory, then
+serializes that DAG structure into the metadata database. This is why heavy top-level code in
+a DAG file (an API call, a database query used just to <em>define</em> tasks dynamically) is a
+real performance problem: it re-executes on every parse cycle, not once — the DAG file
+processor doesn't know the difference between "code that builds the graph" and "code that
+happens to run at import time."</p>
+<p>The <strong>scheduler</strong> doesn't execute tasks; it only queries the metadata DB for DAG runs and
+task instances, evaluates each task's upstream dependencies and trigger rules against the
+DB's current state, and for every task now eligible, writes a row into an execution queue
+(the executor's task queue — Celery's broker, or the Kubernetes API for pod creation). The
+<strong>executor</strong> is what actually launches work: CeleryExecutor hands a task to a distributed
+worker pool via a message broker (Redis/RabbitMQ), KubernetesExecutor creates a fresh pod
+per task. Either way, the running task process itself talks back to the metadata DB directly
+to report <code>success</code>/<code>failed</code>, which is why Airflow workers need direct DB (or DB-proxy)
+connectivity, not just a connection to the scheduler.</p>
+<p>XComs (task-to-task data passing) are implemented as small rows written to a dedicated
+metadata table, keyed by DAG run, task, and key — this is a deliberate design constraint,
+not an oversight: XComs are meant for small values (a file path, a row count, a boolean),
+because passing a large DataFrame through XCom means serializing it into the metadata
+database, which was built for control-plane bookkeeping, not bulk data transfer.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>orders_pipeline</code> with a <code>@task.branch</code> that checks a data quality
 flag returned by <code>validate_and_load_silver</code> and routes to either

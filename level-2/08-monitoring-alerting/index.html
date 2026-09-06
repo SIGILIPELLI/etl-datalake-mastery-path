@@ -1356,6 +1356,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2475,6 +2497,32 @@ of a vague "something's wrong."</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Pipeline monitoring is built on three distinct signal mechanisms, and each one detects a
+different failure mode because each one is measuring a different layer of the system.</p>
+<p><strong>Orchestrator-level state</strong> (task success/failure, run duration) is read directly from the
+scheduler's own metadata database — it detects "did the code run and exit 0," which catches
+crashes, timeouts, and dependency failures, but is mechanically blind to a job that ran
+successfully while silently producing wrong data (a <code>SELECT</code> that returns zero rows due to an
+upstream schema change isn't a task failure at all).</p>
+<p><strong>Data-level metrics</strong> (row counts, freshness lag, null rates) require an actual query
+against the data itself, run either as a dedicated check task in the DAG or as a separate
+process scanning table metadata — freshness specifically is usually computed as
+<code>now() - MAX(event_timestamp)</code>, which only works if the underlying table's max-timestamp
+column is itself indexed or is the partition key, otherwise that "cheap freshness check"
+degrades into a full table scan. This is the layer that catches silent corruption: a task
+that reports <code>success</code> but wrote zero new rows, or wrote rows with an unexpectedly high null
+rate, shows up here even though the orchestrator sees a green run.</p>
+<p><strong>Infrastructure metrics</strong> (CPU, memory, disk I/O, queue depth) come from the underlying
+compute layer's own instrumentation (cluster manager metrics, container runtime stats) and
+catch resource exhaustion before it manifests as a task failure — a Spark executor
+approaching its memory limit shows up as rising GC time and spill-to-disk metrics well before
+it triggers an OOM kill.</p>
+<p>Alert <em>fatigue</em> is a direct consequence of how these signals compose: wiring every metric to
+fire independently means a single root cause (say, a source outage) triggers orchestrator
+failure alerts, freshness alerts, and row-count alerts simultaneously — which is why mature
+monitoring correlates these into one incident rather than three, typically by suppressing
+downstream alerts once an upstream dependency is already known-failed.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a fourth check, <code>schema_anomaly</code>, that flags a run if its <code>rows_out</code>
 column count differs from the previous run's (simulate this with an added

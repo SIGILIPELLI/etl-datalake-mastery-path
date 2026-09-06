@@ -2108,6 +2108,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2276,6 +2287,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2461,6 +2483,33 @@ abstract.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>At platform scale, cost governance works by attaching <strong>cost attribution metadata to every
+compute and storage resource at the moment it's provisioned</strong>, then aggregating usage against
+that metadata — without this tagging mechanism, a shared warehouse or lake has no way to
+answer "which team's query cost this," because usage is metered at the resource level (a
+warehouse's compute-seconds, a bucket's storage-bytes and request-count), not natively at the
+level of "which team ran this."</p>
+<p>Concretely, this means every query, job, or storage prefix is tagged (a warehouse's query tag
+or resource monitor, an IAM role per team assumed for every job that role runs, a
+cost-allocation tag on storage buckets/prefixes) and the cloud/warehouse's own billing or
+usage-metering API is queried and joined against those tags after the fact to produce
+per-team cost reports — this is fundamentally a metadata-correlation problem, and it breaks
+down wherever tagging is inconsistent (an ad hoc query run outside any tagged role becomes
+unattributed "shared" cost that no one is accountable for).</p>
+<p>Enforcement mechanisms operate at the same resource-provisioning layer: a warehouse's
+resource monitor can suspend a virtual warehouse once its metered credit consumption crosses
+a threshold within a billing period (a hard, automatic cutoff enforced by the warehouse's own
+scheduler, not a policy someone has to notice and act on), and storage lifecycle policies
+(S3 lifecycle rules transitioning objects to cheaper storage classes after N days, or
+expiring them entirely) execute as background jobs the object store itself runs against
+object metadata (last-modified timestamps), independent of any pipeline needing to remember
+to clean up after itself. Chargeback/showback reporting is only as accurate as the
+underlying tag coverage and the granularity of the billing API's own usage records — most
+cloud billing exports usage at hourly or daily granularity, which is why fine-grained
+per-query cost attribution usually requires the query engine's own execution metrics (bytes
+scanned, compute-seconds) as a proxy, cross-referenced against the coarser billing total
+rather than derived from billing data alone.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a <code>top_cost_drivers(cost_db, cost_center, top_n=3)</code> function that
 returns the specific resources (not just the team total) responsible for

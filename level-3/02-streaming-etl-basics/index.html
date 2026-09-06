@@ -1564,6 +1564,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2486,6 +2508,34 @@ module.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Streaming ETL processes an unbounded sequence of events using <strong>micro-batches or continuous
+operators over a bounded window of state</strong>, and the mechanism for tracking "how much have we
+processed" is fundamentally different from batch's watermark-column approach.</p>
+<p>A streaming consumer (a Kafka consumer, a Kinesis client) reads from a <strong>partitioned,
+ordered log</strong> — each partition guarantees order only within itself, not across partitions —
+and tracks its position via an <strong>offset</strong>: a monotonically increasing integer per partition
+that the consumer periodically commits back to the broker (or to its own checkpoint store).
+Processing "exactly once" is mechanically hard because there are two independent
+side effects that must be made atomic together: committing the consumer offset (marking
+"I've read this") and writing the processed output somewhere (marking "I've acted on this").
+If these commit separately, a crash between them produces either a re-read (offset not yet
+committed, output already written — duplicate) or a skip (offset committed, output write
+lost). Frameworks solve this either via <strong>idempotent output writes</strong> keyed by offset (so
+reprocessing the same offset overwrites rather than duplicates) or via <strong>transactional
+writes</strong> that atomically commit the offset and the output together in one broker-coordinated
+transaction (Kafka's exactly-once semantics via transactional producers).</p>
+<p>Windowing (tumbling, sliding, session windows) requires the engine to hold <strong>partial
+aggregation state</strong> in memory (or a state store like RocksDB) keyed by window boundary,
+updating it incrementally as each event arrives rather than waiting to see the whole window's
+events at once — this is only correct if events arrive close to their <strong>event-time</strong> order.
+Out-of-order arrival is handled via a <strong>watermark</strong> (a different concept from the batch
+extraction watermark: here it's the engine's own estimate of "how late can an event be and
+still get counted"), computed from the maximum event-time seen so far minus an allowed
+lateness — once the watermark passes a window's end, the engine finalizes and emits that
+window's aggregate and discards its in-memory state, which is why late-arriving data past the
+allowed lateness bound is mechanically impossible to include without triggering a special
+"late data" side path.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a <strong>sliding window</strong> variant: instead of <code>tumbling_window_key</code>, write
 <code>sliding_window_keys(event_time, size_seconds, slide_seconds)</code> that returns

@@ -1069,6 +1069,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2591,6 +2613,28 @@ twice from an upstream retry, not new information.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Wiring extraction, transformation, loading, and lake storage into one pipeline surfaces a
+mechanical property none of the individual stages show alone: <strong>each stage boundary is a
+durability checkpoint, and the pipeline's overall correctness is only as strong as the
+weakest checkpoint.</strong></p>
+<p>When extraction writes to bronze, that write only becomes "safe" once the object store
+acknowledges the <code>PUT</code> — before that ack, a crash means the data simply doesn't exist yet and
+a rerun from the source is exactly correct. But once bronze exists and a downstream
+transform job has <em>started</em> reading it, a crash partway through the transform leaves an
+ambiguous state: some output files for this run may exist, some may not, and naively
+rerunning without cleanup produces duplicate rows in silver. This is why real pipelines make
+each stage's output <strong>atomic at the partition level</strong> — write all of a run's output files to
+a temporary/staging prefix, then perform one atomic "commit" (an object store rename-like
+operation, or in lakehouse formats, one transaction log entry) that makes the whole batch
+visible at once, so a crash before that commit leaves zero visible new data, not partial data.</p>
+<p>The orchestrator's role in this capstone is to track <em>which partition each stage has
+successfully committed</em>, typically via the same watermark/run-state mechanism from earlier
+lessons, persisted outside any single stage's process memory. Passing a partition key or run
+ID explicitly from extraction through load (rather than each stage independently guessing
+"what's new") is what makes reruns idempotent end-to-end: rerunning stage 2 for partition
+<code>2024-03-01</code> overwrites (not appends to) that exact partition's output files, so a retry
+converges to the same final state instead of accumulating duplicates.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a second day's raw CSV (<code>2026-08-30</code>) with at least one brand-new order,
 one that corrects a previous day's rejected row (fix order 2004's amount to

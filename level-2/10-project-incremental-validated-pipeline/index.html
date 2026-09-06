@@ -1445,6 +1445,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2610,6 +2632,28 @@ no duplication, no manual cleanup.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Combining incremental extraction, validation, and idempotent loading into one pipeline
+exposes the mechanical dependency chain between these pieces: <strong>the watermark used for
+extraction and the key used for idempotent loading must refer to the same logical unit of
+work, or reruns and incremental catch-up interact in ways that silently corrupt state.</strong></p>
+<p>Consider what happens when a validation check fails partway through a run: the extraction
+step has already advanced its watermark (if advanced eagerly) or has not (if advanced only on
+full success). If the watermark is advanced <em>before</em> validation confirms the batch is good,
+a failed validation followed by a fix-and-rerun will use a watermark that has already moved
+past the bad batch — the rerun will pull the <em>next</em> incremental window, permanently skipping
+the rows that failed validation. This is why correct designs advance the watermark only after
+the full chain (extract → validate → load) commits successfully for a given run, treating the
+watermark update itself as the final, atomic "this run is done" signal rather than an
+independent early step.</p>
+<p>The load step's upsert key must also be derived from the same logical partition the
+watermark advances over — typically the source's own change-tracking column or an explicit
+batch/run identifier — so that a rerun of a given incremental window is a true overwrite of
+exactly that window's rows, not an append alongside them and not an accidental overwrite of
+an adjacent window. Getting this alignment right is what makes the whole pipeline safely
+rerunnable end-to-end: any stage can fail, and rerunning from that stage forward (using the
+same run's watermark boundaries and keys) converges to the same correct final state instead
+of requiring manual cleanup of partial or duplicate data.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Add a <code>quarantine/</code> path: when <code>validate()</code> raises, catch the exception in
 the run loop, write the <em>offending batch</em> (not just an error message) to

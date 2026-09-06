@@ -1996,6 +1996,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2460,6 +2482,35 @@ benefit while paying all of the operational cost.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The practical differences between a warehouse, a lake, and a lakehouse trace back to how
+tightly storage and compute are coupled, and what data structure sits between raw bytes and
+the query engine.</p>
+<p>A traditional <strong>warehouse</strong> (Snowflake, Redshift, BigQuery) stores data in its own
+proprietary internal columnar format, managed entirely by the warehouse's own storage engine
+— you cannot point an arbitrary external tool at the raw bytes and get useful data out,
+because the format and its metadata are private to that vendor's engine. This tight coupling
+is exactly what lets warehouses guarantee strong transactional consistency and highly tuned
+query performance (engine-specific statistics, proprietary indexing/clustering) with no need
+for a general-purpose transaction log, but it also means moving data out or querying it with
+a different engine requires an explicit export/unload step.</p>
+<p>A raw <strong>lake</strong> stores open formats (Parquet, ORC) directly in general-purpose object storage
+with no transactional layer, as covered earlier — any engine that understands Parquet can
+read the files directly, but there's no ACID guarantee across multi-file operations and no
+built-in schema versioning; correctness of concurrent writes is left entirely to
+pipeline-level discipline (careful partition-level overwrite patterns) rather than the
+storage layer enforcing it.</p>
+<p>A <strong>lakehouse</strong> (Delta Lake, Iceberg, Hudi) is the lake plus the transaction-log mechanism
+from earlier lessons layered on top of the same open file formats in the same general-purpose
+object storage — it gets the warehouse's transactional guarantees and schema management
+<em>without</em> the storage format being proprietary, because the actual data files remain plain
+Parquet readable by any compliant engine, and only the log's interpretation layer is
+format-specific. The real-world tradeoff is that a lakehouse's transaction log adds
+read-path overhead (every query must first resolve the log to know which files are current)
+that a native warehouse doesn't pay in the same way, and lakehouse write performance depends
+on the optimistic-concurrency commit succeeding, which degrades under very high write
+concurrency to the same table in a way a warehouse's more centralized transaction manager
+often handles more gracefully.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>recommend_architecture</code> with a <code>data_volume_tb</code> and
 <code>team_size</code> parameter, and add a rule: below some threshold (e.g., under 1TB
