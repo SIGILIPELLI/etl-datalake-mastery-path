@@ -167,6 +167,35 @@ not an afterthought.
 | Check column cardinality | `series.nunique()` |
 | Rule of thumb | Partition on what's low-cardinality *and* commonly filtered |
 
+## How It Actually Works
+
+Partitioning's entire performance benefit comes from one mechanism: letting a query engine
+**skip reading files it can prove are irrelevant**, based on metadata alone, before touching
+any actual row data.
+
+When a table is partitioned by a column (commonly a date), that column's value is encoded
+into the *file path itself* — `s3://bucket/table/dt=2024-03-01/part-0001.parquet` — rather
+than stored as an ordinary column inside every row. A query engine's planner first lists the
+partition directories (via the catalog, which caches this listing so it doesn't need to hit
+the object store's `LIST` API on every query) and compares the query's `WHERE dt = ...`
+predicate against each partition's path value; partitions that can't match are dropped from
+the physical plan before a single byte of Parquet data is read. This is **partition
+pruning**, and its cost savings are proportional to how selective the filter is against the
+partition key — filtering to one day out of three years of daily partitions means the engine
+only opens roughly 1/1095th of the table's files.
+
+The mechanical trap is over-partitioning: partitioning by a high-cardinality column (a raw
+`user_id`, or an hour granularity on a low-volume table) produces many small files per
+partition, and every file carries fixed overhead — a Parquet footer, an object store `GET`
+request's per-call latency (often several milliseconds regardless of file size), and, in the
+catalog, one metadata entry per partition. List and plan-time cost for the catalog to
+enumerate thousands of partitions can end up larger than the scan savings partitioning was
+meant to provide — this is the "small files problem" that shows up again with compaction.
+Choosing a partition column is therefore a bet on your queries' actual filter patterns: the
+column should be low-to-medium cardinality, and should be the column most queries filter on,
+because pruning only helps queries whose predicates the planner can statically match against
+partition boundaries.
+
 ## Exercise
 
 Given a table with columns `region` (5 values), `order_date` (365 values/

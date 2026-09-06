@@ -187,6 +187,35 @@ safe 80% of schema changes and only page a human for the risky 20%.
 | Column rename | No — always looks like remove+add |
 | Column removal | No — review (may be a rename) |
 
+## How It Actually Works
+
+Schema evolution's safety hinges entirely on **how the reader resolves a mismatch between the
+schema a file was written with and the schema the reader currently expects** — and this
+resolution mechanism differs by format.
+
+Parquet and Avro both embed a writer schema in every file (Parquet in the footer, Avro in the
+header), and readers perform **schema resolution** by matching fields *by name* (not
+position) between the writer's schema and the reader's expected schema. This is why adding a
+new nullable column is safe: old files simply don't have that field name in their writer
+schema, so the reader fills it with `NULL` for every row from that file, and no rewrite of
+old files is ever required. Dropping a column is also safe for the same reason in reverse:
+readers that still expect it will get null/default, and readers that don't reference it never
+notice. Renaming or changing a field's type, however, breaks name-based resolution — a
+renamed column looks to the reader like "old field disappeared, new field appeared," and a
+type change (int32 → string) requires the reader's format to define an explicit promotion
+rule or it fails outright, because the raw bytes for an int32 and a UTF-8 string are not
+interchangeable at the byte level.
+
+Table formats with a transaction log (Delta Lake, Iceberg) go further: they store the
+*current logical schema* as a versioned object in the log itself, separate from what's
+embedded in any individual data file, and every file addition record in the log carries the
+schema ID it was written under. This is what enables safe column reordering and controlled
+type widening independent of physical file layout — the engine consults the log's schema
+history to know how to map an old file's columns onto the current logical schema, rather than
+inferring it file-by-file. Without this log, schema evolution across a lake of plain Parquet
+files depends entirely on every reader independently doing correct name-based resolution and
+agreeing on evolution rules — which is exactly the gap Iceberg/Delta close.
+
 ## Exercise
 
 Write a function `apply_schema_policy(existing_df, incoming_df)` that runs

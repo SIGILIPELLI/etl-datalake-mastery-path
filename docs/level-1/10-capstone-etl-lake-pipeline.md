@@ -214,6 +214,32 @@ Pipeline complete for 2026-08-29: 3 clean, 2 rejected, gold summary has 2 status
 | 08 · File formats | Parquet used throughout for typed, columnar storage |
 | 09 · Orchestration | `run_pipeline()` is exactly the function a scheduler would call daily |
 
+## How It Actually Works
+
+Wiring extraction, transformation, loading, and lake storage into one pipeline surfaces a
+mechanical property none of the individual stages show alone: **each stage boundary is a
+durability checkpoint, and the pipeline's overall correctness is only as strong as the
+weakest checkpoint.**
+
+When extraction writes to bronze, that write only becomes "safe" once the object store
+acknowledges the `PUT` — before that ack, a crash means the data simply doesn't exist yet and
+a rerun from the source is exactly correct. But once bronze exists and a downstream
+transform job has *started* reading it, a crash partway through the transform leaves an
+ambiguous state: some output files for this run may exist, some may not, and naively
+rerunning without cleanup produces duplicate rows in silver. This is why real pipelines make
+each stage's output **atomic at the partition level** — write all of a run's output files to
+a temporary/staging prefix, then perform one atomic "commit" (an object store rename-like
+operation, or in lakehouse formats, one transaction log entry) that makes the whole batch
+visible at once, so a crash before that commit leaves zero visible new data, not partial data.
+
+The orchestrator's role in this capstone is to track *which partition each stage has
+successfully committed*, typically via the same watermark/run-state mechanism from earlier
+lessons, persisted outside any single stage's process memory. Passing a partition key or run
+ID explicitly from extraction through load (rather than each stage independently guessing
+"what's new") is what makes reruns idempotent end-to-end: rerunning stage 2 for partition
+`2024-03-01` overwrites (not appends to) that exact partition's output files, so a retry
+converges to the same final state instead of accumulating duplicates.
+
 ## Exercise
 
 Add a second day's raw CSV (`2026-08-30`) with at least one brand-new order,

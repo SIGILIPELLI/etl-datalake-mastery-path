@@ -201,6 +201,39 @@ versa — a property Level 2's schema evolution lesson covers in more depth.
 | Fast, large-scale analytical queries | Parquet |
 | Streaming, row-by-row writes with evolving schema | Avro |
 
+## How It Actually Works
+
+File formats differ in how they lay bytes out on disk, and that layout decides which
+operations are fast and which are expensive.
+
+**CSV/JSON** are row-oriented and text-encoded: every value is stored as its literal
+character representation, delimited by commas/newlines or JSON syntax. Reading even a single
+column forces the parser to scan every byte of every row because there is no way to skip
+to "just the columns you need" — the format has no internal index into itself. Numeric and
+date values must be re-parsed from text on every read (`"3.14159"` → float), which is CPU
+work paid every single time the file is read, and there's no compression scheme built in
+beyond generic gzip over the whole byte stream.
+
+**Parquet** is columnar and binary. Internally a Parquet file is organized into **row
+groups** (horizontal slices of, say, 128 MB), and within each row group, data is stored
+**column by column**, each column split into **pages**. Each column chunk carries its own
+encoding — dictionary encoding for low-cardinality strings (store each distinct value once,
+reference it by integer index), run-length encoding for repeated values, delta encoding for
+sorted integers — chosen per-column based on the data's actual distribution, then further
+compressed with a general codec (Snappy, Zstd). Critically, the **file footer** stores
+statistics (min/max, null count) per column per row group, which is what lets a query
+engine skip entire row groups without reading their bytes at all when a filter's range falls
+outside the recorded min/max — this is the mechanical basis of predicate pushdown and
+partition pruning working *inside* a single file, not just across files.
+
+**Avro** is row-oriented but binary and schema-carrying: the schema (as JSON) is embedded in
+the file header once, and every record after that is encoded using that schema with no
+field names repeated per row — just raw typed bytes in field order. This makes Avro fast to
+*write* (append a record, no need to rewrite existing data or recompute per-column
+statistics) and a good fit for row-at-a-time streaming ingestion, but it can't skip columns
+on read the way Parquet can, since consuming any field means deserializing the whole record
+in schema order.
+
 ## Exercise
 
 Take the `nested_record` JSON example and write a function that flattens it

@@ -183,6 +183,33 @@ nobody thought to check.
 | API | One page per request | Empty page / no next-page token |
 | Database | Query result set | Query returns 0 rows (or reaches the watermark, Level 2) |
 
+## How It Actually Works
+
+Extraction is fundamentally about pulling rows through a **cursor** — a server-side pointer
+into a result set — and the mechanics of that cursor determine both performance and
+correctness.
+
+When you issue a query against a source database, the database's query planner produces an
+execution plan and starts materializing results, but it does **not** send the entire result
+set over the wire at once. A cursor holds the query's execution state (where it is in the
+scan, what rows have been emitted) on the server side, and the client asks for the next
+batch (`FETCH 10000`, or a driver's internal page size) on demand. This is why streaming
+extraction from a 500 GB table doesn't require 500 GB of client-side memory: memory usage is
+bounded by batch size, not table size, as long as you actually consume the cursor
+incrementally instead of calling something like `fetchall()`.
+
+Connection-level mechanics matter too: a long-running extraction holds a database connection
+(and, depending on isolation level, a snapshot or read lock) open for the whole duration.
+Under **MVCC** (PostgreSQL, MySQL/InnoDB), your extraction query sees a consistent snapshot
+as of the transaction's start — rows updated by other transactions *after* your snapshot was
+taken are invisible to you, which is exactly why a naive extraction plus a separate row-count
+check can appear "inconsistent" against a system that kept changing underneath it. Extracting
+via an API instead of direct SQL adds another mechanical layer: pagination tokens (cursor-
+based, not offset-based, in well-designed APIs) that encode the last-seen sort key server-
+side, because offset-based pagination (`LIMIT 1000 OFFSET 50000`) forces the database to
+recompute and discard the first 50,000 rows on every page, which degrades to O(n²) across a
+full extraction.
+
 ## Exercise
 
 Combine all three sources into one `extract_all()` function that returns a

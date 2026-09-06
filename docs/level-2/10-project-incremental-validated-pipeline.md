@@ -239,6 +239,32 @@ no duplication, no manual cleanup.
 | Deduplicated current view | `upsert_silver(df)` |
 | Advance state only on success | `STATE_FILE.write_text(new_watermark)` |
 
+## How It Actually Works
+
+Combining incremental extraction, validation, and idempotent loading into one pipeline
+exposes the mechanical dependency chain between these pieces: **the watermark used for
+extraction and the key used for idempotent loading must refer to the same logical unit of
+work, or reruns and incremental catch-up interact in ways that silently corrupt state.**
+
+Consider what happens when a validation check fails partway through a run: the extraction
+step has already advanced its watermark (if advanced eagerly) or has not (if advanced only on
+full success). If the watermark is advanced *before* validation confirms the batch is good,
+a failed validation followed by a fix-and-rerun will use a watermark that has already moved
+past the bad batch — the rerun will pull the *next* incremental window, permanently skipping
+the rows that failed validation. This is why correct designs advance the watermark only after
+the full chain (extract → validate → load) commits successfully for a given run, treating the
+watermark update itself as the final, atomic "this run is done" signal rather than an
+independent early step.
+
+The load step's upsert key must also be derived from the same logical partition the
+watermark advances over — typically the source's own change-tracking column or an explicit
+batch/run identifier — so that a rerun of a given incremental window is a true overwrite of
+exactly that window's rows, not an append alongside them and not an accidental overwrite of
+an adjacent window. Getting this alignment right is what makes the whole pipeline safely
+rerunnable end-to-end: any stage can fail, and rerunning from that stage forward (using the
+same run's watermark boundaries and keys) converges to the same correct final state instead
+of requiring manual cleanup of partial or duplicate data.
+
 ## Exercise
 
 Add a `quarantine/` path: when `validate()` raises, catch the exception in

@@ -172,6 +172,35 @@ SUM(amount) WHERE region='eu' AND amount >= 100 -> 20648.71 over 133 rows
 | Predicate pushdown | Skip row groups using Parquet statistics before decompressing |
 | Aggregation | Combine partial results (map-reduce style) into the final answer |
 
+## How It Actually Works
+
+A query engine's core mechanism is compiling a declarative SQL query into a **physical
+execution plan** — a tree of operators (scan, filter, join, aggregate, shuffle) — and then
+executing that plan across a fleet of distributed workers, with the engine's cost-based
+optimizer choosing between multiple valid physical plans based on estimated cost.
+
+The planner first produces a **logical plan** (a relational-algebra tree representing what
+the query means, independent of how it will be executed), then transforms it into a
+**physical plan** by choosing concrete algorithms for each operator: a join might be executed
+as a broadcast join (replicate the smaller table to every worker, avoid a shuffle entirely —
+chosen when the optimizer's row-count/byte-size statistics say one side is small enough to
+fit in each worker's memory) or a shuffle/sort-merge join (redistribute both tables by join
+key across the network, chosen when both sides are large). This decision is made using
+**statistics** the engine has about the tables involved — row counts, column cardinality, and
+for lake tables, the same Parquet footer and catalog-partition statistics from earlier lessons
+— which is exactly why running `ANALYZE`/collecting fresh statistics on a table can change a
+query's plan and performance dramatically: stale statistics lead the optimizer to
+underestimate a table's size and choose a broadcast join that then runs out of memory.
+
+Execution across a distributed engine (Spark, Presto/Trino) proceeds in **stages** separated
+by shuffle boundaries: each stage runs many parallel tasks (one per data partition) that can
+execute independently without cross-task communication, and a stage only starts once its
+upstream stage's shuffle output is fully written, because downstream tasks need to read
+shuffle partitions that may originate from any upstream task. This staged, shuffle-bounded
+execution model is why a single slow or skewed task (one partition with disproportionately
+more rows than others — data skew) can stall an entire stage: every downstream task in the
+next stage waits on the slowest upstream task's shuffle output before it can even start.
+
 ## Exercise
 
 Extend `run_query` to also accept a `group_by` column (e.g., `"region"`)

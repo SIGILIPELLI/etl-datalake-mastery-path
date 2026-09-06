@@ -164,6 +164,38 @@ the tens-to-low-hundreds of MB.
 | Compression codec | `snappy` (fast reads) vs. `zstd`/`gzip` (smaller, more CPU) |
 | Row group size | Statistics granularity for predicate pushdown vs. per-group overhead |
 
+## How It Actually Works
+
+Lake/warehouse cost and performance optimization comes down to minimizing three mechanical
+costs that every query pays: **bytes scanned, bytes shuffled, and API call count** — and
+every optimization technique reduces exactly one of these.
+
+**Bytes scanned** is reduced by everything that lets the engine skip data before reading it:
+partition pruning (skip whole partitions via catalog metadata), file-level statistics
+pruning (skip row groups via Parquet footer min/max, as covered in the file formats lesson),
+and column pruning (columnar formats let a query that references 3 of 50 columns physically
+read only those 3 columns' bytes off disk/object storage, since each column is stored as a
+separate contiguous byte range). Choosing narrower types (int32 instead of int64 where the
+range allows, avoiding storing numeric data as strings) directly shrinks the physical bytes
+per value, which compounds with columnar compression since more homogeneous, narrower data
+compresses better.
+
+**Bytes shuffled** is the cost of moving data between compute nodes for operations that need
+data co-located by key — a `GROUP BY` or `JOIN` that isn't already partitioned by the
+grouping/join key forces the engine to redistribute rows across the network (a shuffle) so
+matching keys land on the same node. This is typically the single largest cost in a
+distributed query plan because it's bound by network I/O, not local disk I/O — which is why
+pre-partitioning or bucketing tables by a frequent join key (so a join becomes a local,
+shuffle-free merge on already co-located data) is one of the highest-leverage physical layout
+decisions.
+
+**API call count** matters because object stores charge and rate-limit per request, largely
+independent of object size: a table split across 100,000 tiny files costs 100,000 `GET`
+requests to scan fully regardless of total bytes, versus a few hundred `GET`s against
+well-sized files — this is the mechanical link between small-file compaction (later lesson)
+and both cost and latency, since request round-trip latency, not just bandwidth, dominates
+when files are small.
+
 ## Exercise
 
 Using the `orders` DataFrame above, write it partitioned by `status` with

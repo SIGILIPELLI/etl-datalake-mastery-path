@@ -150,6 +150,40 @@ benefit while paying all of the operational cost.
 | Same data needs both BI and ML, or needs ACID + existing lake tooling | Lakehouse |
 | No update/ACID need at all | Whichever is simplest to operate — usually not a lakehouse |
 
+## How It Actually Works
+
+The practical differences between a warehouse, a lake, and a lakehouse trace back to how
+tightly storage and compute are coupled, and what data structure sits between raw bytes and
+the query engine.
+
+A traditional **warehouse** (Snowflake, Redshift, BigQuery) stores data in its own
+proprietary internal columnar format, managed entirely by the warehouse's own storage engine
+— you cannot point an arbitrary external tool at the raw bytes and get useful data out,
+because the format and its metadata are private to that vendor's engine. This tight coupling
+is exactly what lets warehouses guarantee strong transactional consistency and highly tuned
+query performance (engine-specific statistics, proprietary indexing/clustering) with no need
+for a general-purpose transaction log, but it also means moving data out or querying it with
+a different engine requires an explicit export/unload step.
+
+A raw **lake** stores open formats (Parquet, ORC) directly in general-purpose object storage
+with no transactional layer, as covered earlier — any engine that understands Parquet can
+read the files directly, but there's no ACID guarantee across multi-file operations and no
+built-in schema versioning; correctness of concurrent writes is left entirely to
+pipeline-level discipline (careful partition-level overwrite patterns) rather than the
+storage layer enforcing it.
+
+A **lakehouse** (Delta Lake, Iceberg, Hudi) is the lake plus the transaction-log mechanism
+from earlier lessons layered on top of the same open file formats in the same general-purpose
+object storage — it gets the warehouse's transactional guarantees and schema management
+*without* the storage format being proprietary, because the actual data files remain plain
+Parquet readable by any compliant engine, and only the log's interpretation layer is
+format-specific. The real-world tradeoff is that a lakehouse's transaction log adds
+read-path overhead (every query must first resolve the log to know which files are current)
+that a native warehouse doesn't pay in the same way, and lakehouse write performance depends
+on the optimistic-concurrency commit succeeding, which degrades under very high write
+concurrency to the same table in a way a warehouse's more centralized transaction manager
+often handles more gracefully.
+
 ## Exercise
 
 Extend `recommend_architecture` with a `data_volume_tb` and

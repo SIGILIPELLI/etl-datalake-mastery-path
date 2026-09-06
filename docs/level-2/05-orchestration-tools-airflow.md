@@ -203,6 +203,36 @@ of Module 6.
 | Wait on a condition | `@task.sensor(poke_interval=..., mode="reschedule")` |
 | Backfill | `airflow dags backfill <dag_id> --start-date ... --end-date ...` |
 
+## How It Actually Works
+
+Airflow's architecture separates **DAG parsing**, **scheduling**, and **execution** into
+distinct processes that communicate only through the metadata database — understanding that
+separation explains most of Airflow's operational behavior.
+
+The **DAG file processor** periodically re-imports every Python file in the DAGs folder,
+literally executing the module's top-level code to rebuild the DAG object in memory, then
+serializes that DAG structure into the metadata database. This is why heavy top-level code in
+a DAG file (an API call, a database query used just to *define* tasks dynamically) is a
+real performance problem: it re-executes on every parse cycle, not once — the DAG file
+processor doesn't know the difference between "code that builds the graph" and "code that
+happens to run at import time."
+
+The **scheduler** doesn't execute tasks; it only queries the metadata DB for DAG runs and
+task instances, evaluates each task's upstream dependencies and trigger rules against the
+DB's current state, and for every task now eligible, writes a row into an execution queue
+(the executor's task queue — Celery's broker, or the Kubernetes API for pod creation). The
+**executor** is what actually launches work: CeleryExecutor hands a task to a distributed
+worker pool via a message broker (Redis/RabbitMQ), KubernetesExecutor creates a fresh pod
+per task. Either way, the running task process itself talks back to the metadata DB directly
+to report `success`/`failed`, which is why Airflow workers need direct DB (or DB-proxy)
+connectivity, not just a connection to the scheduler.
+
+XComs (task-to-task data passing) are implemented as small rows written to a dedicated
+metadata table, keyed by DAG run, task, and key — this is a deliberate design constraint,
+not an oversight: XComs are meant for small values (a file path, a row count, a boolean),
+because passing a large DataFrame through XCom means serializing it into the metadata
+database, which was built for control-plane bookkeeping, not bulk data transfer.
+
 ## Exercise
 
 Extend `orders_pipeline` with a `@task.branch` that checks a data quality

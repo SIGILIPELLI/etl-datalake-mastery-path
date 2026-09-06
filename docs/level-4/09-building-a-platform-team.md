@@ -162,6 +162,35 @@ made table reliability accountable.
 | Platform-wide incident response | On-call for their own pipeline's failures |
 | Self-service tooling, adoption tracking | Actually using the self-service tools |
 
+## How It Actually Works
+
+A platform team's leverage comes from building **shared, reusable infrastructure components
+that other teams' pipelines call into**, rather than each pipeline reimplementing the same
+mechanics — and the technical shape of "self-service" is specifically an API or template
+surface that encodes correct-by-construction versions of the mechanisms covered throughout
+this course.
+
+Concretely, this usually means the platform team owns and operates the shared transaction-log
+lakehouse catalog, the shared orchestrator's execution infrastructure (workers, connection
+pools to source systems, secrets management), and a set of reusable pipeline templates or
+libraries that already implement idempotent upserts, watermark tracking, schema-contract
+validation, and standardized lineage emission — so an individual domain team building a new
+pipeline is composing these pre-built, already-correct primitives rather than re-deriving
+idempotency or CDC handling from scratch. This is the direct mechanical reason a platform
+team multiplies effectiveness: fixing a subtle correctness bug (say, in how the shared
+CDC-to-lakehouse connector handles out-of-order LSNs) fixes it for every pipeline built on
+that shared component simultaneously, instead of requiring N separate teams to each discover
+and fix the same bug independently in their own bespoke code.
+
+Governance-as-code (embedding compliance and access-control policy directly into the
+platform's provisioning templates — a new domain's storage prefix is created with the
+correct IAM boundary and retention policy attached automatically, not as a manual follow-up
+step) is what keeps the guardrails from this course's governance and compliance lessons
+actually enforced at scale: a policy that depends on every team remembering to apply it
+manually will, at enough scale, reliably have gaps; a policy baked into the only supported
+provisioning path structurally cannot be skipped without deliberately bypassing the platform
+entirely.
+
 ## Exercise
 
 Extend `PipelineTemplate.generate_config` to accept a `compliance_tier`

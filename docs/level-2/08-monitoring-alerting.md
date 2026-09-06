@@ -167,6 +167,38 @@ of a vague "something's wrong."
 | Performance anomaly | `duration_sec` over N× the rolling median |
 | Alert payload | Name the DAG, the run date, the metric, and the threshold |
 
+## How It Actually Works
+
+Pipeline monitoring is built on three distinct signal mechanisms, and each one detects a
+different failure mode because each one is measuring a different layer of the system.
+
+**Orchestrator-level state** (task success/failure, run duration) is read directly from the
+scheduler's own metadata database — it detects "did the code run and exit 0," which catches
+crashes, timeouts, and dependency failures, but is mechanically blind to a job that ran
+successfully while silently producing wrong data (a `SELECT` that returns zero rows due to an
+upstream schema change isn't a task failure at all).
+
+**Data-level metrics** (row counts, freshness lag, null rates) require an actual query
+against the data itself, run either as a dedicated check task in the DAG or as a separate
+process scanning table metadata — freshness specifically is usually computed as
+`now() - MAX(event_timestamp)`, which only works if the underlying table's max-timestamp
+column is itself indexed or is the partition key, otherwise that "cheap freshness check"
+degrades into a full table scan. This is the layer that catches silent corruption: a task
+that reports `success` but wrote zero new rows, or wrote rows with an unexpectedly high null
+rate, shows up here even though the orchestrator sees a green run.
+
+**Infrastructure metrics** (CPU, memory, disk I/O, queue depth) come from the underlying
+compute layer's own instrumentation (cluster manager metrics, container runtime stats) and
+catch resource exhaustion before it manifests as a task failure — a Spark executor
+approaching its memory limit shows up as rising GC time and spill-to-disk metrics well before
+it triggers an OOM kill.
+
+Alert *fatigue* is a direct consequence of how these signals compose: wiring every metric to
+fire independently means a single root cause (say, a source outage) triggers orchestrator
+failure alerts, freshness alerts, and row-count alerts simultaneously — which is why mature
+monitoring correlates these into one incident rather than three, typically by suppressing
+downstream alerts once an upstream dependency is already known-failed.
+
 ## Exercise
 
 Add a fourth check, `schema_anomaly`, that flags a run if its `rows_out`

@@ -146,6 +146,40 @@ sophisticated.
 | Operational database | Batch (scheduled query) or CDC (Level 2) | Query completes / no new watermark rows |
 | Message queue (Kafka, etc.) | Streaming | Never — runs continuously |
 
+## How It Actually Works
+
+Underneath every ingestion pattern is the same mechanical question: **how does the source
+system decide what to hand you, and how does that decision get made durable enough to
+survive a crash on either side?**
+
+- **Full extraction** issues a query (or file listing) that scans the *entire* source dataset
+  every run. Mechanically the source database walks its storage (a full table scan or an
+  index scan across all rows) and streams a result set back over a cursor; the ingestion
+  client pages through that cursor in fixed-size batches (e.g. `fetchmany(10000)`) to avoid
+  holding the whole result in memory. There is no bookkeeping between runs — correctness
+  comes from re-deriving state from zero every time, which is simple but means cost scales
+  with total source size, not with what changed.
+- **Incremental/watermark extraction** instead tracks a monotonically increasing column
+  (an `updated_at` timestamp or auto-increment `id`) as a **watermark** persisted by the
+  ingestion tool itself, outside the source system. Each run issues `WHERE updated_at >
+  :last_watermark`, which the source's query planner can satisfy with an index range scan
+  instead of a full scan — the mechanical win is turning an O(n) scan into an O(delta) scan.
+  The correctness risk is entirely in *when* the watermark is advanced: if you advance it
+  before confirming the batch landed downstream, a mid-batch failure silently drops rows
+  written between the old and new watermark on retry.
+- **Event/webhook-driven ingestion** flips the pull model to push: the source system itself
+  fires an HTTP callback or writes to a message broker (Kafka, SNS/SQS) the instant a change
+  commits. The mechanical guarantee you actually get depends on the broker's delivery
+  semantics — Kafka's at-least-once delivery with consumer offset commits means your
+  ingestion code will occasionally see the same event twice after a consumer restart, so
+  idempotent upserts (keyed by an event ID) are not optional, they are how correctness is
+  achieved despite duplicate delivery, not despite the pattern.
+- **File-drop ingestion** relies on the filesystem or object store's own change notification
+  (S3 `ObjectCreated` events, or a directory listener polling `mtime`) to trigger a load; the
+  mechanical hazard is partial writes — a listener firing on a file that a producer is still
+  uploading will read truncated bytes, which is why production pipelines write to a temp key
+  and atomically rename/move only after the upload completes.
+
 ## Exercise
 
 Extend the batch example so that it also tracks, per batch, the **minimum

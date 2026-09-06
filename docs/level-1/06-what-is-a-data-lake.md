@@ -145,6 +145,37 @@ organized *within* a lake, before anything (optionally) reaches a warehouse.
 | Do you need cheap, flexible storage before deciding on structure? | Lake |
 | Do you want both — flexible raw storage AND reliable curated tables? | Lakehouse (Level 3) |
 
+## How It Actually Works
+
+A data lake's defining mechanical property is that it stores data as **immutable objects in
+a flat, schemaless object store** (S3, GCS, ADLS) rather than as rows managed by a database
+engine — and every characteristic you associate with a lake follows from that one fact.
+
+Object stores expose a simple API: `PUT` writes a whole object under a key, `GET` reads a
+whole object (or a byte range) back, and there is no concept of an in-place row update —
+you cannot ask S3 to change bytes 400-500 of an existing object. This is why lakes are
+built around **write-once files** (Parquet, ORC, Avro, JSON, CSV) organized under a key
+prefix that mimics a directory structure (`s3://bucket/table=orders/year=2024/month=03/`),
+and why "updating" a record in a raw lake actually means writing an entirely new file and
+relying on query-time logic (or, in lakehouse formats, a transaction log) to know which
+files are current.
+
+The schemaless part is equally mechanical: the object store has no idea a Parquet file even
+contains structured data — it just stores bytes under a key and returns them on request. All
+schema knowledge lives either embedded in the file itself (Parquet stores its own schema in
+a footer) or in an external catalog (Hive Metastore, AWS Glue Catalog) that maps a table name
+to a set of file locations and a schema definition maintained separately from the files.
+Query engines (Athena, Presto, Spark) read that catalog entry first to know *how* to
+interpret the raw bytes, then issue parallel `GET` requests against the object store for the
+files that matter — which is also why a lake has no enforcement against writing a file with
+the wrong schema: the store will accept it happily, and the mismatch only surfaces when a
+query engine tries to read it against catalog metadata that no longer matches.
+
+Durability comes from the object store's own replication (typically 3+ copies across
+availability zones inside a region), not from anything the lake's file format or catalog
+does — which is why lakes are cheap and durable but, on their own, offer no transactional
+guarantees across multiple files.
+
 ## Exercise
 
 Extend the data lake example with a third day's file (`orders_2026-08-29.json`)

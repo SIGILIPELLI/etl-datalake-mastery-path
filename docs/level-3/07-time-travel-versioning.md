@@ -179,6 +179,35 @@ human-facing "what did this look like yesterday at 9am."
 | Reproducible downstream job | Pin reads to a specific version number |
 | Reclaim old file storage | Vacuum/expire past a retention window |
 
+## How It Actually Works
+
+Time travel works because the transaction log records **every historical version of a
+table's file manifest**, not just the current one, and old data files are retained on disk
+(not overwritten) until an explicit cleanup step removes them.
+
+Every commit (as covered in the lakehouse concepts lesson) is a new, immutable, sequentially
+numbered log entry listing files added and files logically removed by that operation.
+Querying "table as of version N" or "table as of timestamp T" means the engine locates the
+log entry corresponding to that version (or the latest entry at or before that timestamp,
+using the commit's recorded wall-clock time), then replays the log from the most recent prior
+checkpoint up through that entry to reconstruct exactly which physical files constituted the
+table at that moment — it never needs to touch any file added *after* that point, and it
+reads files that current queries would consider "already replaced," which is only possible
+because those old physical files still exist in storage.
+
+This is precisely why time travel has a retention limit: keeping every historical file
+forever means storage grows without bound as a table is repeatedly overwritten and compacted.
+Retention is enforced by a **vacuum/expire snapshots** operation that walks the log, finds
+files not referenced by any snapshot within the configured retention window (commonly 7-30
+days), and issues actual `DELETE` calls against the object store for those files — after
+vacuum runs, any time-travel query targeting a version whose files were just deleted fails,
+because the log entry itself may still exist (recording *that* a version existed) even though
+the physical bytes it points to no longer do. This is also the mechanical reason vacuum and
+long-running time-travel queries can conflict: vacuum must be conservative about what counts
+as "no longer referenced," typically requiring a minimum retention window longer than any
+expected concurrent query duration, or it risks deleting files an in-flight read is still
+scanning.
+
 ## Exercise
 
 Add a `describe_history(log_dir)` function that returns a DataFrame with one

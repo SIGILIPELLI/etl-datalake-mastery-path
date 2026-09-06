@@ -180,6 +180,37 @@ analytics without waiting on a central team to build a combined pipeline.
 | Self-serve platform | Shared tooling (catalog, orchestration, storage) domains build on |
 | Federated governance | Small set of global standards; domain-local implementation |
 
+## How It Actually Works
+
+Data mesh's "domain ownership" is enforced technically, not just organizationally, through
+the same access-control and contract mechanisms from earlier lessons, applied at
+**domain boundaries** instead of at a single central platform team's discretion.
+
+Each domain team owns a distinct storage namespace (their own catalog database, their own
+bucket prefix, their own IAM roles) with write access restricted to that domain's own
+pipelines — mechanically identical to the zone-based access control from the governed-lake
+lesson, just organized by business domain instead of by raw/curated/gold. A "data product" a
+domain exposes to others is, underneath the product framing, a registered schema (the same
+schema-registry mechanism from the data contracts lesson) plus a stable, versioned interface
+(a table name, a defined set of columns, a compatibility guarantee) that other domains'
+pipelines are allowed to read via catalog-level grants — the domain's *internal* tables and
+transformation logic remain inaccessible to consumers, who only ever see the published
+product's contracted schema.
+
+The self-serve platform layer that makes this practical is mechanically a shared set of
+reusable infrastructure (a common ingestion framework, a common catalog, common
+observability tooling) that every domain team's pipelines are built on top of, rather than
+each domain independently reinventing extraction/orchestration/monitoring — this is what
+keeps decentralized ownership from fragmenting into inconsistent, unmonitorable pipelines:
+the platform enforces a consistent contract-registration and lineage-emission mechanism
+across all domains even though each domain controls its own transformation logic.
+
+Federated governance is implemented as centrally-defined policies (naming conventions,
+required metadata fields, PII classification rules) that are mechanically enforced at publish
+time — a domain's data product registration is validated against these policies by the
+platform's own catalog/registry tooling before it's allowed to become discoverable to other
+domains, which is what keeps "federated" from meaning "ungoverned."
+
 ## Exercise
 
 Add a `consumer_subscriptions` table (`consumer_domain`, `product_name`,

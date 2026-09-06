@@ -198,6 +198,35 @@ Airflow DAGs as soon as pipelines have more than one dependent step.
 | Retries | "Recover from transient failures automatically" | No (needs custom scripting) | Yes |
 | Visibility/alerting | "Tell me what failed, without me checking logs" | No | Yes |
 
+## How It Actually Works
+
+An orchestrator's core mechanism is maintaining a **directed acyclic graph (DAG)** of tasks
+in a metadata database, and repeatedly asking a scheduler process "which tasks are now
+eligible to run?" rather than executing steps in a fixed sequence itself.
+
+Each task node records its upstream dependencies; the scheduler polls the metadata DB on an
+interval (Airflow's scheduler loop, for instance, runs every few seconds) and marks a task
+"eligible" only once every upstream task's state is `success` in that same database. This is
+why orchestrators are resilient to their own restarts — task state lives in a database, not
+in scheduler process memory, so killing and restarting the scheduler just means it re-reads
+the same state and resumes deciding what's eligible.
+
+Actual task execution is handed off to a separate **executor** — a subprocess, a Celery
+worker pulling from a queue, or a Kubernetes pod spun up per task — which is a deliberate
+separation: the scheduler's job is graph bookkeeping (cheap, must stay responsive), while
+executors do the heavy lifting (a Spark job, a SQL query) and can be scaled independently or
+run on entirely different machines. When a worker reports back, it writes task state and
+`try_number` back to the metadata DB, and retries are implemented as literally re-invoking
+the same task function with an incremented try counter — which is why retried tasks must be
+idempotent: the orchestrator has no way to know if a "failed" task partially wrote data
+before crashing, it only reruns the task's code from the top.
+
+Scheduling on a calendar interval (a cron-like `schedule_interval`) works by the scheduler
+computing the next "data interval" boundary from the DAG's start date and cron expression,
+then creating a new DAG run row for that interval once its end time has passed — this is why
+a backfill for a past date range is mechanically identical to normal scheduling, just with
+DAG run rows created for past intervals instead of waiting for wall-clock time to reach them.
+
 ## Exercise
 
 Extend `run_dag` above to support **parallel independent branches** — modify

@@ -218,6 +218,37 @@ operation types, which a watermark query alone cannot express.
 | Merge new+existing on key | `pd.concat([...]).drop_duplicates(subset=key, keep="last")` |
 | Catch deletes | CDC log stream with explicit `op` field, or soft-delete flag |
 
+## How It Actually Works
+
+Change Data Capture works by reading a database's **write-ahead log (WAL)** directly, rather
+than querying tables — and that distinction is what makes CDC fundamentally different from
+polling-based incremental loads.
+
+Every write to a transactional database (Postgres, MySQL) is first appended to a WAL/binlog
+before it's applied to the actual table storage — this is how the database guarantees
+durability and crash recovery (replay the log to reconstruct state). CDC tools (Debezium,
+AWS DMS) attach as a **logical replication client**: Postgres's logical decoding plugin
+reads the WAL stream and converts low-level physical log records into logical change events
+(`INSERT`/`UPDATE`/`DELETE` with before/after row images), which the CDC connector then
+publishes to a message broker. Because this reads the log rather than the tables, CDC
+captures every intermediate change — including deletes and updates that a subsequent
+`updated_at` poll would only see as a single latest state, invisibly overwriting history.
+
+This mechanism has a real constraint: the WAL is not kept forever — Postgres reclaims WAL
+segments once they're no longer needed for crash recovery or existing replication slots. A
+CDC connector claims a **replication slot**, which tells Postgres "do not recycle WAL
+segments this slot hasn't consumed yet" — if the CDC consumer falls behind or goes offline,
+the WAL backs up on the source database's disk instead of being discarded, which is why an
+abandoned or slow replication slot can fill up the source database's storage and is a common
+production incident, not a theoretical one.
+
+Downstream, converting a stream of before/after row events into a queryable table means
+applying them as ordered upserts/deletes keyed by primary key and ordered by the log's own
+sequence number (LSN in Postgres) — out-of-order application (e.g., two workers processing
+the same key's events in parallel) can apply an old update after a newer one and silently
+regress the target's state, which is why CDC consumers typically partition work by key so a
+single key's events are always processed by one worker, in log order.
+
 ## Exercise
 
 Extend the `apply_cdc` function to also record an `is_deleted` boolean

@@ -182,6 +182,37 @@ analysis and PII discovery — you can't govern what you can't find.
 | Who owns this table? | `owner` column on `tables` |
 | Which tables contain a given column? | `columns` grouped by `col_name` |
 
+## How It Actually Works
+
+A data catalog's core mechanism is maintaining a **separate metadata store that maps logical
+names (database.table) to physical locations and schema**, decoupled from the actual data
+files — every query against a lake table starts by consulting this store before touching
+storage at all.
+
+Concretely (Hive Metastore, AWS Glue Catalog, or Iceberg/Delta's own catalog layer): the
+catalog persists, per table, a schema definition, a partition list (each partition mapped to
+its physical storage path), and table properties (format, location) in its own backing
+database (often a relational DB like MySQL for Hive Metastore). When a query engine plans a
+query against `db.table`, it issues a metadata lookup against this catalog — not a `LIST`
+against the object store — to discover which partitions and files exist and what types their
+columns have. This indirection is precisely what lets a table's underlying files move,
+compact, or reorganize without breaking existing queries, as long as the catalog is updated
+to point at the new locations: consumers never hardcode physical paths.
+
+Metadata harvesting (auto-discovering schema from raw files) works by having a crawler
+process sample files (read a Parquet footer, infer JSON structure from a sample of records)
+and write the inferred schema into the catalog — this is inherently best-effort and can
+diverge from the true underlying data if new files with a different structure are written
+after the last crawl, which is the mechanical reason catalogs get stale and why schema drift
+detection is usually implemented as a diff between the crawler's freshly inferred schema and
+the catalog's currently registered one.
+
+Lineage tracking layers on top of this same metadata infrastructure: it's built by having
+each pipeline job explicitly emit records ("job X read table A, wrote table B") to a lineage
+store at run time — lineage isn't derived automatically by inspecting SQL or code in most
+production systems, it depends on instrumentation (OpenLineage-style hooks) at each engine's
+execution layer emitting those read/write facts as jobs actually run.
+
 ## Exercise
 
 Add a `table_stats` table (`table_id`, `last_updated_at`, `total_rows`,

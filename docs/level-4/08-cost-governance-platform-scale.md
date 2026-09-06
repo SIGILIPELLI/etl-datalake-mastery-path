@@ -151,6 +151,37 @@ abstract.
 | How do we make cost visible to the spender? | Chargeback/showback report per team/cost center |
 | How do we stop orphan spend? | Enforce tagging at write/creation time |
 
+## How It Actually Works
+
+At platform scale, cost governance works by attaching **cost attribution metadata to every
+compute and storage resource at the moment it's provisioned**, then aggregating usage against
+that metadata — without this tagging mechanism, a shared warehouse or lake has no way to
+answer "which team's query cost this," because usage is metered at the resource level (a
+warehouse's compute-seconds, a bucket's storage-bytes and request-count), not natively at the
+level of "which team ran this."
+
+Concretely, this means every query, job, or storage prefix is tagged (a warehouse's query tag
+or resource monitor, an IAM role per team assumed for every job that role runs, a
+cost-allocation tag on storage buckets/prefixes) and the cloud/warehouse's own billing or
+usage-metering API is queried and joined against those tags after the fact to produce
+per-team cost reports — this is fundamentally a metadata-correlation problem, and it breaks
+down wherever tagging is inconsistent (an ad hoc query run outside any tagged role becomes
+unattributed "shared" cost that no one is accountable for).
+
+Enforcement mechanisms operate at the same resource-provisioning layer: a warehouse's
+resource monitor can suspend a virtual warehouse once its metered credit consumption crosses
+a threshold within a billing period (a hard, automatic cutoff enforced by the warehouse's own
+scheduler, not a policy someone has to notice and act on), and storage lifecycle policies
+(S3 lifecycle rules transitioning objects to cheaper storage classes after N days, or
+expiring them entirely) execute as background jobs the object store itself runs against
+object metadata (last-modified timestamps), independent of any pipeline needing to remember
+to clean up after itself. Chargeback/showback reporting is only as accurate as the
+underlying tag coverage and the granularity of the billing API's own usage records — most
+cloud billing exports usage at hourly or daily granularity, which is why fine-grained
+per-query cost attribution usually requires the query engine's own execution metrics (bytes
+scanned, compute-seconds) as a proxy, cross-referenced against the coarser billing total
+rather than derived from billing data alone.
+
 ## Exercise
 
 Add a `top_cost_drivers(cost_db, cost_center, top_n=3)` function that

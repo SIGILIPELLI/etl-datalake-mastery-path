@@ -191,6 +191,38 @@ print(check_freshness(metrics, "silver.orders", sla_hours=26, now=dt.datetime(20
 | Did volume/schema change unexpectedly? | `detect_anomalies(metrics, table)` |
 | Is this table fresh enough? | `check_freshness(metrics, table, sla_hours)` |
 
+## How It Actually Works
+
+Automated lineage capture is fundamentally an **event-emission problem**: lineage cannot be
+derived purely by inspecting static SQL or code, because the actual read/write relationships
+only become concrete when a job executes against specific tables and partitions — so the
+mechanism is instrumentation hooks inside each execution engine that emit structured facts
+("this job run read dataset A version X, wrote dataset B version Y") to a central lineage
+store as jobs actually run.
+
+Frameworks like OpenLineage implement this by hooking into an engine's own execution
+lifecycle (Spark's `QueryExecutionListener`, Airflow's task lifecycle callbacks) and emitting
+a start event (job name, run ID, declared inputs) and a complete event (same run ID, actual
+outputs, column-level facts if the engine exposes them) to a lineage backend over HTTP. The
+lineage graph itself is then just these events assembled into a directed graph keyed by
+dataset identity — which is why lineage accuracy depends entirely on *every* engine touching
+a dataset having this instrumentation enabled; a manual script or an untracked notebook that
+writes to the same table is invisible to the graph even though it's a real dependency.
+
+Column-level lineage (tracing which upstream columns fed a specific downstream column) goes a
+level deeper: it requires the engine to expose its query plan's column-level provenance —
+Spark's `Dataset` API can trace which input columns fed each output expression through its
+logical plan's expression tree — and this trace is only as complete as the plan analysis;
+a UDF that opaquely combines several columns internally typically breaks column-level lineage
+at that boundary because the engine has no visibility into the UDF's own internal logic,
+falling back to reporting the UDF's entire input set as feeding its output rather than a
+precise column-to-column mapping.
+
+Observability (freshness, volume, schema-drift monitors) is built as continuous queries
+against this same lineage and dataset metadata, comparing each new dataset version's stats
+against a rolling historical baseline to flag anomalies statistically rather than against a
+fixed hand-set threshold.
+
 ## Exercise
 
 Add column-level lineage: an `edges_columns` table recording

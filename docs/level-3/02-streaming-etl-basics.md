@@ -181,6 +181,38 @@ module.
 | `max_lateness` | How long a window stays open after its nominal end |
 | Late-arrival handling | Drop, side-output, or corrective re-emit — a policy choice |
 
+## How It Actually Works
+
+Streaming ETL processes an unbounded sequence of events using **micro-batches or continuous
+operators over a bounded window of state**, and the mechanism for tracking "how much have we
+processed" is fundamentally different from batch's watermark-column approach.
+
+A streaming consumer (a Kafka consumer, a Kinesis client) reads from a **partitioned,
+ordered log** — each partition guarantees order only within itself, not across partitions —
+and tracks its position via an **offset**: a monotonically increasing integer per partition
+that the consumer periodically commits back to the broker (or to its own checkpoint store).
+Processing "exactly once" is mechanically hard because there are two independent
+side effects that must be made atomic together: committing the consumer offset (marking
+"I've read this") and writing the processed output somewhere (marking "I've acted on this").
+If these commit separately, a crash between them produces either a re-read (offset not yet
+committed, output already written — duplicate) or a skip (offset committed, output write
+lost). Frameworks solve this either via **idempotent output writes** keyed by offset (so
+reprocessing the same offset overwrites rather than duplicates) or via **transactional
+writes** that atomically commit the offset and the output together in one broker-coordinated
+transaction (Kafka's exactly-once semantics via transactional producers).
+
+Windowing (tumbling, sliding, session windows) requires the engine to hold **partial
+aggregation state** in memory (or a state store like RocksDB) keyed by window boundary,
+updating it incrementally as each event arrives rather than waiting to see the whole window's
+events at once — this is only correct if events arrive close to their **event-time** order.
+Out-of-order arrival is handled via a **watermark** (a different concept from the batch
+extraction watermark: here it's the engine's own estimate of "how late can an event be and
+still get counted"), computed from the maximum event-time seen so far minus an allowed
+lateness — once the watermark passes a window's end, the engine finalizes and emits that
+window's aggregate and discards its in-memory state, which is why late-arriving data past the
+allowed lateness bound is mechanically impossible to include without triggering a special
+"late data" side path.
+
 ## Exercise
 
 Add a **sliding window** variant: instead of `tumbling_window_key`, write

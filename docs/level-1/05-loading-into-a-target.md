@@ -199,6 +199,34 @@ repeatedly through the rest of this course.
 | Append/upsert (DB) | Yes, with a primary key | Yes | Fact tables, growing datasets |
 | Write Parquet (lake) | Only if the whole file is rewritten | Depends on partitioning (Level 2) | Data lake bronze/silver/gold zones |
 
+## How It Actually Works
+
+Loading is where transformed data actually becomes durable, and the mechanism a target
+system uses to accept writes determines both throughput and what "success" means.
+
+A single-row `INSERT` forces the target database to do a full round trip per row: parse SQL,
+plan, acquire a row lock (or a page latch), write to the write-ahead log (WAL), and fsync
+that log to disk before acknowledging — and a transactional database will fsync the WAL on
+every commit unless you explicitly batch commits, because durability (the "D" in ACID) is
+implemented by never acknowledging a write until it's on stable storage. This is why
+row-by-row loads are catastrophically slow at scale: you pay a full fsync latency (often
+1-10ms on spinning disks, less on SSD/NVMe but still nonzero) per row instead of amortizing it.
+
+Bulk loaders (`COPY` in Postgres, `LOAD DATA INFILE` in MySQL, warehouse `COPY INTO`
+commands) bypass this by writing many rows into a single WAL record and doing one fsync for
+the whole batch, and in many databases bulk load can also skip per-row constraint checking
+during the load and validate constraints once at the end, or skip index maintenance during
+the load and rebuild indexes afterward — both of which are only safe because the load is
+wrapped in one transaction that's atomically visible or fully rolled back.
+
+Upserts (`MERGE`/`INSERT ... ON CONFLICT`) are mechanically a read-then-write under the hood:
+the engine must locate any existing row matching the conflict key (via an index seek, which
+is why the conflict key needs an index) and then choose between an in-place update (rewriting
+the row's storage page) or an insert. Under MVCC, an "in-place" update is actually often a
+new row version written alongside the old one, with the old version left for other
+transactions' snapshots and later reclaimed by vacuum/compaction — so a heavy upsert workload
+can bloat table storage until that background reclamation catches up.
+
 ## Exercise
 
 Take the `load_upsert` function and adapt it to load into a Parquet-based

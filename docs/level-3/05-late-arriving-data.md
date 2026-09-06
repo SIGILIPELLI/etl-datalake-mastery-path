@@ -163,6 +163,38 @@ trading immediacy for a simpler consumer contract.
 | Quarantine + separate reconciliation | Consumers need append-only/immutable published data |
 | Hard cutoff (drop past N) | Bounds cost/complexity when perfect correctness isn't required |
 
+## How It Actually Works
+
+Late-arriving data is a direct consequence of the gap between **event time** (when something
+actually happened at the source) and **processing time** (when the pipeline sees it), and
+handling it mechanically means deciding how long to keep a partition's state "open" for
+revision before treating it as final.
+
+In streaming systems, this is the same watermark mechanism from the streaming ETL lesson: the
+engine tracks the maximum event-time observed and estimates how far behind stragglers might
+be (an allowed lateness bound), holding a window's aggregation state in memory until the
+watermark passes the window's end plus that lateness allowance. An event arriving *after* the
+watermark has passed its window is, by construction, unrepresentable in the already-finalized
+aggregate — the engine has already discarded that window's intermediate state to bound memory
+usage, so late data past the threshold requires a separate correction path rather than simply
+being "processed a bit slowly."
+
+In batch pipelines, the equivalent mechanism is **partition reopening**: rather than treating
+a day's partition as immutable once initially processed, the pipeline re-reads and rewrites
+that entire partition whenever new records tagged with that day's event-time arrive, even
+though processing-time has moved on. This is expensive precisely because of how columnar
+files work — Parquet doesn't support appending a few rows to an existing file's row groups,
+so "adding" three late rows to an already-written partition means reading the whole
+partition's existing files back into memory, merging in the new rows, and rewriting the
+entire partition as new files (which is also why lakehouse formats' file-level replace-in-log
+semantics, rather than raw Parquet, make this pattern tractable at scale — only the log entry
+changes, and old files are simply excluded going forward rather than physically merged
+inline).
+
+The core tradeoff is always the same: waiting longer before finalizing a partition/window
+reduces how much data arrives "too late," but at the direct cost of increased end-to-end
+latency for every on-time record waiting behind that same closing threshold.
+
 ## Exercise
 
 Extend `recompute_and_correct` to also record a `correction_count` column

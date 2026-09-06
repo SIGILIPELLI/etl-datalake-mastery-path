@@ -189,6 +189,37 @@ as proof of compliance.
 | Right to erasure (including history) | Rewrite current + all historical versions, not soft-delete |
 | Proof of compliance | `erasure_requests` audit log, without the erased data itself |
 
+## How It Actually Works
+
+Retention and deletion compliance in a lake/lakehouse runs directly into the tension between
+**immutable, append-oriented storage** and **legally required deletion of specific records**
+(GDPR/CCPA "right to erasure") — and the mechanism for resolving that tension differs sharply
+between raw lakes and lakehouse table formats.
+
+In a raw lake, a specific customer's records are typically scattered across many Parquet
+files (partitioned by date, not by customer), and Parquet provides no mechanism to delete a
+subset of rows from an existing file in place — deleting one customer's rows means locating
+every file containing any of their records, reading each one back into memory, filtering out
+the target rows, and rewriting the remainder as new files, then deleting the originals. At
+scale, "locate every file containing this customer" is itself a real engineering problem
+without an index — which is why lakes built for compliance from the start often maintain a
+secondary index (a customer-ID-to-file-list mapping) purely to make deletion requests
+tractable.
+
+Lakehouse formats make this mechanically cleaner via `DELETE FROM table WHERE customer_id =
+:id`, executed as a real transaction-log operation: the engine identifies which existing
+files contain matching rows (using the same file-level statistics used for query pruning —
+if a file's customer_id min/max range excludes the target ID, it's skipped entirely),
+rewrites only the affected files with those rows removed, and commits a new log entry marking
+old files removed and new files added — the same copy-on-write mechanism compaction uses,
+just triggered by a delete predicate instead of a size-based bin-packing policy. The
+subtlety compliance teams must account for is that, exactly as in time-travel, the *original*
+file (containing the "deleted" data) is not immediately purged from storage — it persists
+until vacuum's retention window expires, meaning a table isn't actually GDPR-compliant purely
+by virtue of running a `DELETE`; retention/vacuum policy has to be tightened and executed too,
+and any time-travel or snapshot export taken before vacuum runs can still expose the
+"deleted" data.
+
 ## Exercise
 
 Extend `erase_subject` to also walk lineage (reusing `downstream_of` from

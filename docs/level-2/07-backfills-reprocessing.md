@@ -178,6 +178,35 @@ firefighting exercise.
 | Reprocess per-partition, idempotently | Safe to parallelize and to retry |
 | Map downstream dependents | A backfill isn't done until Gold is refreshed too |
 
+## How It Actually Works
+
+A backfill is mechanically identical to normal incremental processing — the same task code,
+the same transform logic — run with a different clock: instead of the orchestrator waiting
+for wall-clock time to reach a data interval, backfill mode creates DAG run (or job) records
+for interval boundaries that are already in the past, and the scheduler treats those exactly
+like it would treat a run whose scheduled time just arrived.
+
+This works cleanly only because well-designed pipelines derive all their filtering from the
+**data interval parameter** (an explicit `execution_date`/`data_interval_start` passed into
+the task) rather than from `now()` inside the task's own code. A task that calls
+`datetime.now()` to decide what data to process will process the same (wrong, current) data
+regardless of which historical interval the orchestrator thinks it's backfilling — the
+orchestrator's scheduling metadata and the task's actual behavior have silently diverged.
+Passing the interval explicitly as a templated parameter (Airflow's Jinja templating
+resolves `{{ ds }}` to the *logical* date, not the run's wall-clock time) is what keeps the
+two in sync.
+
+Reprocessing at scale runs into a real resource-contention mechanism: firing off many
+historical DAG runs concurrently means many workers hit the same source system or warehouse
+compute pool simultaneously, which can throttle a source database's connection pool or a
+warehouse's concurrency slots exactly the way a thundering-herd of concurrent queries would.
+This is why backfills use `max_active_runs`/concurrency limits — not a policy preference, but
+a mechanical necessity to keep the backfill from exceeding whatever concurrent-connection or
+compute-slot ceiling the source and target systems actually enforce. And because a backfill
+overwrite touches the same partitions normal processing would, the partition-overwrite
+idempotency from CDC/upsert design is what keeps a backfill from producing duplicates
+alongside data that was already loaded incrementally for that same period.
+
 ## Exercise
 
 Write a function `plan_backfill(bug_start, bug_end, gold_dependents: list[str])`

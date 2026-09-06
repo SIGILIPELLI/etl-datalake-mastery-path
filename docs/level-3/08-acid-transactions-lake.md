@@ -164,6 +164,40 @@ never a truncated one.
 | Isolation | Optimistic concurrency control — check base version at commit time |
 | Durability | `fsync` (or object store's durability guarantee) before making the commit visible |
 
+## How It Actually Works
+
+Bringing ACID guarantees to object storage — which natively offers only per-object atomic
+`PUT`s and no multi-object transactions — is achieved entirely through the transaction log's
+**optimistic concurrency control**, layered on top of a single atomic primitive the object
+store does provide.
+
+**Atomicity** across many data files is achieved because a "transaction" in Delta/Iceberg
+terms is really just one new log entry — the actual data files can be written in any order,
+even partially, with zero visible effect until that single log entry is successfully
+committed, at which point the entire set of changes becomes visible together. If the writer
+crashes before committing the log entry, the already-written data files simply become
+unreferenced orphans (cleaned up later by vacuum), and the table's visible state is
+unaffected — exactly the same "all or nothing" guarantee ACID databases provide via WAL, but
+implemented at the granularity of a single log-entry commit instead of per-row.
+
+**Isolation** between concurrent writers is optimistic concurrency control: each writer reads
+the log's current version when it starts, stages its changes, and at commit time attempts an
+atomic "write the next sequential version number" operation using the object store's
+conditional-write guarantee (or an external locking service like a DynamoDB table acting as a
+commit coordinator, for stores that don't support atomic conditional writes natively). If
+another writer already claimed that version number, the losing writer's commit is rejected;
+it must re-read the new log state and decide whether its changes still apply cleanly (a
+non-overlapping partition write typically retries and succeeds; a conflicting overwrite of
+the same rows typically must abort). This means writers never block each other while working
+— conflicts are detected only at the very end, at commit time — which is why lakehouse
+concurrency control is described as *optimistic*: it bets conflicts are rare rather than
+serializing all writers through a lock held during the entire write.
+
+**Consistency** (schema and constraint enforcement) is checked by the engine against the
+log's currently recorded schema before allowing a commit to succeed, and **durability** is
+inherited directly from the object store's own multi-AZ replication of both the data files
+and the log entries themselves.
+
 ## Exercise
 
 Implement a `retry_commit(build_write_fn, max_retries=3)` wrapper that: (1)

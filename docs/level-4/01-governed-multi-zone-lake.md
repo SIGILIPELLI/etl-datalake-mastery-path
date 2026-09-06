@@ -193,6 +193,38 @@ rather than by maintaining separate masked copies.
 | PII protection | Column-level tags + `mask_pii_columns` at read time |
 | Auditability | Log every promotion/access decision, not just the data move |
 
+## How It Actually Works
+
+A multi-zone governed lake enforces its zone boundaries through **access control evaluated at
+the storage or catalog layer**, not through convention alone — the mechanism that actually
+prevents an unauthorized reader from touching raw zone data is the same permission-checking
+machinery a database uses, just applied to object-store prefixes or catalog-level table
+grants instead of database rows.
+
+Concretely, this is implemented either as **IAM policies scoped to storage prefixes** (an S3
+bucket policy or IAM role that grants `s3:GetObject` only under
+`s3://lake/raw/*` to a narrow set of principals, and broader read access under
+`s3://lake/curated/*`) or as **catalog-level grants** (Lake Formation, Unity Catalog) that
+sit in front of the object store and enforce column- and row-level permissions independent of
+the underlying file layout — a query engine must authenticate against the catalog and have
+its access checked *before* the catalog will even hand back the physical file locations
+needed to read data, so an engine with no grant literally cannot discover where the bytes are,
+not just that it's told not to read them.
+
+Row- and column-level security in catalog-based systems is implemented by rewriting the query
+plan itself: the catalog injects filter predicates (for row-level security, e.g., appending
+`AND region = current_user_region()`) or masks/nulls specific columns *inside the physical
+plan* before execution, so the underlying Parquet files are read in full by the engine but
+the results returned to the requester have already been filtered/redacted — the enforcement
+point is the query compiler, not a post-hoc check on returned rows, which is what makes it
+resistant to a client simply requesting more columns than intended.
+
+Zone transitions (raw → curated) are themselves governed writes: a job promoting data from
+one zone to the next must hold write credentials scoped to the destination zone and read
+credentials scoped to the source, and because these are typically different IAM roles/service
+accounts, the promotion step is the actual point where governance rules (data classification
+tagging, PII scrubbing) get enforced as a hard gate rather than a convention.
+
 ## Exercise
 
 Add an `audit_log` table (`event_time`, `actor`, `action`, `dataset`,

@@ -177,6 +177,34 @@ would grow further anyway.
 | Readers seeing partial state during compaction | Use a transaction log; commit only after full write |
 | Compacting too often | Gate on `should_compact`-style thresholds, run on a schedule |
 
+## How It Actually Works
+
+The small-files problem is a direct consequence of per-file fixed overhead compounding across
+many files, and compaction fixes it mechanically by rewriting many small files into fewer
+larger ones — which is a genuinely nontrivial operation, not a free filesystem-level merge.
+
+Every file incurs overhead independent of its size: an object store `GET`/`LIST` call carries
+network round-trip latency (often several milliseconds) regardless of payload size; a Parquet
+file carries a footer with schema and statistics that must be read before the engine can plan
+which row groups to scan; and a catalog tracking file-level metadata (in Iceberg/Delta, every
+file is a row in the transaction log's manifest) grows its own bookkeeping cost linearly with
+file count. A table with 10,000 tiny files pays 10,000x this fixed overhead versus the same
+data in 100 well-sized files, even though total bytes scanned is identical — this is why small
+files hurt latency and cost disproportionately to data volume.
+
+Compaction (Delta's `OPTIMIZE`, Iceberg's rewrite procedures) works by reading the small files
+belonging to a partition (or bin-packing across partitions), decoding and re-encoding their
+rows into new, larger Parquet files sized to a target (commonly 128 MB–1 GB), and — critically
+— committing this as a **new transaction log entry** that atomically marks the old small
+files as logically removed and the new large files as the current live set. The old physical
+files are *not* deleted immediately: they remain on disk, still referenced by any older table
+snapshot that time-travel queries might still target, until a separate **vacuum/expire
+snapshots** operation runs past the configured retention window and physically deletes files
+no longer referenced by any retained snapshot. This two-step (logical removal via log commit,
+physical deletion via vacuum) is what keeps compaction safe to run concurrently with ongoing
+reads and time-travel queries — readers never see a half-compacted state, because the
+transaction log's atomic commit is the only thing that changes which files are "current."
+
 ## Exercise
 
 Extend `compact` to target a specific output file *count* rather than

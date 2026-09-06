@@ -153,6 +153,37 @@ your organization already runs.
 | Manifest/checkpoint files | Fast metadata reads without listing every data file |
 | Copy-on-write vs. merge-on-read | Read-optimized vs. write-optimized update trade-off |
 
+## How It Actually Works
+
+A lakehouse gets ACID guarantees on top of plain object storage by inserting a **transaction
+log** as an authoritative, append-only record of every change to a table — the actual data
+files never change, only the log's interpretation of which files currently constitute the
+table does.
+
+Concretely (Delta Lake's mechanism, which Iceberg mirrors with different file names): every
+write operation — an append, an overwrite, a delete — is expressed as a new JSON (or, after
+enough entries, a compacted Parquet checkpoint) commit file listing which data files were
+added and which were logically removed, written to a `_delta_log/` directory with a
+monotonically increasing version number. A reader determines "what does this table currently
+look like" not by listing every Parquet file under the table's path, but by reading the log's
+latest checkpoint plus any newer commit files and replaying them to compute the current set
+of *live* data files — the actual Parquet bytes referenced by that set are unchanged from
+whenever they were originally written.
+
+Atomicity comes from how a commit is published: the writer stages new data files first (which
+are inert until referenced), then attempts to atomically create the *next* sequential log
+entry — using the object store's conditional-write ("create if not exists," or a compare-
+and-swap primitive layered on top for stores that lack it natively) to guarantee only one
+writer can successfully claim a given version number. A concurrent writer that loses this
+race sees its commit rejected, reads the newer log state, and either fails or retries by
+re-checking whether its changes still apply — this compare-and-swap-on-the-log-tail is the
+entire mechanism behind lakehouse ACID isolation, layered entirely on infrastructure (S3, GCS)
+that itself has no native multi-object transaction support.
+
+Time travel and schema versioning are then free byproducts of the same log: reading table
+state "as of version N" or "as of timestamp T" is just replaying the log only up through that
+point instead of to its current tail.
+
 ## Exercise
 
 Extend `commit` to also support a `"remove"` list alongside `"add"`, and

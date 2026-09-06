@@ -195,6 +195,34 @@ Row count matches pre- and post-compaction: True
 | Small files | 06 | `compact_if_needed()` as its own logged commit |
 | Time travel | 07 | Every version stays queryable via the log |
 
+## How It Actually Works
+
+Writing a continuous stream into a lakehouse table combines the streaming-consumer offset
+mechanism with the transaction log's commit mechanism, and the critical engineering detail is
+**making a single micro-batch's offset advancement and its data commit atomic with each
+other**, exactly as with any streaming exactly-once design — but now the "output write" is a
+lakehouse transaction rather than an arbitrary sink.
+
+Structured streaming engines (Spark Structured Streaming writing to Delta, Flink writing to
+Iceberg) implement this by storing the consumer's committed offsets *inside the same
+transaction log* as the data commit, as custom metadata on the log entry itself — so
+committing a micro-batch's new data files and recording "we've consumed up through offset X"
+happen as one atomic log append. On restart after a crash, the engine reads the log's last
+committed offset metadata directly (not a separately-tracked broker offset) and resumes
+exactly from there, which is what gives exactly-once semantics without needing a distributed
+transaction spanning the message broker and the lakehouse separately — the log itself is the
+single source of truth for "how far have we gotten."
+
+Because each micro-batch commits as its own log entry, a streaming write into a lakehouse
+table naturally produces many small files — one micro-batch's worth of data per commit,
+which for a low-latency stream (triggering every few seconds) can be quite small. This is why
+production streaming-to-lakehouse pipelines nearly always pair the stream with a
+periodically-scheduled compaction job (as in the small-files lesson) running against the same
+table: the streaming writer optimizes for low commit latency and correctness, and a separate
+asynchronous job optimizes physical file layout after the fact, made safe to run concurrently
+by the same optimistic-concurrency log-commit mechanism that isolates all other concurrent
+writers.
+
 ## Exercise
 
 Add a `describe_table()` function that reports, from the log alone (no data

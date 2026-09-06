@@ -157,6 +157,35 @@ data anywhere — only the *metadata* is centralized.
 | Recurring cross-cloud queries are expensive | Run compute where the data lives (data gravity) |
 | Discovering data across clouds without copying it | Federated catalog with metadata only |
 
+## How It Actually Works
+
+Multi-cloud and hybrid lake architectures work by exploiting the fact that lakehouse table
+formats separate **the transaction log's logical state** from **the physical storage
+location of the underlying files** — the log doesn't care which cloud a file physically sits
+in, it just records a path and lets the reading engine's storage connector resolve that path
+using whatever credentials and API are appropriate for that specific object store.
+
+This means a single logical Iceberg/Delta table's file manifest can, in principle, reference
+files across S3, GCS, and Azure ADLS paths simultaneously, and any engine with connectors for
+all three storage backends can read the table as one consistent unit by dispatching each
+file's `GET` to the matching cloud's SDK based on the URI scheme in the manifest. In practice
+this is used less for a single table spanning clouds and more for **replicating** an entire
+table's files (and log) to a second cloud/region via a scheduled copy job, keeping each
+region's copy independently queryable — cross-region/cross-cloud object storage replication
+itself works asynchronously (S3 Cross-Region Replication, for instance, propagates new
+objects on a delay, not synchronously with the original write), which is why multi-region
+lakehouse reads must tolerate eventual consistency between regions rather than assuming
+perfect real-time parity.
+
+Query federation across clouds (a query engine in one cloud reading data that physically
+lives in another) pays real egress cost and latency at the network layer — every byte read
+crosses a cloud provider boundary over the public internet or a dedicated interconnect, both
+mechanically slower and metered differently than same-cloud, same-region reads. This is the
+concrete reason hybrid architectures favor keeping compute co-located with the data it reads
+most frequently (processing data where it lands) and using cross-cloud replication only for
+data that genuinely needs to be queried from multiple locations, rather than routing every
+query cross-cloud by default.
+
 ## Exercise
 
 Add a `replication_policy` table (`logical_table`, `source_region`,

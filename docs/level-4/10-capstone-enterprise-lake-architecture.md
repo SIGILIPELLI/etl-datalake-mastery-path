@@ -207,6 +207,36 @@ print(platform_health_summary(platform_db, ages))
   retention policy is not "governed" — the modules in this course compose;
   skipping one leaves a real gap, not a minor one.
 
+## How It Actually Works
+
+An enterprise-scale lake architecture is the composition of every mechanism from this course
+operating simultaneously against the same physical data, and the capstone's real engineering
+challenge is that these mechanisms **interact**, not just coexist.
+
+The transaction log (ACID, time travel) that makes concurrent multi-zone writes safe is the
+same log that compaction and vacuum operate against — which means governance policies
+restricting who can write to a zone must also account for who can trigger compaction/vacuum
+on that zone's tables, since a vacuum operation physically deletes files that a
+governance-driven audit or a time-travel-based compliance investigation might still need to
+reference; retention policy and vacuum scheduling are therefore not independent decisions but
+one shared constraint on the same physical files. Similarly, the catalog's credential-vending
+access control (from the security lesson) is what every query engine touching every zone must
+pass through, which means the catalog is simultaneously the platform's single point of schema
+truth (schema evolution lesson), its single point of statistics for query planning (cost
+optimization lesson), and its single point of authorization enforcement — a catalog outage or
+catalog performance degradation at enterprise scale doesn't just slow one pipeline down, it
+mechanically blocks every engine's ability to even resolve file locations across the entire
+lake, because there's no path around it by design.
+
+Multi-zone promotion pipelines (raw→curated→gold) must reconcile CDC-driven incremental
+watermarks with schema-contract validation gates and idempotent upsert keys all at once for
+every hop, exactly as in the level-2 capstone but now with the added constraint that each
+zone transition is also a governance checkpoint (PII classification, access-grant handoff)
+enforced by the catalog before the next zone's readers can see the data — which is why
+enterprise architectures treat a zone promotion job's atomic transaction-log commit as the
+single moment where correctness, governance, and lineage emission all have to be satisfied
+together, rather than as three separate concerns checked at different times.
+
 ## Exercise
 
 Extend `run_domain_pipeline` to also call `compliance_sweep` for the

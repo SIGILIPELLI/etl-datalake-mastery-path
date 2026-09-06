@@ -188,6 +188,34 @@ without warning.
 | Backward-compatible evolution | Additive-only changes (Module 4's policy) |
 | Semantics & SLAs | Documented, tested with reference-value checks |
 
+## How It Actually Works
+
+A data contract is enforced through the same schema-validation and versioning mechanisms
+covered earlier, but applied at the *producer's* publish boundary instead of a downstream
+consumer's read boundary — and that placement is the entire point mechanically.
+
+Without a contract, schema validation (if it exists at all) runs where a consumer reads data,
+which means a breaking change is only *detected* after it has already been produced,
+propagated through however many hops, and broken however many downstream jobs read it in the
+interim — the failure surfaces far from its cause. A contract instead registers an explicit
+schema (often via a schema registry — Confluent Schema Registry for Kafka, or a versioned
+JSON/Avro schema file checked into the producer's own repo) that the producer's write path
+validates *against before the write is even attempted*. Mechanically this is usually
+implemented as a serialization step: the producer serializes each record using the
+registered schema (Avro/Protobuf schemas make this natural since they require a schema to
+serialize at all), and a mismatch — a missing required field, a type that doesn't match the
+registered definition — throws a serialization error synchronously, in the producer's own
+process, before anything is published to the broker or written to storage.
+
+Compatibility rules (backward, forward, full) are enforced by the schema registry running an
+automated compatibility check on every new schema version registration: it diffs the new
+schema against the previous version using the same name-and-type resolution logic from the
+schema evolution lesson, and rejects the registration outright if the diff violates the
+configured compatibility mode — for example, backward compatibility rejects removing a
+required field, because an old field would then be unreadable by consumers still running the
+prior schema. This makes the "contract" a real technical gate the producer's deploy pipeline
+must pass, not a documentation promise that only humans enforce.
+
 ## Exercise
 
 Add a `"pk"` (primary key) declaration to `orders_contract` naming

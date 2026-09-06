@@ -188,6 +188,37 @@ both times.
 | Deterministic file naming | Any file-based bronze/silver write |
 | Partition-scoped task logic | Any pipeline that will ever need backfilling |
 
+## How It Actually Works
+
+Idempotency is achieved mechanically in one of two ways, and confusing them is the most
+common source of "idempotent" pipelines that actually aren't: **overwrite-by-key semantics**
+versus **naive append with retry**.
+
+An append-only write (`INSERT`, or writing a new file into a partition without checking
+what's already there) has no mechanism to detect "this exact batch already ran" — retrying
+after a partial failure or an orchestrator-triggered rerun simply adds another copy of
+whatever was already written, because the write operation itself carries no memory of prior
+attempts. This is why naive retries on append-based loads produce duplicates: the retry isn't
+wrong, the *operation* was never designed to be idempotent in the first place.
+
+True idempotency requires the write to be expressed as a function of a stable key that fully
+determines the record's final state — `MERGE ... ON target.id = source.id` (upsert),
+`DELETE FROM table WHERE partition = :p; INSERT ...` (partition overwrite), or an
+object-store write to a deterministic key derived from the batch's logical identity (same
+partition + same run ID always produces the same output key, so a rerun's `PUT` simply
+replaces the prior object rather than adding a new one). Mechanically, `MERGE`/upsert
+achieves this via an index lookup on the key before deciding insert-vs-update, so running the
+exact same `MERGE` statement twice produces the identical end state both times — the second
+run's "insert" branch never fires because the key already exists with matching values.
+
+The subtlety that trips people up is **partial idempotency at the batch boundary**: a job that
+processes 10,000 rows with per-row upserts is idempotent per-row, but if the job also
+increments an external counter or sends a side-effect (an email, a webhook) per row, those
+side effects are *not* naturally idempotent just because the row write is — which is why
+idempotent pipeline design usually means isolating side effects behind their own dedup key
+(an event ID checked against a "already processed" table) rather than assuming upsert
+semantics alone cover everything a pipeline does.
+
 ## Exercise
 
 Take the `naive_load` function from the top of this lesson and rewrite it

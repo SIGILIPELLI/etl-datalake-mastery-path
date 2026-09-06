@@ -174,6 +174,37 @@ alertable metric with a trend line over time.
 | Enum membership | `~df[col].isin(allowed_set)` |
 | Uniqueness | `df.duplicated(subset=col, keep=False)` |
 
+## How It Actually Works
+
+Data quality checks are mechanically just queries (aggregations, comparisons) run against
+the data itself or its metadata, but *when* and *where* they execute in the pipeline
+determines whether they can actually stop bad data or only report on it after the fact.
+
+A **schema check** compares an incoming batch's inferred or declared types against an
+expected schema definition before any transform runs — mechanically this is often as cheap
+as reading a file's Parquet footer or a JSON batch's first N records and diffing field names
+and types, which is why schema checks can gate a pipeline (fail fast) without paying the cost
+of a full scan.
+
+A **statistical/profiling check** (null rate, distinct count, min/max, row count deltas
+versus the previous run) requires a full aggregation pass over the batch — `COUNT(*)`,
+`COUNT(*) FILTER (WHERE col IS NULL)`, `APPROX_COUNT_DISTINCT` — and the engine executing it
+uses the same scan-and-aggregate machinery as any analytical query, so the check's cost scales
+with data volume. Approximate algorithms (HyperLogLog for distinct counts) trade a small,
+bounded error for avoiding an exact-but-expensive shuffle-based distinct operation, which
+matters once you're validating billions of rows per run.
+
+The mechanical reason validation is usually placed *between* bronze and silver rather than
+gating extraction itself is atomicity: you want the raw, possibly-flawed data durably landed
+(so nothing is lost and you can investigate), and you want the validation gate positioned at
+a stage boundary where "fail the batch" cleanly means "don't commit this partition to
+silver" rather than aborting mid-write and leaving a source system's connection in an unclear
+state. Row-level quarantine (routing failing rows to a dead-letter location instead of
+failing the whole batch) is implemented as a conditional split during the same transform
+pass — the engine partitions the DataFrame/RDD by a boolean validity predicate and writes
+each partition to a different output path, which is why quarantine is nearly free
+computationally once you're already scanning every row for validation.
+
 ## Exercise
 
 Add a `check_referential_integrity(orders_df, customers_df, key)` function

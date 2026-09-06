@@ -183,6 +183,32 @@ you're deduplicating *on* before comparing them.
 | Fill missing + flag it | `col.isna()` then `col.fillna(default)` |
 | Dedup on cleaned keys | `.drop_duplicates(subset=[...], keep="first")` |
 
+## How It Actually Works
+
+A transformation step is, mechanically, a sequence of operations applied to an in-memory (or
+spilled-to-disk) columnar or row-oriented data structure, and which representation the engine
+uses changes what operations are cheap.
+
+Row-oriented processing (a Python loop over dict rows, or a traditional RDBMS row store)
+touches an entire record for every operation — even a transform that only rewrites one
+column still walks the whole row in memory, because row-major layout stores all of a record's
+fields contiguously. Column-oriented processing (pandas, Polars, Spark DataFrames, Arrow)
+stores each column as a contiguous typed array, so a transform on one column touches only
+that array — no other columns are read into cache at all. This is the mechanical reason
+column-oriented tools vectorize transforms into tight SIMD loops over a single data type
+instead of dispatching per-row per-field: the CPU can pipeline identical operations over
+contiguous memory far faster than it can chase pointers through mixed-type row structs.
+
+Null handling is another place where the underlying mechanism leaks through: SQL's
+three-valued logic (`TRUE`/`FALSE`/`UNKNOWN`) means `NULL = NULL` evaluates to `UNKNOWN`, not
+`TRUE`, so a transform's join or filter condition silently drops rows with nulls in the
+join key unless you explicitly handle it with `IS NULL` or `COALESCE`. Type coercion during
+transformation is also not free: casting a string column to an integer forces the engine to
+parse every value's byte representation and validate it, and a single unparseable value
+either throws (fails the whole batch) or silently becomes null (corrupts data silently)
+depending on the engine's cast semantics — which is why production transforms almost always
+wrap type coercion in an explicit try/validate step rather than relying on an implicit cast.
+
 ## Exercise
 
 Using the `raw_csv` above, add a new column `amount_flag` that is

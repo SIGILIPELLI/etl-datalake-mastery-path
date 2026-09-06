@@ -158,6 +158,34 @@ redaction), transforming in flight is still the right call.
 | Must invalid data be blocked before it's ever stored? | ETL |
 | Is the transform simple enough to express in SQL? | ELT |
 
+## How It Actually Works
+
+The ETL vs. ELT choice is really a choice about **where the compute engine sits relative to
+the durable storage**, and that placement changes the failure and cost profile more than any
+syntax difference does.
+
+In classic ETL, the transform step runs in a separate compute tier (an ETL server, a Spark
+cluster, a Python worker) that holds the *entire in-flight batch in its own memory or local
+disk* before the load step ever touches the target. That intermediate state is invisible to
+the target system and to anyone querying it — if the transform process crashes at row
+800,000 of 1,000,000, there is no partial table to inspect; you re-run the extract from
+scratch or from a checkpoint offset you tracked yourself. The target database only ever sees
+finished, transformed rows arrive via `INSERT`/`COPY`, which is why ETL targets can enforce
+strict schemas and constraints — nothing malformed ever reaches them.
+
+ELT inverts this by loading raw bytes into the target first (a warehouse table, a lake
+object) and only then running transformation *as SQL or a query-engine job executed inside
+the target's own compute*. Mechanically this works because modern warehouses (Snowflake,
+BigQuery, Redshift, Databricks SQL) separate storage from compute: raw data lands as
+columnar files (Parquet/ORC-like internal formats) and a stateless query engine spins up
+elastic worker nodes on demand to scan and rewrite those files into new tables. The
+"transform" is compiled into a physical query plan — scan → filter → aggregate → shuffle →
+write — and executed with the same optimizer (cost-based statistics, predicate pushdown,
+partition pruning) used for ordinary analytical queries. This is why ELT scales
+transformation elastically (add more warehouse compute) while ETL scales it linearly with
+however many workers you provision on the ETL server, and why ELT keeps a durable, queryable
+copy of raw data at every stage even if a downstream transform step fails halfway through.
+
 ## Exercise
 
 Take the `raw_csv` above and add two more rows: one with a `plan` value of
