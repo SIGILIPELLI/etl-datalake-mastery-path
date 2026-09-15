@@ -229,6 +229,10 @@ credentials scoped to the source, and because these are typically different IAM 
 accounts, the promotion step is the actual point where governance rules (data classification
 tagging, PII scrubbing) get enforced as a hard gate rather than a convention.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+
 ## Exercise
 
 Add an `audit_log` table (`event_time`, `actor`, `action`, `dataset`,

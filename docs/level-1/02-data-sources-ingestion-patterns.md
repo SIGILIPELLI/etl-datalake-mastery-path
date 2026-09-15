@@ -184,6 +184,11 @@ survive a crash on either side?**
   uploading will read truncated bytes, which is why production pipelines write to a temp key
   and atomically rename/move only after the upload completes.
 
+## 🔀 Related lessons on other tracks
+
+- [Tableau — 02 · Connecting to Data Sources](https://sigilipelli.github.io/tableau-mastery-path/level-1/02-connecting-data-sources/)
+- [Terraform — 05 · Resources & Data Sources](https://sigilipelli.github.io/terraform-mastery-path/level-1/05-resources-data-sources/)
+
 ## Exercise
 
 Extend the batch example so that it also tracks, per batch, the **minimum

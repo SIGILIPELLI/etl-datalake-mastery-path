@@ -200,6 +200,12 @@ column should be low-to-medium cardinality, and should be the column most querie
 because pruning only helps queries whose predicates the planner can statically match against
 partition boundaries.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Data Science — 06 · Data Science Strategy & Roadmapping](https://sigilipelli.github.io/data-science-mastery-path/level-4/06-strategy-roadmapping/)
+- [Pyspark — 04 · Partitioning Strategy](https://sigilipelli.github.io/pyspark-mastery-path/level-2/04-partitioning-strategy/)
+
 ## Exercise
 
 Given a table with columns `region` (5 values), `order_date` (365 values/

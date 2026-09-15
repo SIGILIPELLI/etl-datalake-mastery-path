@@ -238,6 +238,11 @@ statistics) and a good fit for row-at-a-time streaming ingestion, but it can't s
 on read the way Parquet can, since consuming any field means deserializing the whole record
 in schema order.
 
+## 🔀 Related lessons on other tracks
+
+- [Pyspark — 05 · Reading Data (CSV, JSON, Parquet)](https://sigilipelli.github.io/pyspark-mastery-path/level-1/05-reading-data/)
+- [Data Engineering — 06 · Working with File Formats](https://sigilipelli.github.io/data-engineering-mastery-path/level-1/06-file-formats/)
+
 ## Exercise
 
 Take the `nested_record` JSON example and write a function that flattens it

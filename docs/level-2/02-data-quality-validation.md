@@ -209,6 +209,12 @@ pass — the engine partitions the DataFrame/RDD by a boolean validity predicate
 each partition to a different output path, which is why quarantine is nearly free
 computationally once you're already scanning every row for validation.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 09 · Data Quality & Validation](https://sigilipelli.github.io/data-engineering-mastery-path/level-1/09-data-quality-validation/)
+- [Excel — 09 · Data Validation & Cleaning](https://sigilipelli.github.io/excel-mastery-path/level-1/09-data-validation-cleaning/)
+- [Pyspark — 07 · Data Quality Gates](https://sigilipelli.github.io/pyspark-mastery-path/level-4/07-data-quality-gates/)
+
 ## Exercise
 
 Add a `check_referential_integrity(orders_df, customers_df, key)` function

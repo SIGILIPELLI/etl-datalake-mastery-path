@@ -215,6 +215,10 @@ time — a domain's data product registration is validated against these policie
 platform's own catalog/registry tooling before it's allowed to become discoverable to other
 domains, which is what keeps "federated" from meaning "ungoverned."
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 03 · Data Mesh Concepts](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/03-data-mesh-concepts/)
+
 ## Exercise
 
 Add a `consumer_subscriptions` table (`consumer_domain`, `product_name`,

@@ -217,6 +217,12 @@ store at run time — lineage isn't derived automatically by inspecting SQL or c
 production systems, it depends on instrumentation (OpenLineage-style hooks) at each engine's
 execution layer emitting those read/write facts as jobs actually run.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 05 · Data Governance & Cataloging](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/05-data-governance-cataloging/)
+- [Automotive Testing — 05 · Test Data Management at Scale](https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/05-test-data-management/)
+- [Java Testing — 05 · Test Data Management](https://sigilipelli.github.io/java-testing-mastery-path/level-2/05-test-data-management/)
+
 ## Exercise
 
 Add a `table_stats` table (`table_id`, `last_updated_at`, `total_rows`,

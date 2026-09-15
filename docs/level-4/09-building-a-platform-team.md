@@ -195,6 +195,12 @@ manually will, at enough scale, reliably have gaps; a policy baked into the only
 provisioning path structurally cannot be skipped without deliberately bypassing the platform
 entirely.
 
+## 🔀 Related lessons on other tracks
+
+- [Azure — 08 · Data Platform at Scale (Synapse, Data Factory)](https://sigilipelli.github.io/azure-mastery-path/level-4/08-data-platform-at-scale/)
+- [Data Engineering — 01 · Enterprise Data Platform Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/01-enterprise-platform-architecture/)
+- [Data Science — 03 · Building a Data Science Platform](https://sigilipelli.github.io/data-science-mastery-path/level-4/03-data-science-platform/)
+
 ## Exercise
 
 Extend `PipelineTemplate.generate_config` to accept a `compliance_tier`

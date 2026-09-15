@@ -203,6 +203,10 @@ failure alerts, freshness alerts, and row-count alerts simultaneously — which 
 monitoring correlates these into one incident rather than three, typically by suppressing
 downstream alerts once an upstream dependency is already known-failed.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 09 · Data Pipeline Monitoring & Alerting](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/09-pipeline-monitoring-alerting/)
+
 ## Exercise
 
 Add a fourth check, `schema_anomaly`, that flags a run if its `rows_out`

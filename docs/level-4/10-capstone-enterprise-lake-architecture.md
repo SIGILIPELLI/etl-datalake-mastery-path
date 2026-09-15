@@ -241,6 +241,12 @@ enterprise architectures treat a zone promotion job's atomic transaction-log com
 single moment where correctness, governance, and lineage emission all have to be satisfied
 together, rather than as three separate concerns checked at different times.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Excel — 01 · Enterprise Excel Architecture](https://sigilipelli.github.io/excel-mastery-path/level-4/01-enterprise-excel-architecture/)
+- [RAG — 01 · Enterprise RAG Architecture Patterns](https://sigilipelli.github.io/rag-mastery-path/level-4/01-enterprise-architecture/)
+
 ## Exercise
 
 Extend `run_domain_pipeline` to also call `compliance_sweep` for the

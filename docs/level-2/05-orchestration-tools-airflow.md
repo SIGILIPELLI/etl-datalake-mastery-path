@@ -237,6 +237,10 @@ not an oversight: XComs are meant for small values (a file path, a row count, a 
 because passing a large DataFrame through XCom means serializing it into the metadata
 database, which was built for control-plane bookkeeping, not bulk data transfer.
 
+## 🔀 Related lessons on other tracks
+
+- [Pyspark — 02 · Orchestration Airflow Integration](https://sigilipelli.github.io/pyspark-mastery-path/level-4/02-orchestration-airflow-integration/)
+
 ## Exercise
 
 Extend `orders_pipeline` with a `@task.branch` that checks a data quality

@@ -199,6 +199,11 @@ The core tradeoff is always the same: waiting longer before finalizing a partiti
 reduces how much data arrives "too late," but at the direct cost of increased end-to-end
 latency for every on-time record waiting behind that same closing threshold.
 
+## 🔀 Related lessons on other tracks
+
+- [Claude Training — 07 · Privacy & Data Handling Considerations When Using AI Tools](https://sigilipelli.github.io/claude-training-mastery-path/level-3/07-privacy-data-handling/)
+- [Pyspark — 03 · Handling Skewed Data](https://sigilipelli.github.io/pyspark-mastery-path/level-3/03-handling-skewed-data/)
+
 ## Exercise
 
 Extend `recompute_and_correct` to also record a `correction_count` column

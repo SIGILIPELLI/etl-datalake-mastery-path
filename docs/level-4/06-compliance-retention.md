@@ -224,6 +224,11 @@ by virtue of running a `DELETE`; retention/vacuum policy has to be tightened and
 and any time-travel or snapshot export taken before vacuum runs can still expose the
 "deleted" data.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 04 · Advanced Data Governance & Compliance](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/04-advanced-governance-compliance/)
+- [AWS — Data Lakes & Analytics (S3, Athena, Glue, Redshift)](https://sigilipelli.github.io/aws-mastery-path/level-4/03-data-lakes-analytics/)
+
 ## Exercise
 
 Extend `erase_subject` to also walk lineage (reusing `downstream_of` from

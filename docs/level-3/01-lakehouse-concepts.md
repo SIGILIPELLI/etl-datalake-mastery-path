@@ -188,6 +188,11 @@ Time travel and schema versioning are then free byproducts of the same log: read
 state "as of version N" or "as of timestamp T" is just replaying the log only up through that
 point instead of to its current tail.
 
+## 🔀 Related lessons on other tracks
+
+- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://sigilipelli.github.io/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
+- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+
 ## Exercise
 
 Extend `commit` to also support a `"remove"` list alongside `"add"`, and

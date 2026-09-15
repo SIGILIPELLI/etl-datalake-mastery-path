@@ -253,6 +253,10 @@ the same key's events in parallel) can apply an old update after a newer one and
 regress the target's state, which is why CDC consumers typically partition work by key so a
 single key's events are always processed by one worker, in log order.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 05 · Data Partitioning & Incremental Loads](https://sigilipelli.github.io/data-engineering-mastery-path/level-2/05-partitioning-incremental-loads/)
+
 ## Exercise
 
 Extend the `apply_cdc` function to also record an `is_deleted` boolean

@@ -186,6 +186,11 @@ per-query cost attribution usually requires the query engine's own execution met
 scanned, compute-seconds) as a proxy, cross-referenced against the coarser billing total
 rather than derived from billing data alone.
 
+## 🔀 Related lessons on other tracks
+
+- [Azure — 09 · FinOps & Cost Governance at Scale](https://sigilipelli.github.io/azure-mastery-path/level-4/09-finops-cost-governance/)
+- [IBM Cloud — 07 · Cost Management & Governance](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
+
 ## Exercise
 
 Add a `top_cost_drivers(cost_db, cost_center, top_n=3)` function that

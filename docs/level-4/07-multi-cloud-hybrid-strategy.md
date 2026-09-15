@@ -190,6 +190,12 @@ most frequently (processing data where it lands) and using cross-cloud replicati
 data that genuinely needs to be queried from multiple locations, rather than routing every
 query cross-cloud by default.
 
+## 🔀 Related lessons on other tracks
+
+- [Azure — 04 · Azure Arc & Hybrid Cloud](https://sigilipelli.github.io/azure-mastery-path/level-4/04-azure-arc-hybrid-cloud/)
+- [Data Engineering — 08 · Working with Cloud Data Warehouses](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/08-cloud-data-warehouses/)
+- [IBM Cloud — 03 · Hybrid Cloud with Satellite](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-4/03-hybrid-cloud-satellite/)
+
 ## Exercise
 
 Add a `replication_policy` table (`logical_table`, `source_region`,

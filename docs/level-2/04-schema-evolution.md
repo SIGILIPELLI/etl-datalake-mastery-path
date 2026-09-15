@@ -220,6 +220,10 @@ inferring it file-by-file. Without this log, schema evolution across a lake of p
 files depends entirely on every reader independently doing correct name-based resolution and
 agreeing on evolution rules — which is exactly the gap Iceberg/Delta close.
 
+## 🔀 Related lessons on other tracks
+
+- [Pyspark — 05 · Schema Evolution Production](https://sigilipelli.github.io/pyspark-mastery-path/level-4/05-schema-evolution-production/)
+
 ## Exercise
 
 Write a function `apply_schema_policy(existing_df, incoming_df)` that runs

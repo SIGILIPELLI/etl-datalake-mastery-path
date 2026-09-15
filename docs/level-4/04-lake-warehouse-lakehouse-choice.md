@@ -188,6 +188,10 @@ on the optimistic-concurrency commit succeeding, which degrades under very high 
 concurrency to the same table in a way a warehouse's more centralized transaction manager
 often handles more gracefully.
 
+## 🔀 Related lessons on other tracks
+
+- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://sigilipelli.github.io/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
+
 ## Exercise
 
 Extend `recommend_architecture` with a `data_volume_tb` and

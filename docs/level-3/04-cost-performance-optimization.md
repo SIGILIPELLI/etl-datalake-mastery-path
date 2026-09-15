@@ -200,6 +200,12 @@ well-sized files — this is the mechanical link between small-file compaction (
 and both cost and latency, since request round-trip latency, not just bandwidth, dominates
 when files are small.
 
+## 🔀 Related lessons on other tracks
+
+- [AI/ML — 08 · Cost Optimization & Efficient Inference](https://sigilipelli.github.io/ai-ml-mastery-path/level-4/08-efficient-inference/)
+- [AWS — Cost Optimization at Scale](https://sigilipelli.github.io/aws-mastery-path/level-4/06-cost-optimization-at-scale/)
+- [Azure — 09 · Cost Management & Optimization](https://sigilipelli.github.io/azure-mastery-path/level-3/09-cost-management-optimization/)
+
 ## Exercise
 
 Using the `orders` DataFrame above, write it partitioned by `status` with
