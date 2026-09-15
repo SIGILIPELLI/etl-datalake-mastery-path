@@ -1,3 +1,7 @@
+---
+description: "Building a Governed Multi-Zone Data Lake — Level 1 introduced Bronze/Silver/Gold layering as a simple three-zone pattern. At platform scale, 'governed'…"
+---
+
 # 01 · Building a Governed Multi-Zone Data Lake
 
 Level 1 introduced Bronze/Silver/Gold layering as a simple three-zone

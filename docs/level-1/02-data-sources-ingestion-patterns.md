@@ -1,3 +1,7 @@
+---
+description: "Data Sources & Ingestion Patterns — Before you can write a line of transform logic, you need data flowing in. This lesson covers the shapes data sources…"
+---
+
 # 02 · Data Sources & Ingestion Patterns
 
 Before you can write a line of transform logic, you need data flowing in.

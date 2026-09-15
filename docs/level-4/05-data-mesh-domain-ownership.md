@@ -1,3 +1,7 @@
+---
+description: "Data Mesh & Domain-Oriented Lake Ownership — A single centralized data team owning every pipeline for every business domain doesn't scale past a certain…"
+---
+
 # 05 · Data Mesh & Domain-Oriented Lake Ownership
 
 A single centralized data team owning every pipeline for every business

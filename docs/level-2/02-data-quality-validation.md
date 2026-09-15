@@ -1,3 +1,7 @@
+---
+description: "Data Quality Checks & Validation — A pipeline that runs successfully but loads garbage is worse than one that fails loudly — the failure at least gets…"
+---
+
 # 02 · Data Quality Checks & Validation
 
 A pipeline that runs successfully but loads garbage is worse than one that

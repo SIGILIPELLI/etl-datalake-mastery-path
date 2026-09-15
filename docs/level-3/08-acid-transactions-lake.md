@@ -1,3 +1,7 @@
+---
+description: "ACID Transactions on the Lake — 'ACID' — Atomicity, Consistency, Isolation, Durability — is textbook database vocabulary, but plain object storage gives…"
+---
+
 # 08 · ACID Transactions on the Lake
 
 "ACID" — Atomicity, Consistency, Isolation, Durability — is textbook

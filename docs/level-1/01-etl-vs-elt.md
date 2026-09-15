@@ -1,3 +1,7 @@
+---
+description: "What Is ETL vs. ELT? — Every data pipeline moves data from a source to a place where it can be queried and trusted. The two dominant shapes for doing that…"
+---
+
 # 01 · What Is ETL vs. ELT?
 
 Every data pipeline moves data from a source to a place where it can be

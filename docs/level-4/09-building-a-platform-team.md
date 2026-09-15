@@ -1,3 +1,7 @@
+---
+description: "Building a Data Platform Team — Everything in this course so far — pipelines, lakehouse tables, cataloging, governance, cost controls — eventually needs a…"
+---
+
 # 09 · Building a Data Platform Team
 
 Everything in this course so far — pipelines, lakehouse tables, cataloging,

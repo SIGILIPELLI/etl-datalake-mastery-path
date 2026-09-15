@@ -1,3 +1,7 @@
+---
+description: "Multi-Cloud & Hybrid Data Lake Strategy — Large organizations rarely run on a single cloud by choice alone — mergers bring in acquired companies'…"
+---
+
 # 07 · Multi-Cloud & Hybrid Data Lake Strategy
 
 Large organizations rarely run on a single cloud by choice alone — mergers

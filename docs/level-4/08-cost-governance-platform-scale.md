@@ -1,3 +1,7 @@
+---
+description: "Cost Governance at Platform Scale — Module 04 (Level 3) covered technical levers for lake cost — formats, partitioning, compaction. At platform scale…"
+---
+
 # 08 · Cost Governance at Platform Scale
 
 Module 04 (Level 3) covered technical levers for lake cost — formats,

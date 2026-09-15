@@ -1,3 +1,7 @@
+---
+description: "Compliance & Retention in Data Lakes — Regulations like GDPR and CCPA give individuals concrete rights over data about them — to see it, to have it…"
+---
+
 # 06 · Compliance & Retention in Data Lakes
 
 Regulations like GDPR and CCPA give individuals concrete rights over data

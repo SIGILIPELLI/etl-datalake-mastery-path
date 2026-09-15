@@ -1,3 +1,7 @@
+---
+description: "Query Engines Over the Lake (Presto/Trino/Athena) — Once data lands as Parquet files in a catalog, you need something to answer SQL queries against it…"
+---
+
 # 09 · Query Engines Over the Lake (Presto/Trino/Athena)
 
 Once data lands as Parquet files in a catalog, you need something to answer

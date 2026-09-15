@@ -1,3 +1,7 @@
+---
+description: "Partitioning Strategy for a Data Lake — A data lake without a partitioning strategy is a folder of files that every query has to scan in full.…"
+---
+
 # 03 · Partitioning Strategy for a Data Lake
 
 A data lake without a partitioning strategy is a folder of files that every

@@ -1,3 +1,7 @@
+---
+description: "Time Travel & Data Versioning — Module 01 showed that a lakehouse's transaction log makes multi-file writes atomic. The same log gives you something else…"
+---
+
 # 07 · Time Travel & Data Versioning
 
 Module 01 showed that a lakehouse's transaction log makes multi-file writes

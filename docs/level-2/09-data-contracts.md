@@ -1,3 +1,7 @@
+---
+description: "Data Contracts Between Producers & Consumers — A data contract is an explicit, versioned agreement between the team that produces data and the teams that…"
+---
+
 # 09 · Data Contracts Between Producers & Consumers
 
 A data contract is an explicit, versioned agreement between the team that

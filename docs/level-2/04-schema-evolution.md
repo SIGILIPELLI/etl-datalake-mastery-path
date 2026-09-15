@@ -1,3 +1,7 @@
+---
+description: "Schema Evolution & Handling — Source schemas change: a new column appears, a type widens, a field gets renamed. A pipeline that assumes the schema is…"
+---
+
 # 04 · Schema Evolution & Handling
 
 Source schemas change: a new column appears, a type widens, a field gets

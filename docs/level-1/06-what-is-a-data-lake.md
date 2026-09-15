@@ -1,3 +1,7 @@
+---
+description: "What Is a Data Lake? (vs. Data Warehouse) — Every pipeline needs somewhere to land data. Two very different answers to 'where' dominate modern data…"
+---
+
 # 06 · What Is a Data Lake? (vs. Data Warehouse)
 
 Every pipeline needs somewhere to land data. Two very different answers to

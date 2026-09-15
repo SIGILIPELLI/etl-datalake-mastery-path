@@ -1,3 +1,7 @@
+---
+description: "Monitoring & Alerting for Pipelines — A pipeline that fails silently at 3 a.m. and isn't noticed until a stakeholder complains about a stale dashboard two…"
+---
+
 # 08 · Monitoring & Alerting for Pipelines
 
 A pipeline that fails silently at 3 a.m. and isn't noticed until a

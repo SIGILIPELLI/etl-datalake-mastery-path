@@ -1,3 +1,7 @@
+---
+description: "Capstone — Governed Enterprise Data Lake Architecture — This capstone assembles the entire course into one coherent design: a multi-zone, multi-domain…"
+---
+
 # 10 · Capstone — Governed Enterprise Data Lake Architecture
 
 This capstone assembles the entire course into one coherent design: a

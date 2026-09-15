@@ -1,3 +1,7 @@
+---
+description: "Handling Late-Arriving & Out-of-Order Data — Real event sources don't deliver in perfect order: mobile clients buffer offline, retries reorder network…"
+---
+
 # 05 · Handling Late-Arriving & Out-of-Order Data
 
 Real event sources don't deliver in perfect order: mobile clients buffer

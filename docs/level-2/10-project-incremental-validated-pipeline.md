@@ -1,3 +1,7 @@
+---
+description: "Project — Incremental, Validated Lake Pipeline — This capstone for Level 2 ties together the last nine modules into a single pipeline: it loads only what…"
+---
+
 # 10 · Project — Incremental, Validated Lake Pipeline
 
 This capstone for Level 2 ties together the last nine modules into a single

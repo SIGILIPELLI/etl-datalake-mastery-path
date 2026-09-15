@@ -1,3 +1,7 @@
+---
+description: "Small Files & Compaction Strategies — Every incremental micro-batch or streaming micro-write tends to produce one small file. Do that every five minutes…"
+---
+
 # 06 · Small Files & Compaction Strategies
 
 Every incremental micro-batch or streaming micro-write tends to produce one

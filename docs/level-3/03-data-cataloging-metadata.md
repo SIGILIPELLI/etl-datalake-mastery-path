@@ -1,3 +1,7 @@
+---
+description: "Data Cataloging & Metadata Management — A lake with a hundred tables and no catalog is just a bucket full of files nobody can find or trust. A data…"
+---
+
 # 03 · Data Cataloging & Metadata Management
 
 A lake with a hundred tables and no catalog is just a bucket full of files

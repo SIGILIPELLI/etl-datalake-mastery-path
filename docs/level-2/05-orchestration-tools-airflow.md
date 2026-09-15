@@ -1,3 +1,7 @@
+---
+description: "Orchestration Tools Overview (Airflow DAGs) — Level 1 covered why you need a scheduler. This module goes hands-on with the tool most teams reach for…"
+---
+
 # 05 · Orchestration Tools Overview (Airflow DAGs)
 
 Level 1 covered *why* you need a scheduler. This module goes hands-on with

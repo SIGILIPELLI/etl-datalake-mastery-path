@@ -1,3 +1,7 @@
+---
+description: "Idempotent Pipeline Design — An idempotent pipeline produces the same result no matter how many times you run it for the same input. This sounds academic…"
+---
+
 # 06 · Idempotent Pipeline Design
 
 An **idempotent** pipeline produces the same result no matter how many

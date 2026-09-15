@@ -1,3 +1,7 @@
+---
+description: "File Formats: CSV, JSON, Parquet, Avro — The file format you choose to store data in a lake affects storage size, read speed, and how gracefully your…"
+---
+
 # 08 · File Formats: CSV, JSON, Parquet, Avro
 
 The file format you choose to store data in a lake affects storage size,

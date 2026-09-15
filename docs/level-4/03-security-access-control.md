@@ -1,3 +1,7 @@
+---
+description: "Security & Access Control Patterns for Data Lakes — A data lake's files sit in one bucket, but different tables, columns, and even rows within them need…"
+---
+
 # 03 · Security & Access Control Patterns for Data Lakes
 
 A data lake's files sit in one bucket, but different tables, columns, and

@@ -1,3 +1,7 @@
+---
+description: "Data Lineage & Observability — When a number on a dashboard looks wrong, the question is always 'where did this come from, and what touched it along the…"
+---
+
 # 02 · Data Lineage & Observability
 
 When a number on a dashboard looks wrong, the question is always "where did

@@ -1,3 +1,7 @@
+---
+description: "Loading Into a Target — Load is the final ETL step: writing clean, transformed data somewhere it can be queried — a database table, a file, or (as this…"
+---
+
 # 05 · Loading Into a Target
 
 Load is the final ETL step: writing clean, transformed data somewhere it can

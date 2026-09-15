@@ -1,3 +1,7 @@
+---
+description: "Backfills & Reprocessing — A backfill re-runs a pipeline for a range of past dates — because a bug is found, a transformation logic changes, or a new…"
+---
+
 # 07 · Backfills & Reprocessing
 
 A backfill re-runs a pipeline for a range of past dates — because a bug is

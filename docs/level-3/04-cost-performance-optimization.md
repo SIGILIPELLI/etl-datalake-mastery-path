@@ -1,3 +1,7 @@
+---
+description: "Cost & Performance Optimization for Lake Storage — Object storage is cheap per gigabyte, but a badly laid-out lake still costs real money and time…"
+---
+
 # 04 · Cost & Performance Optimization for Lake Storage
 
 Object storage is cheap per gigabyte, but a badly laid-out lake still costs

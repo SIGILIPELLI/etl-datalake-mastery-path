@@ -1,3 +1,7 @@
+---
+description: "Incremental Loads & Change Data Capture — Full-refresh loads (drop and reload everything every run) are simple but they stop scaling the moment a source…"
+---
+
 # 01 · Incremental Loads & Change Data Capture
 
 Full-refresh loads (drop and reload everything every run) are simple but they

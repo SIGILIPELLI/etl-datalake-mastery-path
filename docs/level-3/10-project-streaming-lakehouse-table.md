@@ -1,3 +1,7 @@
+---
+description: "Project — Streaming-Ready Lakehouse Table — This Level 3 capstone combines streaming ingestion (Module 02), a lakehouse transaction log with ACID…"
+---
+
 # 10 · Project — Streaming-Ready Lakehouse Table
 
 This Level 3 capstone combines streaming ingestion (Module 02), a

@@ -1,3 +1,7 @@
+---
+description: "Extraction Basics (Files, APIs, Databases) — Extraction is the 'E' in ETL/ELT: getting raw data out of wherever it lives and into a shape your pipeline…"
+---
+
 # 03 · Extraction Basics (Files, APIs, Databases)
 
 Extraction is the "E" in ETL/ELT: getting raw data out of wherever it lives

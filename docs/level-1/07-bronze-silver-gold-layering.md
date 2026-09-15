@@ -1,3 +1,7 @@
+---
+description: "Bronze/Silver/Gold Layering — Once you've decided data lands in a lake (lesson 6), you need a way to organize it so 'raw and possibly messy' and 'clean…"
+---
+
 # 07 · Bronze/Silver/Gold Layering
 
 Once you've decided data lands in a lake (lesson 6), you need a way to

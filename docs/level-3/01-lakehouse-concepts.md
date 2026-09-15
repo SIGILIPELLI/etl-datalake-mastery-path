@@ -1,3 +1,7 @@
+---
+description: "Data Lakehouse Concepts (Delta Lake/Iceberg/Hudi) — A plain data lake (files in a bucket) is cheap and flexible but gives you none of the guarantees a…"
+---
+
 # 01 · Data Lakehouse Concepts (Delta Lake/Iceberg/Hudi)
 
 A plain data lake (files in a bucket) is cheap and flexible but gives you

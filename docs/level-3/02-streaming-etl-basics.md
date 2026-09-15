@@ -1,3 +1,7 @@
+---
+description: "Streaming ETL Basics — Every pipeline so far has been batch: run on a schedule, pull whatever changed, finish, exit. Streaming ETL processes events…"
+---
+
 # 02 · Streaming ETL Basics
 
 Every pipeline so far has been **batch**: run on a schedule, pull whatever

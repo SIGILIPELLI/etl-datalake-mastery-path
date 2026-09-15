@@ -1,3 +1,7 @@
+---
+description: "Why You Need a Scheduler — You could run your ETL script by hand every morning. For a while, that works. This lesson explains exactly where that breaks…"
+---
+
 # 09 · Why You Need a Scheduler
 
 You could run your ETL script by hand every morning. For a while, that

@@ -1,3 +1,7 @@
+---
+description: "Lake vs. Warehouse vs. Lakehouse: Choosing for a Use Case — By Level 4 you've built pieces of all three architectures — plain object storage (Level 1), a…"
+---
+
 # 04 · Lake vs. Warehouse vs. Lakehouse: Choosing for a Use Case
 
 By Level 4 you've built pieces of all three architectures — plain object

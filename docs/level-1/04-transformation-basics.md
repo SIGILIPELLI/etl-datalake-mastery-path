@@ -1,3 +1,7 @@
+---
+description: "Transformation Basics (Cleaning, Type Casting, Deduplication) — Transform is where raw, string-typed, messy data becomes something you'd trust in a…"
+---
+
 # 04 · Transformation Basics (Cleaning, Type Casting, Deduplication)
 
 Transform is where raw, string-typed, messy data becomes something you'd
