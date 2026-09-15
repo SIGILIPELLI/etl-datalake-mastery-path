@@ -1300,6 +1300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#related-lessons-on-other-tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 Related lessons on other tracks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,6 +2344,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#related-lessons-on-other-tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 Related lessons on other tracks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2583,6 +2605,10 @@ metadata table, keyed by DAG run, task, and key — this is a deliberate design 
 not an oversight: XComs are meant for small values (a file path, a row count, a boolean),
 because passing a large DataFrame through XCom means serializing it into the metadata
 database, which was built for control-plane bookkeeping, not bulk data transfer.</p>
+<h2 id="related-lessons-on-other-tracks">🔀 Related lessons on other tracks<a class="headerlink" href="#related-lessons-on-other-tracks" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://sigilipelli.github.io/pyspark-mastery-path/level-4/02-orchestration-airflow-integration/">Pyspark — 02 · Orchestration Airflow Integration</a></li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend <code>orders_pipeline</code> with a <code>@task.branch</code> that checks a data quality
 flag returned by <code>validate_and_load_silver</code> and routes to either
