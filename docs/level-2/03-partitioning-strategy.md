@@ -202,9 +202,9 @@ partition boundaries.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
-- [Data Science — 06 · Data Science Strategy & Roadmapping](https://sigilipelli.github.io/data-science-mastery-path/level-4/06-strategy-roadmapping/)
-- [Pyspark — 04 · Partitioning Strategy](https://sigilipelli.github.io/pyspark-mastery-path/level-2/04-partitioning-strategy/)
+- [Data Engineering — 03 · Data Lake Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Data Science — 06 · Data Science Strategy & Roadmapping](https://learnmasterypath.com/data-science-mastery-path/level-4/06-strategy-roadmapping/)
+- [Pyspark — 04 · Partitioning Strategy](https://learnmasterypath.com/pyspark-mastery-path/level-2/04-partitioning-strategy/)
 
 ## Exercise
 

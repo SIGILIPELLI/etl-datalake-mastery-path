@@ -217,7 +217,7 @@ domains, which is what keeps "federated" from meaning "ungoverned."
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 03 · Data Mesh Concepts](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/03-data-mesh-concepts/)
+- [Data Engineering — 03 · Data Mesh Concepts](https://learnmasterypath.com/data-engineering-mastery-path/level-4/03-data-mesh-concepts/)
 
 ## Exercise
 

@@ -255,7 +255,7 @@ single key's events are always processed by one worker, in log order.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 05 · Data Partitioning & Incremental Loads](https://sigilipelli.github.io/data-engineering-mastery-path/level-2/05-partitioning-incremental-loads/)
+- [Data Engineering — 05 · Data Partitioning & Incremental Loads](https://learnmasterypath.com/data-engineering-mastery-path/level-2/05-partitioning-incremental-loads/)
 
 ## Exercise
 

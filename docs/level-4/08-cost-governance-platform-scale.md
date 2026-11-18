@@ -188,8 +188,8 @@ rather than derived from billing data alone.
 
 ## 🔀 Related lessons on other tracks
 
-- [Azure — 09 · FinOps & Cost Governance at Scale](https://sigilipelli.github.io/azure-mastery-path/level-4/09-finops-cost-governance/)
-- [IBM Cloud — 07 · Cost Management & Governance](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
+- [Azure — 09 · FinOps & Cost Governance at Scale](https://learnmasterypath.com/azure-mastery-path/level-4/09-finops-cost-governance/)
+- [IBM Cloud — 07 · Cost Management & Governance](https://learnmasterypath.com/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
 
 ## Exercise
 

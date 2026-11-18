@@ -240,8 +240,8 @@ in schema order.
 
 ## 🔀 Related lessons on other tracks
 
-- [Pyspark — 05 · Reading Data (CSV, JSON, Parquet)](https://sigilipelli.github.io/pyspark-mastery-path/level-1/05-reading-data/)
-- [Data Engineering — 06 · Working with File Formats](https://sigilipelli.github.io/data-engineering-mastery-path/level-1/06-file-formats/)
+- [Pyspark — 05 · Reading Data (CSV, JSON, Parquet)](https://learnmasterypath.com/pyspark-mastery-path/level-1/05-reading-data/)
+- [Data Engineering — 06 · Working with File Formats](https://learnmasterypath.com/data-engineering-mastery-path/level-1/06-file-formats/)
 
 ## Exercise
 

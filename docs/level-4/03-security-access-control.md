@@ -221,9 +221,9 @@ event schema — this is a real integration cost, not just a checkbox.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cybersecurity — 05 · Authentication & Access Control](https://sigilipelli.github.io/cybersecurity-mastery-path/level-1/05-authentication-access-control/)
-- [RAG — 02 · Multi-Tenant RAG & Access Control](https://sigilipelli.github.io/rag-mastery-path/level-4/02-multi-tenant-access-control/)
-- [AI Tools — 06 · Data Privacy & Security When Using AI Tools](https://sigilipelli.github.io/ai-tools-mastery-path/level-2/06-data-privacy-security/)
+- [Cybersecurity — 05 · Authentication & Access Control](https://learnmasterypath.com/cybersecurity-mastery-path/level-1/05-authentication-access-control/)
+- [RAG — 02 · Multi-Tenant RAG & Access Control](https://learnmasterypath.com/rag-mastery-path/level-4/02-multi-tenant-access-control/)
+- [AI Tools — 06 · Data Privacy & Security When Using AI Tools](https://learnmasterypath.com/ai-tools-mastery-path/level-2/06-data-privacy-security/)
 
 ## Exercise
 

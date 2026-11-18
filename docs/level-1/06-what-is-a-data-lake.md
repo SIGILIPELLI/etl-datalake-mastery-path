@@ -182,8 +182,8 @@ guarantees across multiple files.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
-- [IBM Cloud — 04 · Data & AI Services (watsonx, Db2 Warehouse)](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-4/04-data-ai-services/)
+- [Data Engineering — 03 · Data Lake Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [IBM Cloud — 04 · Data & AI Services (watsonx, Db2 Warehouse)](https://learnmasterypath.com/ibm-cloud-mastery-path/level-4/04-data-ai-services/)
 
 ## Exercise
 

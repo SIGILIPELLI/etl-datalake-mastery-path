@@ -190,8 +190,8 @@ point instead of to its current tail.
 
 ## 🔀 Related lessons on other tracks
 
-- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://sigilipelli.github.io/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
-- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://learnmasterypath.com/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
+- [Data Engineering — 03 · Data Lake Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
 
 ## Exercise
 

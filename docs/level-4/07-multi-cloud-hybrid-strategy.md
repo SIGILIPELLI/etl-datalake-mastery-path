@@ -192,9 +192,9 @@ query cross-cloud by default.
 
 ## 🔀 Related lessons on other tracks
 
-- [Azure — 04 · Azure Arc & Hybrid Cloud](https://sigilipelli.github.io/azure-mastery-path/level-4/04-azure-arc-hybrid-cloud/)
-- [Data Engineering — 08 · Working with Cloud Data Warehouses](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/08-cloud-data-warehouses/)
-- [IBM Cloud — 03 · Hybrid Cloud with Satellite](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-4/03-hybrid-cloud-satellite/)
+- [Azure — 04 · Azure Arc & Hybrid Cloud](https://learnmasterypath.com/azure-mastery-path/level-4/04-azure-arc-hybrid-cloud/)
+- [Data Engineering — 08 · Working with Cloud Data Warehouses](https://learnmasterypath.com/data-engineering-mastery-path/level-3/08-cloud-data-warehouses/)
+- [IBM Cloud — 03 · Hybrid Cloud with Satellite](https://learnmasterypath.com/ibm-cloud-mastery-path/level-4/03-hybrid-cloud-satellite/)
 
 ## Exercise
 

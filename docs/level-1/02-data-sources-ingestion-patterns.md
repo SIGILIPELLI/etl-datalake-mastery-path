@@ -186,8 +186,8 @@ survive a crash on either side?**
 
 ## 🔀 Related lessons on other tracks
 
-- [Tableau — 02 · Connecting to Data Sources](https://sigilipelli.github.io/tableau-mastery-path/level-1/02-connecting-data-sources/)
-- [Terraform — 05 · Resources & Data Sources](https://sigilipelli.github.io/terraform-mastery-path/level-1/05-resources-data-sources/)
+- [Tableau — 02 · Connecting to Data Sources](https://learnmasterypath.com/tableau-mastery-path/level-1/02-connecting-data-sources/)
+- [Terraform — 05 · Resources & Data Sources](https://learnmasterypath.com/terraform-mastery-path/level-1/05-resources-data-sources/)
 
 ## Exercise
 

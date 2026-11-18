@@ -239,7 +239,7 @@ database, which was built for control-plane bookkeeping, not bulk data transfer.
 
 ## 🔀 Related lessons on other tracks
 
-- [Pyspark — 02 · Orchestration Airflow Integration](https://sigilipelli.github.io/pyspark-mastery-path/level-4/02-orchestration-airflow-integration/)
+- [Pyspark — 02 · Orchestration Airflow Integration](https://learnmasterypath.com/pyspark-mastery-path/level-4/02-orchestration-airflow-integration/)
 
 ## Exercise
 

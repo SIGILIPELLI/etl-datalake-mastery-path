@@ -205,7 +205,7 @@ downstream alerts once an upstream dependency is already known-failed.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 09 · Data Pipeline Monitoring & Alerting](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/09-pipeline-monitoring-alerting/)
+- [Data Engineering — 09 · Data Pipeline Monitoring & Alerting](https://learnmasterypath.com/data-engineering-mastery-path/level-3/09-pipeline-monitoring-alerting/)
 
 ## Exercise
 

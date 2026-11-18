@@ -201,8 +201,8 @@ latency for every on-time record waiting behind that same closing threshold.
 
 ## 🔀 Related lessons on other tracks
 
-- [Claude Training — 07 · Privacy & Data Handling Considerations When Using AI Tools](https://sigilipelli.github.io/claude-training-mastery-path/level-3/07-privacy-data-handling/)
-- [Pyspark — 03 · Handling Skewed Data](https://sigilipelli.github.io/pyspark-mastery-path/level-3/03-handling-skewed-data/)
+- [Claude Training — 07 · Privacy & Data Handling Considerations When Using AI Tools](https://learnmasterypath.com/claude-training-mastery-path/level-3/07-privacy-data-handling/)
+- [Pyspark — 03 · Handling Skewed Data](https://learnmasterypath.com/pyspark-mastery-path/level-3/03-handling-skewed-data/)
 
 ## Exercise
 

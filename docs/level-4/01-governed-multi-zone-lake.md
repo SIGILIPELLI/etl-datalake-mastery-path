@@ -231,7 +231,7 @@ tagging, PII scrubbing) get enforced as a hard gate rather than a convention.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Data Engineering — 03 · Data Lake Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
 
 ## Exercise
 

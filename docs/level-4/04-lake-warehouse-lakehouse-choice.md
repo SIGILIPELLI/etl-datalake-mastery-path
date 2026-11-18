@@ -190,7 +190,7 @@ often handles more gracefully.
 
 ## 🔀 Related lessons on other tracks
 
-- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://sigilipelli.github.io/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
+- [Pyspark — 01 · Delta Lake Lakehouse Patterns](https://learnmasterypath.com/pyspark-mastery-path/level-4/01-delta-lake-lakehouse-patterns/)
 
 ## Exercise
 

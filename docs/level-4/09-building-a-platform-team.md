@@ -197,9 +197,9 @@ entirely.
 
 ## 🔀 Related lessons on other tracks
 
-- [Azure — 08 · Data Platform at Scale (Synapse, Data Factory)](https://sigilipelli.github.io/azure-mastery-path/level-4/08-data-platform-at-scale/)
-- [Data Engineering — 01 · Enterprise Data Platform Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/01-enterprise-platform-architecture/)
-- [Data Science — 03 · Building a Data Science Platform](https://sigilipelli.github.io/data-science-mastery-path/level-4/03-data-science-platform/)
+- [Azure — 08 · Data Platform at Scale (Synapse, Data Factory)](https://learnmasterypath.com/azure-mastery-path/level-4/08-data-platform-at-scale/)
+- [Data Engineering — 01 · Enterprise Data Platform Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-4/01-enterprise-platform-architecture/)
+- [Data Science — 03 · Building a Data Science Platform](https://learnmasterypath.com/data-science-mastery-path/level-4/03-data-science-platform/)
 
 ## Exercise
 

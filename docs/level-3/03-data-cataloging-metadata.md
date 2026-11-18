@@ -219,9 +219,9 @@ execution layer emitting those read/write facts as jobs actually run.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 05 · Data Governance & Cataloging](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/05-data-governance-cataloging/)
-- [Automotive Testing — 05 · Test Data Management at Scale](https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/05-test-data-management/)
-- [Java Testing — 05 · Test Data Management](https://sigilipelli.github.io/java-testing-mastery-path/level-2/05-test-data-management/)
+- [Data Engineering — 05 · Data Governance & Cataloging](https://learnmasterypath.com/data-engineering-mastery-path/level-3/05-data-governance-cataloging/)
+- [Automotive Testing — 05 · Test Data Management at Scale](https://learnmasterypath.com/automotive-testing-mastery-path/level-4/05-test-data-management/)
+- [Java Testing — 05 · Test Data Management](https://learnmasterypath.com/java-testing-mastery-path/level-2/05-test-data-management/)
 
 ## Exercise
 

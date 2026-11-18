@@ -243,9 +243,9 @@ together, rather than as three separate concerns checked at different times.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 03 · Data Lake Architecture](https://sigilipelli.github.io/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
-- [Excel — 01 · Enterprise Excel Architecture](https://sigilipelli.github.io/excel-mastery-path/level-4/01-enterprise-excel-architecture/)
-- [RAG — 01 · Enterprise RAG Architecture Patterns](https://sigilipelli.github.io/rag-mastery-path/level-4/01-enterprise-architecture/)
+- [Data Engineering — 03 · Data Lake Architecture](https://learnmasterypath.com/data-engineering-mastery-path/level-3/03-data-lake-architecture/)
+- [Excel — 01 · Enterprise Excel Architecture](https://learnmasterypath.com/excel-mastery-path/level-4/01-enterprise-excel-architecture/)
+- [RAG — 01 · Enterprise RAG Architecture Patterns](https://learnmasterypath.com/rag-mastery-path/level-4/01-enterprise-architecture/)
 
 ## Exercise
 
