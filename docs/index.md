@@ -79,7 +79,7 @@ sites cover the neighboring ground:
 - [PySpark Mastery Path](https://learnmasterypath.com/pyspark-mastery-path/) — distributed processing for large-scale ETL
 - [Data Science Mastery Path](https://learnmasterypath.com/data-science-mastery-path/) — what happens after the data lands
 
-🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube — Shorts and full walkthroughs of these lessons.
+🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube — Shorts and full walkthroughs of these lessons. [▶ Subscribe free](https://www.youtube.com/@learnmasterypath?sub_confirmation=1)
 
 ## More from the Mastery Path series
 
