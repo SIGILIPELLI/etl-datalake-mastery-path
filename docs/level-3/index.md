@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free ETL & Data Lake Mastery Path: Data Lakehouse Concepts (Delta Lake/Iceberg/Hudi), Streaming ETL Basics, Data Cataloging &…"
+---
+
 # Level 3 · Advanced
 
 ## Modules

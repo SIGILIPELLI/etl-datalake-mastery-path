@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free ETL & Data Lake Mastery Path: Building a Governed Multi-Zone Data Lake, Data Lineage & Observability, Security & Access Control…"
+---
+
 # Level 4 · Master
 
 ## Modules

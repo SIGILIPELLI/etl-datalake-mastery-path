@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free ETL & Data Lake Mastery Path: Incremental Loads & Change Data Capture, Data Quality Checks & Validation, Partitioning…"
+---
+
 # Level 2 · Intermediate
 
 ## Modules
