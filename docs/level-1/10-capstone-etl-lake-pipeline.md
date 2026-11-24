@@ -2,7 +2,7 @@
 description: "Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake — This capstone combines every Level 1 lesson into one working pipeline: it extracts a raw CSV…"
 ---
 
-# 10 · Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake
+# 10 · Project — End-to-End ETL to a Bronze/Silver/Gold Lake
 
 This capstone combines every Level 1 lesson into one working pipeline: it
 extracts a raw CSV, cleans and transforms it with `pandas`, and loads the

@@ -96,7 +96,7 @@ nav:
       - "07 · Bronze/Silver/Gold Layering": level-1/07-bronze-silver-gold-layering.md
       - "08 · File Formats: CSV, JSON, Parquet, Avro": level-1/08-file-formats.md
       - "09 · Why You Need a Scheduler": level-1/09-orchestration-basics.md
-      - "10 · Capstone — End-to-End ETL to a Bronze/Silver/Gold Lake": level-1/10-capstone-etl-lake-pipeline.md
+      - "10 · Project — End-to-End ETL to a Bronze/Silver/Gold Lake": level-1/10-capstone-etl-lake-pipeline.md
   - "Level 2 · Intermediate":
       - Overview: level-2/index.md
       - "01 · Incremental Loads & Change Data Capture": level-2/01-incremental-loads-cdc.md
