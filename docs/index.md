@@ -8,7 +8,7 @@ description: "Free course on ETL/ELT pipeline design and data lake architecture 
 A structured, module-wise training program on **ETL/ELT pipeline design and
 Data Lake architecture** — from your first extract-transform-load script to
 governed, multi-zone lakehouse platforms — with runnable Python code in every
-module and a hands-on project at the end of each level.
+module and a hands-on project at the end of Levels 1–3 and a capstone at the end of Level 4.
 
 ETL is the plumbing behind every analytics dashboard, ML feature store, and
 finance report: moving data reliably from where it's produced to where it's
